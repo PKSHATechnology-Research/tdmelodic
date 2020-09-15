@@ -1,0 +1,8 @@
+numpy==1.15.4
+chainer==5.1.0
+mecab-python3==0.996.1
+jaconv==0.2.4
+python-Levenshtein==0.12.0
+tqdm==4.42.1
+regex==2020.1.8
+matplotlib==3.0.0
