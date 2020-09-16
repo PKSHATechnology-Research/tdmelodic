@@ -1,4 +1,6 @@
-<p align="center"><img src="https://raw.githubusercontent.com/PKSHATechnology-Research/camphr/master/imgs/logo/logo_tdmelodic.svg?sanitize=true" width="200" /></p>
+<p align="center">
+    <img src="imgs/logo/logo_tdmelodic.svg" width="400" />
+</p>
 
 
 # Tokyo Dialect MELOdic accent DICtionary (tdmelodic) generator
