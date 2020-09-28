@@ -8,7 +8,10 @@
 This module generates a large scale accent dictionary of
 Japanese (Tokyo dialect) using a neural network based technique.
 
-For academic use, please cite the following paper. [[IEEEXplore]](https://ieeexplore.ieee.org/document/9054081)
+For academic use, please cite the following paper. 
+[[IEEE Xplore]](https://ieeexplore.ieee.org/document/9054081)
+[[arXiv]](https://arxiv.org/abs/2009.09679)
+
 ```bibtex
 @inproceedings{tachibana2020icassp,
     author    = "H. Tachibana and Y. Katayama",
