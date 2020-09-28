@@ -1,3 +1,4 @@
+
 <p align="center">
     <img src="imgs/logo/logo_tdmelodic.svg" width="400" />
 </p>
@@ -8,7 +9,7 @@
 This module generates a large scale accent dictionary of
 Japanese (Tokyo dialect) using a neural network based technique.
 
-For academic use, please cite the following paper. 
+For academic use, please cite the following paper.
 [[IEEE Xplore]](https://ieeexplore.ieee.org/document/9054081)
 [[arXiv]](https://arxiv.org/abs/2009.09679)
 
@@ -26,13 +27,27 @@ For academic use, please cite the following paper.
 
 ## Background: Japanese Pitch Accent
 Japanese language is a pitch accent language.
+Accent is important in spoken Japanese language.
 In contemporary Tokyo dialect, there are two kinds of events that invoke the change of pitch.
 
 - `[`: _raise the pitch here_
 - `]`: _lower the pitch here_
 
-Accent is important in spoken Japanese language.
-See following examples.
+Not the all patterns are grammatically possible.
+Instead, an _n_-mora word basically has one of the _n_+1 possible accent patterns as follows.
+<p align="center">
+    <img src="imgs/jpn_accent_types.png" width="500" />
+</p>
+The following table shows some examples.
+
+| type | words |
+|:----:|:-----:|
+| 0 (平板型) | 野球`ya[kyuu`, パソコン`pa[sokon`, 鉛筆`e[npitsu`, 緑茶`ryo[kucha`, りんご`ri[ngo`, 渋谷`shi[buya` |
+| 1 (頭高型) | サッカー`sa]Qkaa`, ジュース`ju]usu`, 猫`ne]ko`, メロン`me]ron`, 金魚`ki]ngyo`, 新橋`shi]mbashi` |
+| 2 ~ n-1 (中高型) | バドミントン`ba[domi]nton`, 折り紙`o[ri]gami`, カブトムシ`ka[buto]mushi`, 冷蔵庫`re[ezo]oko`, 池袋`i[kebu]kuro` |
+| n (尾高型) | 足`a[shi]`, 紙`ka[mi]`, 花`ha[na]`, 海苔`no[ri]`, 米`ko[me]`, 光`hi[kari]`, 犬`i[nu]`, 馬`u[ma]` |
+
+
 
 Some words have the same romanization but have different accents. For example,
 
@@ -51,11 +66,11 @@ The accents of compound words are a little complicated. For example,
 
 | word | accent |
 | --- | --- |
-| 東京`to[okyoo`, 東京都`to[okyo]oto` | ![東京と東京都](imgs/jpn_accent-en-page1.png) |
-| 東京都知事`to[okyootochi]ji` | ![東京都知事](imgs/jpn_accent-en-page2.png) |
-| 東京都知事選挙`to[okyootochijise]nkyo` | ![東京都知事選挙](imgs/jpn_accent-en-page3.png) |
-| 世界`se]kai`, 遺産`i[san`, 世界遺産`se[kaii]san` | ![世界遺産](imgs/jpn_accent-en-page4.png) |
-| 機械`ki]kai`, 学習`ga[kushuu`, 機械学習`ki[kaiga]kushuu` | ![機械学習](imgs/jpn_accent-en-page5.png) |
+| <ul><li> 東京`to[okyoo` <li> 東京都`to[okyo]oto` </ul> | <img src="imgs/jpn_accent-en-page1.png" width="400" /> |
+| <ul><li> 東京都知事`to[okyootochi]ji` </ul> | <img src="imgs/jpn_accent-en-page2.png" width="400" /> |
+| <ul><li> 東京都知事選挙`to[okyootochijise]nkyo` </ul> | <img src="imgs/jpn_accent-en-page3.png" width="400" /> |
+| <ul><li> 世界`se]kai` <li> 遺産`i[san` <li> 世界遺産`se[kaii]san` </ul> | <img src="imgs/jpn_accent-en-page4.png" width="400" /> |
+| <ul><li> 機械`ki]kai` <li> 学習`ga[kushuu` <li> 機械学習`ki[kaiga]kushuu` </ul> | <img src="imgs/jpn_accent-en-page5.png" width="400" /> |
 
 For more details of Japanese pitch accent, see the literature listed below ([Further Reading](#further-reading))
 
