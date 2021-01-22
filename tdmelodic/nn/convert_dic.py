@@ -27,50 +27,70 @@ from .inference import InferAccent
 gpu_id = -1
 bs = 64
 
-offset=0
-_index_map={
+unidic_index_map = {
     # see also mecabrc
-    'SURFACE': offset + 0,
-    'COST'   : offset + 3,
-    'POS1'   : offset + 4 +  0, # f[0]:   pos1
-    'POS2'   : offset + 4 +  1, # f[1]:   pos2
-    'POS3'   : offset + 4 +  2, # f[2]:   pos3
-    'POS4'   : offset + 4 +  3, # f[3]:   pos4
-    'YOMI'   : offset + 4 +  9, # f[9]:   pron
-    'GOSHU'  : offset + 4 + 12, # f[12]:  goshu
-    'ACCENT' : offset + 4 + 23, # f[23]:  aType
+    "SURFACE": 0,
+    "COST": 3,
+    "POS1": 4 + 0,  # f[0]:   pos1
+    "POS2": 4 + 1,  # f[1]:   pos2
+    "POS3": 4 + 2,  # f[2]:   pos3
+    "POS4": 4 + 3,  # f[3]:   pos4
+    "YOMI": 4 + 9,  # f[9]:   pron
+    "GOSHU": 4 + 12,  # f[12]:  goshu
+    "ACCENT": 4 + 23,  # f[23]:  aType
 }
 
-def apply_all(test_csv, output_csv, up_symbol='[', down_symbol=']', index_map=_index_map):
-    test_dat = NeologdDictionaryLoader(test_csv,
-        infer_mode=True,
-        index_map = index_map,
-        store_entire_line=False
+ipadic_index_map = {
+    # see also mecabrc
+    "SURFACE": 0,
+    "COST": 3,
+    "POS1": 4,  # Not used. Dummy value for now.
+    "POS2": 5,  # Not used. Dummy value for now.
+    "POS3": 6,  # Not used. Dummy value for now.
+    "POS4": 7,  # Not used. Dummy value for now.
+    "YOMI": 12,
+    "GOSHU": 0,  # Not used. Dummy value for now.
+    "ACCENT": 0,  # Not used. Dummy value for now.
+}
+
+
+def apply_all(
+    test_csv, output_csv, up_symbol="[", down_symbol="]", mode="unidic"
+):
+    if mode == "unidic":
+        index_map = unidic_index_map
+    elif mode == "ipadic":
+        index_map = ipadic_index_map
+    else:
+        index_map = unidic_index_map
+
+    test_dat = NeologdDictionaryLoader(
+        test_csv, infer_mode=True, index_map=index_map, store_entire_line=False
     )
 
     test_iter = chainer.iterators.SerialIterator(
-                        test_dat,
-                        bs,
-                        repeat=False,
-                        shuffle=False)
+        test_dat, bs, repeat=False, shuffle=False
+    )
 
     model = InferAccent()
     with open(output_csv, "w") as ofs:
         csv_out = csv.writer(ofs)
         for batch_ in tqdm(test_iter, total=len(test_dat) // bs):
-            batch     = [a for a, b in batch_]
+            batch = [a for a, b in batch_]
             orig_info = [b for a, b in batch_]
 
-            batch = chainer.dataset.convert.concat_examples(batch, device = gpu_id, padding = 0)
+            batch = chainer.dataset.convert.concat_examples(
+                batch, device=gpu_id, padding=0
+            )
             X = batch[:-1]
-            y_truth = batch[-1] # Ground Truth
+            y_truth = batch[-1]  # Ground Truth
 
             # X   : (S_vow_np, S_con_np, S_pos_np, S_acc_np, S_acccon_np, S_gosh_np, Y_vow_np, Y_con_np)
             # X_s : (S_vow_np, S_con_np, S_pos_np, S_acc_np, S_acccon_np, S_gosh_np)
             # X_y :                                                                 (Y_vow_np, Y_con_np)
             X_s = X[:-2]
             X_y = X[-2:]
-            y_dummy_GT = (X_y[0] * 0) # dummy data
+            y_dummy_GT = X_y[0] * 0  # dummy data
 
             # infer
             a_est = model.infer(X_s, X_y, y_dummy_GT)
@@ -81,36 +101,48 @@ def apply_all(test_csv, output_csv, up_symbol='[', down_symbol=']', index_map=_i
             def proc(b, orig_info, a_est):
                 idx, kanji, yomi, orig_entry = orig_info[b]
                 A = a_est[b].tolist()
-                A = A[:len(yomi)]
+                A = A[: len(yomi)]
                 y_ = [
-                        y +
-                        (up_symbol if a_ == 2 else down_symbol if a_ == 0 else "" )
-                            for y, a_
-                            in zip(sep_katakana2mora(yomi), A)
-                    ]
+                    y + (up_symbol if a_ == 2 else down_symbol if a_ == 0 else "")
+                    for y, a_ in zip(sep_katakana2mora(yomi), A)
+                ]
                 y_ = "".join(y_)
-                orig_entry[_index_map['YOMI']] = y_
-                orig_entry[_index_map['ACCENT']] = '@'
+                orig_entry[index_map["YOMI"]] = y_
+                if mode == "unidic":
+                    orig_entry[index_map["ACCENT"]] = "@"
                 return orig_entry
 
             for i in range(len(batch_)):
                 line = proc(i, orig_info, a_est)
                 csv_out.writerow(line)
 
+
 # =============================================================================================
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument('-i', '--input', type=str,
-                        help='input csv (neologd dicitionary file)')
-    parser.add_argument('-o', '--output', type=str,
-                        help='output csv')
+    parser.add_argument(
+        "-i", "--input", type=str, help="input csv (neologd dicitionary file)"
+    )
+    parser.add_argument("-o", "--output", type=str, help="output csv")
+    parser.add_argument(
+        "-m",
+        "--mode",
+        type=str,
+        help="dictionary format type",
+        choices=["unidic", "ipadic"],
+        default="unidic",
+    )
     args = parser.parse_args()
 
     if args.input == args.output:
         print("[ Error ] intput and output files should be different.")
     else:
         try:
-            apply_all(args.input, args.output)
+            apply_all(
+                test_csv=args.input,
+                output_csv=args.output,
+                mode=args.mode,
+            )
         except Exception as e:
             print(e)
 
