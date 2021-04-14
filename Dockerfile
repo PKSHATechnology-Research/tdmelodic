@@ -1,8 +1,9 @@
-FROM ubuntu:16.04
+FROM ubuntu:20.04
 # To enable GPU, use other base images such as
 # nvidia/cuda:10.0-devel-ubuntu16.04
 
 # apt
+ENV DEBIAN_FRONTEND=noninteractive
 RUN apt-get update -y && \
     apt-get install -y --no-install-recommends \
         build-essential \
@@ -21,7 +22,7 @@ RUN locale-gen ja_JP.UTF-8 \
     && echo "export LANG=ja_JP.UTF-8" >> ~/.bashrc
 
 # Python
-ARG PYTHON_VERSION=3.6
+ARG PYTHON_VERSION=3.7
 RUN echo "alias python='python3'" >> ~/.bash_aliases
 
 # workspace

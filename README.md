@@ -119,14 +119,14 @@ It will take a few minutes.
 
 ```sh
 cd ${WORKDIR}/tdmelodic
-docker build -t tdmelodic:latest .
+docker build -t tdmelodic:latest . # --no-cache
 ```
 
 If needed, try following commands to check if it works.
 
 ```console
 you@machine:~$ docker run -it tdmelodic:latest
-root@docker:~/workspace$ echo 深層学習 | mecab -d /usr/lib/mecab/dic/unidic
+root@docker:~/workspace$ echo 深層学習 | mecab -d `mecab-config --dicdir`/unidic
 深層	シンソー	シンソウ	深層	名詞-普通名詞-一般			0
 学習	ガクシュー	ガクシュウ	学習	名詞-普通名詞-サ変可能			0
 EOS
