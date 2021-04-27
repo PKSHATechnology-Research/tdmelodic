@@ -1,14 +1,24 @@
 name: Lilypond
 on:
   push:
-    branches: [ test-imgs, master ]
+    branches:
+      - test-imgs
+  pull_request:
+    branches:
+      - main
+    paths:
+      - 'imgs/*.ly'
+      - '.github/workflows/img.yml'
+  schedule:
+    # Monthly check (12:10 PM UTC, 28th day of every month)
+    - cron: '10 12 27 * *'
 env:
   IMG_DIR: imgs
 jobs:
   build_sheets:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout Source 
+      - name: Checkout Source
         uses: actions/checkout@v2
       - name: apt
         run: |
