@@ -4,8 +4,7 @@ on:
     branches:
       - test-imgs
   pull_request:
-    branches:
-      - main
+    branches: [main, master]
     paths:
       - 'imgs/*.ly'
       - '.github/workflows/img.yml'
