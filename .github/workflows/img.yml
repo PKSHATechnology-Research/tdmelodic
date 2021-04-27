@@ -1,0 +1,32 @@
+name: Lilypond
+on:
+  push:
+    branches:
+      - test-imgs
+  pull_request:
+    branches: [main, master]
+    paths:
+      - 'imgs/*.ly'
+      - '.github/workflows/img.yml'
+  schedule:
+    # Monthly check (12:10 PM UTC, 28th day of every month)
+    - cron: '10 12 27 * *'
+env:
+  IMG_DIR: imgs
+jobs:
+  build_sheets:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Source
+        uses: actions/checkout@v2
+      - name: apt
+        run: |
+          sudo apt-get update
+          sudo apt-get -y install lilypond netpbm make locales-all
+          sudo apt install -y fonts-ipafont fonts-ipaexfont
+          export LANG=ja_JP.UTF-8
+          export LANGUAGE=ja_JP.UTF-8
+      - name: build
+        run: |
+          cd ${IMG_DIR}
+          make
