@@ -2,11 +2,14 @@ name: Docker
 
 on:
   push:
-    branches: [ ci/docker, master ]
+    branches: [ master ]
+    paths:
+      - 'Dockerfile'
+      - '.github/workflows/docker-image.yml'
   pull_request:
     branches: [ master ]
   schedule:
-    - cron: '0 0 1 * *'     # Monthly check
+    - cron: '0 0 1 */2 *' # bimonthly check
 
 jobs:
   build:
