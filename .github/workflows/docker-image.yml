@@ -2,7 +2,7 @@ name: Docker
 
 on:
   push:
-    branches: [ master ]
+    branches: [ ci/docker, master ]
   pull_request:
     branches: [ master ]
   schedule:
@@ -14,10 +14,6 @@ jobs:
     steps:
       - name: Checkout Source
         uses: actions/checkout@v2
-#      - name: wget UniDic
-#        uses: wei/wget@v1
-#        with:
-#          args: -O tdmelodic/unidic-mecab_kana-accent-2.1.2_src.zip https://unidic.ninjal.ac.jp/unidic_archive/cwj/2.1.2/unidic-mecab_kana-accent-2.1.2_src.zip
       - name: Build the Docker image
         run: |
           wget https://unidic.ninjal.ac.jp/unidic_archive/cwj/2.1.2/unidic-mecab_kana-accent-2.1.2_src.zip
