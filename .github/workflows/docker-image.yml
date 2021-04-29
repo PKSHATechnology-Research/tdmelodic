@@ -8,6 +8,8 @@ on:
       - '.github/workflows/docker-image.yml'
   pull_request:
     branches: [ master ]
+      - 'Dockerfile'
+      - '.github/workflows/docker-image.yml'
   schedule:
     - cron: '0 0 1 */2 *' # bimonthly check
 
