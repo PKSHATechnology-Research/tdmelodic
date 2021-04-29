@@ -3,7 +3,8 @@
     <img src="imgs/logo/logo_tdmelodic.svg" width="400" />
 </p>
 
-[![](workflows/Lilypond/badge.svg)](tdmelodic/actions?query=workflow%3ALilypond)
+[![Docker](https://github.com/PKSHATechnology-Research/tdmelodic/actions/workflows/docker-image.yml/badge.svg)](tdmelodic/actions?query=workflow%3ADocker)
+[![Lilypond](https://github.com/PKSHATechnology-Research/tdmelodic/actions/workflows/img.yml/badge.svg)](tdmelodic/actions?query=workflow%3ALilypond)
 [![License](https://img.shields.io/badge/License-BSD%203--Clause-blue.svg)](https://opensource.org/licenses/BSD-3-Clause)
 
 # Tokyo Dialect MELOdic accent DICtionary (tdmelodic) generator
