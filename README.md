@@ -1,13 +1,15 @@
-
 <p align="center">
-    <img src="imgs/logo/logo_tdmelodic.svg" width="400" />
+<img src="imgs/logo/logo_tdmelodic.svg" width="200" />
 </p>
 
-[![Docker](https://github.com/PKSHATechnology-Research/tdmelodic/actions/workflows/docker-image.yml/badge.svg)](tdmelodic/actions?query=workflow%3ADocker)
-[![Lilypond](https://github.com/PKSHATechnology-Research/tdmelodic/actions/workflows/img.yml/badge.svg)](tdmelodic/actions?query=workflow%3ALilypond)
-[![License](https://img.shields.io/badge/License-BSD%203--Clause-blue.svg)](https://opensource.org/licenses/BSD-3-Clause)
 
 # Tokyo Dialect MELOdic accent DICtionary (tdmelodic) generator
+
+[![Docker](https://github.com/PKSHATechnology-Research/tdmelodic/actions/workflows/docker-image.yml/badge.svg)](https://github.com/PKSHATechnology-Research/tdmelodic/actions/workflows/docker-image.yml)
+[![Lilypond](https://github.com/PKSHATechnology-Research/tdmelodic/actions/workflows/img.yml/badge.svg)](https://github.com/PKSHATechnology-Research/tdmelodic/actions/workflows/img.yml)
+[![arXiv](https://img.shields.io/badge/arXiv-2009.09679-B31B1B.svg)](https://arxiv.org/abs/2009.09679)
+[![License](https://img.shields.io/badge/License-BSD%203--Clause-blue.svg)](https://opensource.org/licenses/BSD-3-Clause)
+
 
 This module generates a large scale accent dictionary of
 Japanese (Tokyo dialect) using a neural network based technique.
