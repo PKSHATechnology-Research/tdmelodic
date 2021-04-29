@@ -8,6 +8,7 @@ on:
       - '.github/workflows/docker-image.yml'
   pull_request:
     branches: [ master ]
+    paths:
       - 'Dockerfile'
       - '.github/workflows/docker-image.yml'
   schedule:
