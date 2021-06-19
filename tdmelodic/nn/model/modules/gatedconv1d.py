@@ -10,7 +10,7 @@ import chainer
 import chainer.functions as F
 import chainer.links as L
 
-from nn.model.modules.dilateconvcausal1d import DilateConvCausal1D
+from .dilateconvcausal1d import DilateConvCausal1D
 
 class GatedConv1D(chainer.Chain):
     def __init__(self,

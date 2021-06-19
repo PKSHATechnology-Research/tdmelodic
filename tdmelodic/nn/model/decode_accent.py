@@ -10,7 +10,7 @@ import chainer
 import chainer.functions as F
 import chainer.links as L
 
-from nn.model.modules.stacked_conv import StackedConv
+from .modules.stacked_conv import StackedConv
 
 
 class DecodeAccent(chainer.Chain):

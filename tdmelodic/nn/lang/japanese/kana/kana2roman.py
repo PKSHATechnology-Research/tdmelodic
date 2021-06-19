@@ -9,9 +9,9 @@
 import sys
 import os
 
-from nn.lang.japanese.kana.kanamap import kanamap_normal
-from nn.lang.japanese.kana.mora_sep import sep_katakana2mora
-from nn.lang.japanese.kana.hyphen2romaji import replace_hyphen_by_romaji
+from .kanamap import kanamap_normal
+from .mora_sep import sep_katakana2mora
+from .hyphen2romaji import replace_hyphen_by_romaji
 
 
 # get dict

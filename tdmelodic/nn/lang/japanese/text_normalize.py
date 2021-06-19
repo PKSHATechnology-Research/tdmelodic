@@ -9,7 +9,7 @@
 import os, sys
 import re
 
-from nn.lang.japanese.kansuji import numeric2kanji
+from .kansuji import numeric2kanji
 import jaconv
 
 

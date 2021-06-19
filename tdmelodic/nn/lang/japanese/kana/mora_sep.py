@@ -9,7 +9,7 @@
 import sys
 import os
 
-from nn.lang.japanese.kana.kanamap import kanamap_normal
+from .kanamap import kanamap_normal
 
 mora_with_subs = kanamap_normal.exceptions.keys()
 small_vowel = list("ァィゥェォャュョヮぁぃぅぇぉゃゅょゎ")

@@ -18,9 +18,9 @@ from chainer.dataset import convert
 
 import re
 
-from nn.net import Net
-from nn.loader.data_loader import NeologdDictionaryLoader
-from nn.lang.japanese.kana.mora_sep import sep_katakana2mora
+from .net import Net
+from .loader.data_loader import NeologdDictionaryLoader
+from .lang.japanese.kana.mora_sep import sep_katakana2mora
 
 # ------------------------------------------------------------------------------
 # hyper params

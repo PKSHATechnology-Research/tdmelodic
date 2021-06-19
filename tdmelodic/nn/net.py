@@ -15,10 +15,10 @@ import chainer
 import chainer.functions as F
 from chainer import cuda
 
-from nn.model.encode_morae import EncodeMorae
-from nn.model.encode_surface import EncodeSurface
-from nn.model.decode_accent import DecodeAccent
-from nn.model.modules.cnn_attention import ConvAttention
+from .model.encode_morae import EncodeMorae
+from .model.encode_surface import EncodeSurface
+from .model.decode_accent import DecodeAccent
+from .model.modules.cnn_attention import ConvAttention
 
 class Net(chainer.Chain):
     def __init__(self, embed_dim):

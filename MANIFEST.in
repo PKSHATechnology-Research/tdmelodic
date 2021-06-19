@@ -1,0 +1,2 @@
+include tdmelodic/nn/lang/mecab/my_mecabrc
+include tdmelodic/nn/resource/net_it_2500000

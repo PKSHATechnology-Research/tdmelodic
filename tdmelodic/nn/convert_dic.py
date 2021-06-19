@@ -18,10 +18,10 @@ import chainer
 from chainer.training import extensions
 from chainer.dataset import convert
 
-from nn.net import Net
-from nn.loader.data_loader import NeologdDictionaryLoader
-from nn.lang.japanese.kana.mora_sep import sep_katakana2mora
-from nn.inference import InferAccent
+from .net import Net
+from .loader.data_loader import NeologdDictionaryLoader
+from .lang.japanese.kana.mora_sep import sep_katakana2mora
+from .inference import InferAccent
 
 # hyper params
 gpu_id = -1

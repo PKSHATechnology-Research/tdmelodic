@@ -9,9 +9,9 @@
 import os, sys
 import re
 
-from nn.lang.category.list_of_symbols.acc_concat import accent_map, accent_invmap
-from nn.lang.category.list_of_symbols.goshu import goshu_map, goshu_invmap
-from nn.lang.category.list_of_symbols.pos_short import pos_map, pos_invmap
+from .list_of_symbols.acc_concat import accent_map, accent_invmap
+from .list_of_symbols.goshu import goshu_map, goshu_invmap
+from .list_of_symbols.pos_short import pos_map, pos_invmap
 
 # キーが定義されていないものは None と同じもの(0番)を返す。
 def acccon_map_robust(x):

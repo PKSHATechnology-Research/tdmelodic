@@ -21,25 +21,25 @@ from chainer import datasets
 from chainer import iterators
 
 # base
-from nn.loader.data_loader_base import DataLoaderBase
+from .data_loader_base import DataLoaderBase
 
 # unidic
-from nn.lang.mecab.unidic import UniDic
+from ..lang.mecab.unidic import UniDic
 
 # textproc
-from nn.lang.japanese.text_normalize import normalize_jpn
-from nn.lang.japanese.kana.kana2roman import kana2roman
-from nn.lang.japanese.accent.accent_alignment import accent_align
-from nn.lang.japanese.accent.accent_diff import simple_accent_diff
+from ..lang.japanese.text_normalize import normalize_jpn
+from ..lang.japanese.kana.kana2roman import kana2roman
+from ..lang.japanese.accent.accent_alignment import accent_align
+from ..lang.japanese.accent.accent_diff import simple_accent_diff
 
 # map code to int
-from nn.lang.category.symbol_map import acccon_map_robust
-from nn.lang.category.symbol_map import goshu_map_robust
-from nn.lang.category.symbol_map import pos_map_robust
-from nn.lang.category.symbol_map import numeric_to_char_symbol
-from nn.lang.category.symbol_map import char_symbol_to_numeric
-from nn.lang.japanese.kana.kanamap.kanamap_normal import roman_map
-from nn.lang.japanese.accent.accent_alignment import accent_map
+from ..lang.category.symbol_map import acccon_map_robust
+from ..lang.category.symbol_map import goshu_map_robust
+from ..lang.category.symbol_map import pos_map_robust
+from ..lang.category.symbol_map import numeric_to_char_symbol
+from ..lang.category.symbol_map import char_symbol_to_numeric
+from ..lang.japanese.kana.kanamap.kanamap_normal import roman_map
+from ..lang.japanese.accent.accent_alignment import accent_map
 
 
 # ------------------------------------------------------------------------------------

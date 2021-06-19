@@ -10,7 +10,7 @@ import chainer
 import chainer.functions as F
 import chainer.links as L
 
-from nn.model.modules.gatedconv1d import GatedConv1D
+from .gatedconv1d import GatedConv1D
 
 class StackedConv(chainer.Chain):
     def __init__(self,
