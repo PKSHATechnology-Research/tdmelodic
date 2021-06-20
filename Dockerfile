@@ -25,26 +25,28 @@ RUN locale-gen ja_JP.UTF-8 \
 ARG PYTHON_VERSION=3.7
 RUN echo "alias python='python3'" >> ~/.bash_aliases
 
-# workspace
-ARG workspace=/root/workspace
-ENV PYTHONPATH $workspace:$workspace/tdmelodic
-RUN mkdir -p $workspace
-
 # Install UniDic
 # Download this file in advance. The downloaded file will be reused later.
 ARG UNIDIC='unidic-mecab_kana-accent-2.1.2_src'
-ADD ${UNIDIC}.zip $workspace
-WORKDIR $workspace
+COPY ${UNIDIC}.zip /tmp
+WORKDIR /tmp
 RUN unzip ${UNIDIC}.zip && \
-    cd $workspace/${UNIDIC} && \
+    cd /tmp/${UNIDIC} && \
     ./configure && make && make install && cd - && \
     rm ${UNIDIC}.zip && rm -rf ${UNIDIC}
 
 # pip
 ENV pip='python3 -m pip'
-ADD requirements.txt $workspace
-WORKDIR $workspace
 RUN $pip install --upgrade pip && \
     $pip install --upgrade setuptools && \
-    $pip install wheel && \
-    $pip install -r requirements.txt
+    $pip install wheel
+
+# install tdmelodic
+COPY . /tmp
+WORKDIR /tmp
+RUN $pip install .
+
+# workspace
+ARG workspace=/root/workspace
+RUN mkdir -p $workspace
+WORKDIR $workspace
