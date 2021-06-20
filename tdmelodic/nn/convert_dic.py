@@ -98,7 +98,7 @@ def apply_all(test_csv, output_csv, up_symbol='[', down_symbol=']', index_map=_i
                 csv_out.writerow(line)
 
 # =============================================================================================
-if __name__ == '__main__':
+def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('-i', '--input', type=str,
                         help='input csv (neologd dicitionary file)')
@@ -113,3 +113,6 @@ if __name__ == '__main__':
             apply_all(args.input, args.output)
         except Exception as e:
             print(e)
+
+if __name__ == '__main__':
+    main()

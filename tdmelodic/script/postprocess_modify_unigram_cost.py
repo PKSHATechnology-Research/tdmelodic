@@ -65,7 +65,7 @@ def modify_unigram_cost(line, verbose=True):
     return line
 
 # ------------------------------------------------------------------------------------
-def main(neologd_csv, output_csv):
+def main_(neologd_csv, output_csv):
     L = count_lines(neologd_csv)
     fp_in = csv.reader(open(neologd_csv, 'r'))
 
@@ -86,7 +86,7 @@ def main(neologd_csv, output_csv):
     print("Complete! Saved the converted file as ... ", output_csv)
     return
 
-if __name__ == '__main__':
+def main():
     '''
 usage :
     cp tdmelodic.csv tdmelodic.csv.bak
@@ -102,6 +102,9 @@ usage :
         print("[ Error ] intput and output files should be different.")
     else:
         try:
-            main(args.input, args.output)
+            main_(args.input, args.output)
         except Exception as e:
             print(e)
+
+if __name__ == '__main__':
+    main()

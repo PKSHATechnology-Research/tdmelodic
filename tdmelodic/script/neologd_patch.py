@@ -89,7 +89,7 @@ def joshi_no_yomi(line):
     return line
 
 # ------------------------------------------------------------------------------------
-def main(neologd_csv, output_csv):
+def main_(neologd_csv, output_csv):
     L = count_lines(neologd_csv)
     fp_in = csv.reader(open(neologd_csv, 'r'))
 
@@ -115,7 +115,7 @@ def main(neologd_csv, output_csv):
     print("Complete! Saved the converted file as ... ", output_csv)
     return
 
-if __name__ == '__main__':
+def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('-i', '--input', type=str,
                         help='input csv (neologd dicitionary file)')
@@ -126,6 +126,9 @@ if __name__ == '__main__':
         print("[ Error ] intput and output files should be different.")
     else:
         try:
-            main(args.input, args.output)
+            main_(args.input, args.output)
         except Exception as e:
             print(e)
+
+if __name__ == '__main__':
+    main()

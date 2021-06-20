@@ -37,4 +37,12 @@ setup(
 
     version=_get_version(),
     zip_safe=False,
+
+    entry_points={
+        'console_scripts':[
+            'tdmelodic-convert = tdmelodic.nn.convert_dic:main',
+            'tdmelodic-neologd-patch = tdmelodic.script.neologd_patch:main',
+            'tdmelodic-modify-unigram-cost = tdmelodic.script.postprocess_modify_unigram_cost:main',
+        ]
+    }
 )
