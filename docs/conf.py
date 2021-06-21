@@ -13,7 +13,7 @@
 # import os
 # import sys
 # sys.path.insert(0, os.path.abspath('.'))
-
+from recommonmark.parser import CommonMarkParser
 
 # -- Project information -----------------------------------------------------
 
@@ -27,7 +27,12 @@ author = 'Hideyuki Tachibana'
 # Add any Sphinx extension module names here, as strings. They can be
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
-extensions = []
+extensions = ['recommonmark']
+
+source_suffix = ['.rst', '.md']
+source_parsers = {
+    '.md' : CommonMarkParser
+}
 
 
 # Add any paths that contain templates here, relative to this directory.
@@ -59,3 +64,11 @@ html_theme = 'sphinx_rtd_theme'
 # so a file named "default.css" will overwrite the builtin "default.css".
 html_static_path = ['_static']
 html_logo = "logo_tdmelodic.png"
+
+
+# latex
+latex_engine = 'lualatex'
+latex_use_xindy = False
+latex_elements = {
+    'preamble' : '\\usepackage{luatexja-fontspec}\n'
+}

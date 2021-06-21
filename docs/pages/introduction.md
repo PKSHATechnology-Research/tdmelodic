@@ -51,14 +51,16 @@ Some accent dictionaries including UniDic use this notation.
 - `Accent type 2 ~ n-1` are also called the **Nakadaka** (中高; middle high) types.
 - `Accent type n` is also called the **Odaka** (尾高; tail high) type.
 
-The following table shows some examples.
+For examples,
 
-| type | words |
-|:----:|:-----:|
-| 0 (Heiban) | 野球`ya[kyuu`, パソコン`pa[sokon`, 鉛筆`e[npitsu`, 緑茶`ryo[kucha`, りんご`ri[ngo`, 渋谷`shi[buya` |
-| 1 (Atamadaka) | サッカー`sa]Qkaa`, ジュース`ju]usu`, 猫`ne]ko`, メロン`me]ron`, 金魚`ki]ngyo`, 新橋`shi]mbashi` |
-| 2 ~ n-1 (Nakadaka) | バドミントン`ba[domi]nton`, 折り紙`o[ri]gami`, カブトムシ`ka[buto]mushi`, 冷蔵庫`re[ezo]oko`, 池袋`i[kebu]kuro` |
-| n (Odaka) | 足`a[shi]`, 紙`ka[mi]`, 花`ha[na]`, 海苔`no[ri]`, 米`ko[me]`, 光`hi[kari]`, 犬`i[nu]`, 馬`u[ma]` |
+- 0 (Heiban)
+    -  野球`ya[kyuu`, パソコン`pa[sokon`, 鉛筆`e[npitsu`, 緑茶`ryo[kucha`, りんご`ri[ngo`, 渋谷`shi[buya`
+- 1 (Atamadaka)
+    - サッカー`sa]Qkaa`, ジュース`ju]usu`, 猫`ne]ko`, メロン`me]ron`, 金魚`ki]ngyo`, 新橋`shi]mbashi`
+- 2 ~ n-1 (Nakadaka)
+    - バドミントン`ba[domi]nton`, 折り紙`o[ri]gami`, カブトムシ`ka[buto]mushi`, 冷蔵庫`re[ezo]oko`, 池袋`i[kebu]kuro`
+- n (Odaka)
+    -  足`a[shi]`, 紙`ka[mi]`, 花`ha[na]`, 海苔`no[ri]`, 米`ko[me]`, 光`hi[kari]`, 犬`i[nu]`, 馬`u[ma]`
 
 ### Difference between Heiban and Odaka
 
@@ -101,13 +103,30 @@ Note that the GEN case markar "_no_ の" is often unaffected by the preceding do
 
 The accents of compound words are a little complicated. For example,
 
-| word | accent |
-| --- | --- |
-| <ul><li> 東京`to[okyoo` <li> 東京都`to[okyo]oto` </ul> | <img src="https://github.com/PKSHATechnology-Research/tdmelodic/raw/master/imgs/jpn_accent-en-page1.png" width="400" /> |
-| <ul><li> 東京都知事`to[okyootochi]ji` </ul> | <img src="https://github.com/PKSHATechnology-Research/tdmelodic/raw/master/imgs/jpn_accent-en-page2.png" width="400" /> |
-| <ul><li> 東京都知事選挙`to[okyootochijise]nkyo` </ul> | <img src="https://github.com/PKSHATechnology-Research/tdmelodic/raw/master/imgs/jpn_accent-en-page3.png" width="400" /> |
-| <ul><li> 世界`se]kai` <li> 遺産`i[san` <li> 世界遺産`se[kaii]san` </ul> | <img src="https://github.com/PKSHATechnology-Research/tdmelodic/raw/master/imgs/jpn_accent-en-page4.png" width="400" /> |
-| <ul><li> 機械`ki]kai` <li> 学習`ga[kushuu` <li> 機械学習`ki[kaiga]kushuu` </ul> | <img src="https://github.com/PKSHATechnology-Research/tdmelodic/raw/master/imgs/jpn_accent-en-page5.png" width="400" /> |
+- 東京`to[okyoo`
+- 東京都`to[okyo]oto`
+
+<img src="https://github.com/PKSHATechnology-Research/tdmelodic/raw/master/imgs/jpn_accent-en-page1.png" width="400" />
+
+- 東京都知事`to[okyootochi]ji`
+
+<img src="https://github.com/PKSHATechnology-Research/tdmelodic/raw/master/imgs/jpn_accent-en-page2.png" width="400" />
+
+- 東京都知事選挙`to[okyootochijise]nkyo`
+
+<img src="https://github.com/PKSHATechnology-Research/tdmelodic/raw/master/imgs/jpn_accent-en-page3.png" width="400" />
+
+- 世界`se]kai`
+- 遺産`i[san`
+- 世界遺産`se[kaii]san`
+
+<img src="https://github.com/PKSHATechnology-Research/tdmelodic/raw/master/imgs/jpn_accent-en-page4.png" width="400" />
+
+- 機械`ki]kai`
+- 学習`ga[kushuu`
+- 機械学習`ki[kaiga]kushuu`
+
+ <img src="https://github.com/PKSHATechnology-Research/tdmelodic/raw/master/imgs/jpn_accent-en-page5.png" width="400" />
 
 
 ### Logo of tdmelodic

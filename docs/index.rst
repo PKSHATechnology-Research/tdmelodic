@@ -70,10 +70,3 @@ For academic use, please cite the following paper.
    }
 
 Paper Links: `[IEEE Xplore] <https://ieeexplore.ieee.org/document/9054081>`_, `[arXiv preprint] <https://arxiv.org/abs/2009.09679>`_
-
-Indices and tables
-==================
-
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`
