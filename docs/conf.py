@@ -67,5 +67,8 @@ html_logo = "logo_tdmelodic.png"
 
 
 # latex
-latex_engine = 'uplatex'
+latex_engine = 'lualatex'
 latex_use_xindy = False
+latex_elements = {
+    'preamble' : '\\usepackage{luatexja-fontspec}\n'
+}
