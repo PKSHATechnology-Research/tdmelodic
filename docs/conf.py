@@ -67,8 +67,5 @@ html_logo = "logo_tdmelodic.png"
 
 
 # latex
-latex_engine = 'xelatex'
+latex_engine = 'platex'
 latex_use_xindy = False
-latex_elements = {
-    'preamble' : '\\usepackage[UTF8]{ctex}\n'
-}
