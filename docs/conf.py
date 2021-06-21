@@ -67,5 +67,5 @@ html_logo = "logo_tdmelodic.png"
 
 
 # latex
-latex_engine = 'platex'
+latex_engine = 'uplatex'
 latex_use_xindy = False
