@@ -57,12 +57,16 @@ root@docker:~/workspace$ echo 深層学習 | mecab -d `mecab-config --dicdir`/un
 EOS
 
 root@docker:~/workspace$ python3
+
 >>> from tdmelodic.nn.lang.mecab.unidic import UniDic
+
 >>> u = UniDic()
 [ MeCab setting ] unidic='/usr/lib/x86_64-linux-gnu/mecab/dic/unidic'
 [ MeCab setting ] mecabrc='/usr/local/lib/python3.8/dist-packages/tdmelodic/nn/lang/mecab/my_mecabrc'
+
 >>> u.get_n_best("深層学習", "しんそうがくしゅう", 3)
  ([[{'surface': '深層', 'pron': 'シンソー', 'kana': 'シンソウ', 'pos': '名詞-普通名詞-一般', 'goshu': '漢', 'acc': '0', 'concat': 'C2'}, {'surface': '学習', 'pron': 'ガクシュー', 'kana': 'ガクシュウ', 'pos': '名詞-普通名詞-サ変可能', 'goshu': '漢', 'acc': '0', 'concat': 'C2'}], [{'surface': '深', 'pron': 'シン', 'kana': 'シン', 'pos': '接頭辞', 'goshu': '漢', 'acc': '', 'concat': 'P2'}, {'surface': '層', 'pron': 'ソー', 'kana': 'ソウ', 'pos': '名詞-普通名詞-一般', 'goshu': '漢', 'acc': '1', 'concat': 'C3'}, {'surface': '学習', 'pron': 'ガクシュー', 'kana': 'ガクシュウ', 'pos': '名詞-普通名詞-サ変可能', 'goshu': '漢', 'acc': '0', 'concat': 'C2'}], [{'surface': '深', 'pron': 'フカ', 'kana': 'フカイ', 'pos': '形容詞-一般', 'goshu': '和', 'acc': '2', 'concat': 'C1'}, {'surface': '層', 'pron': 'ソー', 'kana': 'ソウ', 'pos': '名詞-普通名詞-一般', 'goshu': '漢', 'acc': '1', 'concat': 'C3'}, {'surface': '学習', 'pron': 'ガクシュー', 'kana': 'ガクシュウ', 'pos': '名詞-普通名詞-サ変可能', 'goshu': '漢', 'acc': '0', 'concat': 'C2'}]], [0, 1, 2], 9)
+
 >>> Ctrl-D
 
 root@docker:~/workspace$ exit
