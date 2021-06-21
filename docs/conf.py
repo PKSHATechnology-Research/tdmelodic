@@ -64,3 +64,11 @@ html_theme = 'sphinx_rtd_theme'
 # so a file named "default.css" will overwrite the builtin "default.css".
 html_static_path = ['_static']
 html_logo = "logo_tdmelodic.png"
+
+
+# latex
+latex_engine = 'xelatex'
+latex_use_xindy = False
+latex_elements = {
+    'preamble' : '\\usepackage[UTF8]{ctex}\n'
+}
