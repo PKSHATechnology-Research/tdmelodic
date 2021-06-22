@@ -1,0 +1,89 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2019-, Hideyuki Tachibana, PKSHA Technology Inc
+# This file is distributed under the same license as the tdmelodic package.
+# Hideyuki Tachibana, 2021.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: tdmelodic \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-06-22 16:10+0900\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: Hideyuki Tachibana <h_tachibana@pkshatech.com>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.9.1\n"
+
+#: ../../pages/docker.md:1
+msgid "Build the Docker image"
+msgstr "docker イメージをビルト"
+
+#: ../../pages/docker.md:3
+msgid "Download codes and data"
+msgstr "コードとデータのダウンロード"
+
+#: ../../pages/docker.md:5
+msgid "Requirements"
+msgstr "事前準備"
+
+#: ../../pages/docker.md:6
+msgid ""
+"Please set up git, docker and mecab (such as libmecab-dev) on your UNIX-"
+"like system such as Ubuntu or MacOS."
+msgstr ""
+"お手元の Unix 系処理系（UbuntuやMacOSなど）に、Git, Docker, MeCab (libmecab-devなど)をセットアップしてください。"
+
+#: ../../pages/docker.md:8
+msgid "git clone"
+msgstr "コードのダウンロード"
+
+#: ../../pages/docker.md:9
+msgid "Create working directory and download the repositories."
+msgstr "作業ディレクトリを作成し、GitHub からコードをダウンロードしてください"
+
+#: ../../pages/docker.md:17
+msgid "Download the UniDic dictionary file"
+msgstr "UniDic の辞書ファイルをダウンロード"
+
+#: ../../pages/docker.md:19
+msgid ""
+"Download the UniDic file. Several versions have been published, but the "
+"version we need is uniDic-mecab_kana-accent-2.1.2_src.zip."
+msgstr ""
+"UniDic の辞書ファイルをダウンロードしてください。"
+"複数のバージョンが公開されていますが、このモジュールでは unidic-mecab_kana-accent-2.1.2_src.zip を使います。"
+
+
+#: ../../pages/docker.md:27
+msgid ""
+"Note: This file will be reused later. Please do not download the file "
+"more than once to avoid overloading the site you are downloading from. It"
+" is recommended that you keep this file somewhere in your local file "
+"system."
+msgstr ""
+"注意：このファイルは後ほど再利用します。"
+"ダウンロード先のサイトに負荷をかけすぎることのないよう、何度もダウンロードするのは避けてください。"
+"ダウンロードした zip ファイルはローカルのどこかに保管しておくことを推奨します。"
+
+
+#: ../../pages/docker.md:32
+msgid "Docker build"
+msgstr "Docker ビルド"
+
+#: ../../pages/docker.md:34
+msgid ""
+"Build the docker image using following commands. It will take a few "
+"minutes."
+msgstr ""
+"以下のコマンドでdockerのイメージをビルドしてください。これには数分かかります。"
+
+#: ../../pages/docker.md:42
+msgid "Test some commands if needed"
+msgstr "動作確認"
+
+#: ../../pages/docker.md:43
+msgid "If needed, try following commands and check the results."
+msgstr "もし興味があれば、以下のコマンドを試してみてください。このプロセスは飛ばしても構いません。"

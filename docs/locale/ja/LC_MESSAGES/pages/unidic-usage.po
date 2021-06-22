@@ -1,0 +1,65 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2019-, Hideyuki Tachibana, PKSHA Technology Inc
+# This file is distributed under the same license as the tdmelodic package.
+# Hideyuki Tachibana, 2021.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: tdmelodic \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-06-22 16:10+0900\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: Hideyuki Tachibana <h_tachibana@pkshatech.com>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.9.1\n"
+
+#: ../../pages/unidic-usage.md:1
+msgid "Usage of UniDic-tdmelodic as a MeCab dictionary"
+msgstr "UniDic-tdmelodic を MeCab 辞書として活用"
+
+#: ../../pages/unidic-usage.md:3
+msgid "Install UniDic-tdmelodic"
+msgstr "UniDic-tdmelodic のインストール"
+
+#: ../../pages/unidic-usage.md:4
+msgid ""
+"You can install tdmelodic by placing the tdmelodic.csv under seed/ "
+"directory of NEologd, modifying NEologd's installation script "
+"appropriately, and giving appropriate command line options. There is a "
+"script to do these procedure automatically. Run it and you are able to "
+"install it."
+msgstr ""
+"前章で作成した CSV 形式の辞書ファイルを mecab-unidic-neologd の seed/ ディレクトリ配下に配置し、"
+" NEologd のインストールスクリプトを適当に修正し、"
+"さらに適当なコマンドラインオプションを与えてスクリプトを実行することで、"
+"UniDic-tdmelodic を MeCab のシステム辞書としてインストールすることができます。"
+"これらの処理を自動で行うためのスクリプトを用意してありますので、"
+"それを以下のようにして実行すると UniDic-tdmelodic をインストールすることができます。"
+
+#: ../../pages/unidic-usage.md:39
+msgid "Use UniDic-tdmelodic"
+msgstr "UniDic-tdmelodic の使用例"
+
+#: ../../pages/unidic-usage.md:40
+msgid "This sections some examples."
+msgstr "いくつかの例をご覧ください。"
+
+#: ../../pages/unidic-usage.md:42
+msgid "Example 1"
+msgstr "例1"
+
+#: ../../pages/unidic-usage.md:66
+msgid "Cf."
+msgstr ""
+
+#: ../../pages/unidic-usage.md:94
+msgid "Example 2"
+msgstr "例2"
+
+#: ../../pages/unidic-usage.md:116
+msgid "Example 3"
+msgstr "例3"

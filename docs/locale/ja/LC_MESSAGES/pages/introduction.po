@@ -1,0 +1,461 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2019-, Hideyuki Tachibana, PKSHA Technology Inc
+# This file is distributed under the same license as the tdmelodic package.
+# Hideyuki Tachibana, 2021.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: tdmelodic \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-06-22 16:10+0900\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: Hideyuki Tachibana <h_tachibana@pkshatech.com>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.9.1\n"
+
+#: ../../pages/introduction.md:1
+msgid "Background"
+msgstr "予備知識"
+
+#: ../../pages/introduction.md:3
+msgid "Japanese pitch accent"
+msgstr "日本語ピッチアクセント"
+
+#: ../../pages/introduction.md:5
+msgid ""
+"Japanese language is a pitch-accented language. While English accents are"
+" based on the strength each syllable, Japanese accents are based on the "
+"pitch (height) of each mora. Accent is important in spoken Japanese "
+"language, as it is in other languages."
+msgstr ""
+"日本語はピッチアクセント言語です。英語では単語中の各音節の強弱に差をつけることで単語にアクセントをつける一方、"
+"日本語では単語中の各拍子の高さに差をつけることによりアクセントを表現します。"
+"アクセントは、ほかの多くの言語でそうであるように、日本語の話し言葉においてもとても大切です。"
+
+#: ../../pages/introduction.md:10
+msgid ""
+"There are large regional differences in Japanese accents. Of these, this "
+"module deals with the accents of the contemporary Tokyo dialect, which is"
+" one of the most influential Japanese dialects in the country."
+msgstr ""
+"日本語のアクセントには方言ごとにかなりの違いがあります。"
+"このモジュールでは、現在最も影響力な大きな方言のひとつである、現代東京方言のアクセントを扱います。"
+
+#: ../../pages/introduction.md:14
+msgid "On the Tokyo Japanese accent"
+msgstr "東京方言のアクセントについて"
+
+#: ../../pages/introduction.md:16
+msgid "Raise and lower (accent nucleus)"
+msgstr "上昇と下降（アクセント核）"
+
+#: ../../pages/introduction.md:18
+msgid ""
+"In the contemporary Tokyo dialect, there are two kinds of events that "
+"invoke the change of pitch."
+msgstr ""
+"現代東京方言のアクセントモデルでは、ピッチの急激な変化を引き起こす2種類の契機が想定されています。"
+
+#: ../../pages/introduction.md:20
+msgid "[: raise the pitch here"
+msgstr "上昇　[　ここでピッチを上げる"
+
+#: ../../pages/introduction.md:21
+msgid "]: lower the pitch here (a.k.a. accent nucleus)"
+msgstr "下降　]　ここでピッチを下げる（これはアクセント核ともいう）"
+
+#: ../../pages/introduction.md:23
+msgid ""
+"Not all accent patterns are possible. Usually, at most one ] can appear "
+"in a word. Also, [ can appear only at the beginning. Thus, an n-mora word"
+" basically has one of the n+1 possible accent patterns as follows."
+msgstr ""
+"これらのアクセント契機は好き勝手に配置できるわけではなく、一定の制約に従う必要があります。"
+"たとえば、原則として下降 ] は一単語中に多くても一回しか出現しません。"
+"また、上昇 [ は単語の冒頭にしか現れません。"
+"このような制約を満たしうるアクセントパターンの種類は、N拍の単語の場合、以下のようなN+1種類のパターンに限定されます。"
+
+
+#: ../../pages/introduction.md:27
+msgid "*[****"
+msgstr "*[****"
+
+#: ../../pages/introduction.md:28
+msgid "*]****"
+msgstr "*]****"
+
+#: ../../pages/introduction.md:29
+msgid "*[*]***"
+msgstr "*[*]***"
+
+#: ../../pages/introduction.md:30
+msgid "*[**]**"
+msgstr "*[**]**"
+
+#: ../../pages/introduction.md:31
+msgid "*[***]*"
+msgstr "*[***]*"
+
+#: ../../pages/introduction.md:32
+msgid "*[****]"
+msgstr "*[****]"
+
+#: ../../pages/introduction.md:34
+msgid "Accent type: representation of accent nuclei by digits"
+msgstr "アクセント型：アクセント核位置の数字表現"
+
+#: ../../pages/introduction.md:36
+msgid ""
+"Accent patterns are often expressed by the digits which indicate the "
+"positions of the accent nuclei. This digit is often called an accent "
+"type. Some accent dictionaries including UniDic use this notation."
+msgstr ""
+"アクセント核の位置を数字で表すことでアクセントパターンを表記する方法がよく使われています。"
+"これはアクセント型と呼ばれることがあります。"
+"新明解国語辞典や UniDic などでは、この数字式アクセント型表記法が使われています。"
+
+
+#: ../../pages/introduction.md:40
+msgid "Accent type = 0 means that there are no accent nuclei (no fall ])."
+msgstr "0型:　途中でピッチが下がらない単語（下降　]　がない単語）"
+
+#: ../../pages/introduction.md:41
+msgid ""
+"Accent type = n (n > 0) means that the accent nucleus appears after the "
+"n-th mora."
+msgstr ""
+"n型 (n>0): n拍目の直後にピッチの下り目（アクセント核）がある単語。"
+
+#: ../../pages/introduction.md:47
+msgid "Heiban, Atamadaka, Nakadaka, and Odaka types"
+msgstr "平板型、頭高型、中高型、尾高型"
+
+#: ../../pages/introduction.md:49
+msgid "Accent type 0 is also called the Heiban (平板; flat) type."
+msgstr "0型は平板（へいばん）型とも呼ばれます。"
+
+#: ../../pages/introduction.md:50
+msgid "Accent type 1 is also called the Atamadaka (頭高; head high) type."
+msgstr "1型は頭高（あたまだか）型とも呼ばれます。"
+
+#: ../../pages/introduction.md:51
+msgid "Accent type 2 ~ n-1 are also called the Nakadaka (中高; middle high) types."
+msgstr "2型からn-1型は中高（なかだか）型とも呼ばれます。"
+
+#: ../../pages/introduction.md:52
+msgid "Accent type n is also called the Odaka (尾高; tail high) type."
+msgstr "n型は尾高（おだか）型とも呼ばれます。"
+
+#: ../../pages/introduction.md:54
+msgid "For examples,"
+msgstr "例えば"
+
+#: ../../pages/introduction.md:56
+msgid "0 (Heiban)"
+msgstr "0型（平板型）"
+
+#: ../../pages/introduction.md:57
+msgid "野球ya[kyuu, パソコンpa[sokon, 鉛筆e[npitsu, 緑茶ryo[kucha, りんごri[ngo, 渋谷shi[buya"
+msgstr "野球ya[kyuu, パソコンpa[sokon, 鉛筆e[npitsu, 緑茶ryo[kucha, りんごri[ngo, 渋谷shi[buya"
+
+#: ../../pages/introduction.md:58
+msgid "1 (Atamadaka)"
+msgstr "1型（頭高型）"
+
+#: ../../pages/introduction.md:59
+msgid "サッカーsa]Qkaa, ジュースju]usu, 猫ne]ko, メロンme]ron, 金魚ki]ngyo, 新橋shi]mbashi"
+msgstr "サッカーsa]Qkaa, ジュースju]usu, 猫ne]ko, メロンme]ron, 金魚ki]ngyo, 新橋shi]mbashi"
+
+#: ../../pages/introduction.md:60
+msgid "2 ~ n-1 (Nakadaka)"
+msgstr "2〜n-1型（中高型）"
+
+#: ../../pages/introduction.md:61
+msgid ""
+"バドミントンba[domi]nton, 折り紙o[ri]gami, カブトムシka[buto]mushi, 冷蔵庫re[ezo]oko, "
+"池袋i[kebu]kuro"
+msgstr ""
+"バドミントンba[domi]nton, 折り紙o[ri]gami, カブトムシka[buto]mushi, 冷蔵庫re[ezo]oko, "
+"池袋i[kebu]kuro"
+
+#: ../../pages/introduction.md:62
+msgid "n (Odaka)"
+msgstr "n型（尾高型）"
+
+#: ../../pages/introduction.md:63
+msgid "足a[shi], 紙ka[mi], 花ha[na], 海苔no[ri], 米ko[me], 光hi[kari], 犬i[nu], 馬u[ma]"
+msgstr "足a[shi], 紙ka[mi], 花ha[na], 海苔no[ri], 米ko[me], 光hi[kari], 犬i[nu], 馬u[ma]"
+
+#: ../../pages/introduction.md:65
+msgid "Difference between Heiban and Odaka"
+msgstr "平板型と尾高型は何が違うのか"
+
+#: ../../pages/introduction.md:67
+msgid ""
+"Although there may seem to be no difference in the pitch pattern within "
+"the words, Heiban and Odaka types have differences in the pitch of the "
+"subsequent particles e.g. \"ga が\" which is the NOM case marker for "
+"subjects."
+msgstr ""
+"平板型と尾高型は一見すると同じに見えるかもしれません。"
+"しかし、これらは後続する助詞などのピッチに違いが生じます。"
+"例えば主格などの格助詞「が」が後続する場合以下のようになります"
+
+#: ../../pages/introduction.md:71
+msgid "hana ga はなが"
+msgstr "はなが"
+
+#: ../../pages/introduction.md:72
+msgid "鼻が ha[na -ga: nose is"
+msgstr "鼻が　は[なが"
+
+#: ../../pages/introduction.md:73
+msgid "花が ha[na] -ga: flower is"
+msgstr "花が　は[な]が"
+
+#: ../../pages/introduction.md:74
+msgid "hikari ga ひかりが"
+msgstr "ひかりが"
+
+#: ../../pages/introduction.md:75
+msgid "ひかりが hi[kari -ga: Shinkansen Hikari is"
+msgstr "ひかり（新幹線）が　ひ[かりが"
+
+#: ../../pages/introduction.md:76
+msgid "光が hi[kari] -ga: light is"
+msgstr "光が　ひ[かり]が"
+
+#: ../../pages/introduction.md:77
+msgid "hashi ga はしが"
+msgstr "はしが"
+
+#: ../../pages/introduction.md:78
+msgid "橋が ha[shi] -ga: bridge is"
+msgstr "橋が　は[し]が"
+
+#: ../../pages/introduction.md:79
+msgid "端が ha[shi -ga: edge is"
+msgstr "端が　は[しが"
+
+#: ../../pages/introduction.md:80
+msgid "箸が ha]shi -ga: chopsticks are"
+msgstr "箸が　は]しが"
+
+#: ../../pages/introduction.md:81
+msgid "ha ga はが"
+msgstr "はが"
+
+#: ../../pages/introduction.md:82
+msgid "葉が ha[ -ga: leaf is"
+msgstr "葉が　は[が"
+
+#: ../../pages/introduction.md:83
+msgid "歯が ha] -ga: tooth is"
+msgstr "歯が　は]が"
+
+#: ../../pages/introduction.md:85
+msgid ""
+"Note that the GEN case markar \"no の\" is often unaffected by the "
+"preceding downforce. (This law also has some exceptions.)"
+msgstr ""
+"ただし、後続の助詞が常にこのように振舞うわけではありません。"
+"たとえば属格（所有格）などを表す連体格助詞「の」は、直前のアクセント核の影響を受けにくいことが知られています。"
+"（ただしこれにも例外はあります。）"
+
+#: ../../pages/introduction.md:88
+msgid "hana no はなの"
+msgstr "はなの"
+
+#: ../../pages/introduction.md:89
+msgid "鼻の ha[na -no: nose's"
+msgstr "鼻の　は[なの"
+
+#: ../../pages/introduction.md:90
+msgid "花の ha[na -no: flower's"
+msgstr "花の　×は[な]の　○は[なの"
+
+#: ../../pages/introduction.md:91
+msgid "hikari no ひかりの"
+msgstr "ひかりの"
+
+#: ../../pages/introduction.md:92
+msgid "ひかりの hi[kari -no: Shinkansen Hikari's"
+msgstr "ひかり（新幹線）の　ひ[かりの"
+
+#: ../../pages/introduction.md:93
+msgid "光の hi[kari -no: light's"
+msgstr "光の　×ひ[かり]の　○ひ[かりの"
+
+#: ../../pages/introduction.md:94
+msgid "hashi no はしの"
+msgstr "はしの"
+
+#: ../../pages/introduction.md:95
+msgid "橋の ha[shi -no: bridge's"
+msgstr "橋の　×は[し]の　○は[しの"
+
+#: ../../pages/introduction.md:96
+msgid "端の ha[shi -no: edge's"
+msgstr "端の　は[しの"
+
+#: ../../pages/introduction.md:97
+msgid "箸の ha]shi -no: chopsticks'"
+msgstr "箸の　は]しの"
+
+#: ../../pages/introduction.md:98
+msgid "ha no はの"
+msgstr "はの"
+
+#: ../../pages/introduction.md:99
+msgid "葉の ha[ -no: leaf's"
+msgstr "葉の　は[の"
+
+#: ../../pages/introduction.md:100
+msgid "歯の ha] -no: tooth's"
+msgstr "歯の　○は]の　×は[の"
+
+#: ../../pages/introduction.md:102
+msgid "Compounds"
+msgstr "複合語"
+
+#: ../../pages/introduction.md:104
+msgid "The accents of compound words are a little complicated. For example,"
+msgstr "複合語のアクセント規則は少々複雑です。例えば、"
+
+#: ../../pages/introduction.md:106
+msgid "東京to[okyoo"
+msgstr "東京　と[うきょう"
+
+#: ../../pages/introduction.md:107
+msgid "東京都to[okyo]oto"
+msgstr "東京都 と[うきょ]うと"
+
+#: ../../pages/introduction.md:111
+msgid "東京都知事to[okyootochi]ji"
+msgstr "東京都知事　と[うきょうとち]じ"
+
+#: ../../pages/introduction.md:115
+msgid "東京都知事選挙to[okyootochijise]nkyo"
+msgstr "東京都知事選挙　と[うきょうとちじせ]んきょ"
+
+#: ../../pages/introduction.md:119
+msgid "世界se]kai"
+msgstr "世界　せ]かい"
+
+#: ../../pages/introduction.md:120
+msgid "遺産i[san"
+msgstr "遺産　い[さん"
+
+#: ../../pages/introduction.md:121
+msgid "世界遺産se[kaii]san"
+msgstr "世界遺産　せ[かいい]さん"
+
+#: ../../pages/introduction.md:125
+msgid "機械ki]kai"
+msgstr "機械　き]かい"
+
+#: ../../pages/introduction.md:126
+msgid "学習ga[kushuu"
+msgstr "学習　が[くしゅう"
+
+#: ../../pages/introduction.md:127
+msgid "機械学習ki[kaiga]kushuu"
+msgstr "機械学習　き[かいが]くしゅう"
+
+#: ../../pages/introduction.md:132
+msgid "Logo of tdmelodic"
+msgstr "tdmelodicのロゴについて"
+
+#: ../../pages/introduction.md:138
+msgid ""
+"There are many pairs of words that have same sound patterns except the "
+"accentuation. For example,"
+msgstr ""
+"日本語には、アクセントがないと区別がつかないような単語のペアが多くあります。例えば、"
+
+#: ../../pages/introduction.md:141
+msgid "fuji"
+msgstr "ふじ"
+
+#: ../../pages/introduction.md:142
+msgid "富士 (Mt. Fuji) is pronounced as fu ] ji."
+msgstr "富士　ふ]じ"
+
+#: ../../pages/introduction.md:143
+msgid "藤 (wisteria) is pronounced as fu [ ji."
+msgstr "藤　ふ[じ"
+
+#: ../../pages/introduction.md:144
+msgid "sake"
+msgstr "さけ"
+
+#: ../../pages/introduction.md:145
+msgid "鮭 (salmon) is pronounced as sa ] ke."
+msgstr "鮭　さ]け"
+
+#: ../../pages/introduction.md:146
+msgid "酒 (alcoholic beverage) is pronounced as sa [ ke"
+msgstr "酒　さ[け"
+
+#: ../../pages/introduction.md:147
+msgid "hashi"
+msgstr "はし"
+
+#: ../../pages/introduction.md:148
+msgid "端 (edge, corner) is pronounced as ha [ shi."
+msgstr "端　は[し"
+
+#: ../../pages/introduction.md:149
+msgid "橋 (bridge) is pronounced as ha [ shi ]."
+msgstr "橋　は[し]"
+
+#: ../../pages/introduction.md:150
+msgid "箸 (chopstics) is pronounced as ha ] shi."
+msgstr "箸　は]し"
+
+#: ../../pages/introduction.md:152
+msgid ""
+"As you can see, the logo is a combination of two \"fuji\"-s with "
+"different accent patterns."
+msgstr ""
+"これでお分かりのように、tdmelodic のロゴは、アクセントの異なる二つの「ふじ」にちなんだものです。"
+
+#: ../../pages/introduction.md:154
+msgid "Further reading"
+msgstr "文献案内"
+
+#: ../../pages/introduction.md:156
+msgid "Wikipedia"
+msgstr "ウィキペディア"
+
+#: ../../pages/introduction.md:157
+msgid "Wikipedia - Japanese pitch accent"
+msgstr "Wikipedia - Japanese pitch accent"
+
+#: ../../pages/introduction.md:158
+msgid "Textbook"
+msgstr "教科書"
+
+#: ../../pages/introduction.md:159
+msgid "松森, 新田, 木部, 中井, 日本語アクセント入門, 三省堂, 2012"
+msgstr "松森, 新田, 木部, 中井, 日本語アクセント入門, 三省堂, 2012"
+
+#: ../../pages/introduction.md:160
+msgid "Dictionary"
+msgstr "辞書"
+
+#: ../../pages/introduction.md:161
+msgid "OJAD (Online Japanese Accent Dictionary)"
+msgstr "OJAD (Online Japanese Accent Dictionary)"
+
+#: ../../pages/introduction.md:162
+msgid "NHK日本語発音アクセント新辞典, NHK出版, 2016"
+msgstr "NHK日本語発音アクセント新辞典, NHK出版, 2016"
+
+#: ../../pages/introduction.md:163
+msgid "金田一, 秋永, 新明解日本語アクセント辞典 第2版, 三省堂, 2014"
+msgstr "金田一, 秋永, 新明解日本語アクセント辞典 第2版, 三省堂, 2014"
