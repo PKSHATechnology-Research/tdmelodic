@@ -73,6 +73,11 @@ latex_elements = {
     'preamble' : '\\usepackage{luatexja-fontspec}\n'
 }
 
+latex_docclass = {
+    'howto' : 'article',
+    'manual' : 'report',
+}
+
 # locale
 locale_dirs = ['locale/']
 gettext_compact = False
