@@ -1,0 +1,81 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2019-, Hideyuki Tachibana, PKSHA Technology Inc
+# This file is distributed under the same license as the tdmelodic package.
+# Hideyuki Tachibana, 2021.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: tdmelodic \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-06-22 16:10+0900\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: Hideyuki Tachibana <h_tachibana@pkshatech.com>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.9.1\n"
+
+#: ../../index.rst:25
+msgid "Background"
+msgstr "予備知識"
+
+#: ../../index.rst:32
+msgid "Prelininary Setting"
+msgstr "事前準備"
+
+#: ../../index.rst:38
+msgid "Dictionary Generation"
+msgstr "辞書生成"
+
+#: ../../index.rst:46
+msgid "Install tdmelodic on your system"
+msgstr "tdmelodicのインストール"
+
+#: ../../index.rst:2
+msgid "tdmelodic Documentation"
+msgstr "tdmelodic利用マニュアル"
+
+#: ../../index.rst:14
+msgid "**Tokyo Dialect MELOdic accent DICtionary**"
+msgstr "**Tokyo Dialect MELOdic accent DICtionary**"
+
+#: ../../index.rst:16
+msgid ""
+"This module generates a large scale accent dictionary of Japanese (Tokyo "
+"dialect) using a neural network based technique."
+msgstr ""
+"これは、ニューラルネットワークにより、日本語（東京方言）の大規模なアクセント辞書を自動生成するモジュールです。"
+
+#: ../../index.rst:19
+msgid ""
+"The objective of this module is to generate a large vocabulary Japanese "
+"accent dictionary, exploiting existing two dictionaries: UniDic and "
+"NEologd. UniDic provides accurate accent information of words, but its "
+"vocabulary size is not necessarilly large. NEologd is a very large "
+"Japanese dictionary but it does not provide accent information of words."
+msgstr ""
+"このモジュールの目的は、日本語の大規模アクセント辞書を自動生成することです。"
+"そのために UniDic と NEologd という既存の二つの辞書を利用します。"
+"UniDic では正確なアクセント情報が提供されていますが、扱える語彙がやや限定されています。"
+"一方 NEologd は非常に大規模な語彙を扱っている一方、アクセント情報を提供していません。"
+
+
+#: ../../index.rst:54
+msgid "Citation"
+msgstr "文献情報"
+
+#: ../../index.rst:56
+msgid "For academic use, please cite the following paper."
+msgstr "論文等で引用いただく場合は以下の bibtex をご利用ください。"
+
+#: ../../index.rst:72
+msgid ""
+"Paper Links: `[IEEE Xplore] "
+"<https://ieeexplore.ieee.org/document/9054081>`_, `[arXiv preprint] "
+"<https://arxiv.org/abs/2009.09679>`_"
+msgstr ""
+"論文リンク: `[IEEE Xplore] "
+"<https://ieeexplore.ieee.org/document/9054081>`_, `[arXiv プレプリント] "
+"<https://arxiv.org/abs/2009.09679>`_"

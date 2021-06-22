@@ -72,3 +72,7 @@ latex_use_xindy = False
 latex_elements = {
     'preamble' : '\\usepackage{luatexja-fontspec}\n'
 }
+
+# locale
+locale_dirs = ['locale/']
+gettext_compact = False
