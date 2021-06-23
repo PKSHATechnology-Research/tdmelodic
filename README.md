@@ -5,10 +5,10 @@
 
 # Tokyo Dialect MELOdic accent DICtionary (tdmelodic) generator
 
-[![Docker](https://github.com/PKSHATechnology-Research/tdmelodic/actions/workflows/docker-image.yml/badge.svg)](https://github.com/PKSHATechnology-Research/tdmelodic/actions/workflows/docker-image.yml)
-[![Lilypond](https://github.com/PKSHATechnology-Research/tdmelodic/actions/workflows/img.yml/badge.svg)](https://github.com/PKSHATechnology-Research/tdmelodic/actions/workflows/img.yml)
 [![document](https://readthedocs.org/projects/tdmelodic/badge/?version=latest)](https://tdmelodic.readthedocs.io/en/latest)
 [![arXiv](https://img.shields.io/badge/arXiv-2009.09679-B31B1B.svg)](https://arxiv.org/abs/2009.09679)
+[![Docker](https://github.com/PKSHATechnology-Research/tdmelodic/actions/workflows/docker-image.yml/badge.svg)](https://github.com/PKSHATechnology-Research/tdmelodic/actions/workflows/docker-image.yml)
+[![Lilypond](https://github.com/PKSHATechnology-Research/tdmelodic/actions/workflows/img.yml/badge.svg)](https://github.com/PKSHATechnology-Research/tdmelodic/actions/workflows/img.yml)
 [![License](https://img.shields.io/badge/License-BSD%203--Clause-blue.svg)](https://opensource.org/licenses/BSD-3-Clause)
 
 
@@ -33,8 +33,8 @@ For academic use, please cite the following paper.
 
 ## Installation and Usage
 
-See [readthedocs](https://tdmelodic.readthedocs.io/en/latest)
-
+- English: [tdmelodic Documentation](https://tdmelodic.readthedocs.io/en/latest)
+- 日本語: [tdmelodic 利用マニュアル](https://tdmelodic.readthedocs.io/ja/latest)
 
 ## Acknowledgement
 Some part of this work is based on the results obtained from a project subsidized by the New Energy and Industrial Technology Development Organization (NEDO).
