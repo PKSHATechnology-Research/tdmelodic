@@ -11,6 +11,7 @@ import os
 
 import numpy as np
 from tqdm import tqdm
+import urllib.request
 
 import chainer
 import chainer.functions as F
@@ -27,13 +28,42 @@ from .lang.japanese.kana.mora_sep import sep_katakana2mora
 gpu_id = -1 # cpu
 bs = 1
 embed_dim = 64
-_default_path= os.path.dirname(os.path.abspath(__file__)) + "/resource/net_it_2500000"
+
+_github_url = "https://github.com/PKSHATechnology-Research/tdmelodic"
+model_location={
+    "path" : os.path.dirname(os.path.abspath(__file__)) + "/resource/net_it_2500000",
+    "url" : _github_url + "/raw/master/tdmelodic/nn/resource/net_it_2500000"
+}
+
+# ------------------------------------------------------------------------------
+class model_downloader(object):
+    def __init__(self, path, url=model_location["url"]):
+        self.path = path
+        self.url = url
+        if self.__check_if_file_empty(self.path):
+            self.__download()
+        else:
+            self.__already_downloaded()
+
+    def __check_if_file_empty(self, path_):
+        return not os.path.exists(path_) or os.path.getsize(path_) == 0
+
+    def __download(self):
+        print("[ tdmelodic Model Downloader ] Downloading the pretrained model.")
+        print("[ tdmelodic Model Downloader ] From {}".format(self.url))
+        print("[ tdmelodic Model Downloader ] To   {}".format(self.path))
+        urllib.request.urlretrieve(self.url, self.path)
+        print("[ tdmelodic Model Downloader ] Done")
+
+    def __already_downloaded(self):
+        print("[ tdmelodic Model Downloader ] The tdmelodic pretrained model already on your system.")
 
 # ------------------------------------------------------------------------------
 class InferAccent(object):
     def __init__(self,
-            model_path=_default_path,
+            model_path=model_location["path"],
             model_dim=embed_dim):
+        model_downloader(model_path)
         self.net = self.__load_model(model_path, model_dim)
 
     def __load_model(self, model_path, model_dim):
