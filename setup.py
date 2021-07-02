@@ -28,7 +28,8 @@ setup(
 
     description="tdmelodic: Tokyo Japanese Accent Estimator",
     long_description=_readme(),
-
+    long_description_content_type="text/markdown",
+ 
     install_requires=_requirements(),
     tests_requires=_requirements(),
     setup_requires=[],
@@ -53,7 +54,6 @@ setup(
         'Intended Audience :: Science/Research',
         'Intended Audience :: Developers',
         'License :: OSI Approved :: BSD License',
-        'Operating System :: MacOS :: MacOS X',
         'Operating System :: POSIX',
         'Programming Language :: Python :: 3.7',
         'Topic :: Text Processing :: Linguistic',
