@@ -24,6 +24,7 @@ setup(
     author="Hideyuki Tachibana",
     author_email='h_tachibana@pkshatech.com',
     python_requires='>=3.7',
+    url="https://github.com/PKSHATechnology-Research/tdmelodic",
 
     description="tdmelodic: Tokyo Japanese Accent Estimator",
     long_description=_readme(),
@@ -44,5 +45,20 @@ setup(
             'tdmelodic-neologd-patch = tdmelodic.script.neologd_patch:main',
             'tdmelodic-modify-unigram-cost = tdmelodic.script.postprocess_modify_unigram_cost:main',
         ]
-    }
+    },
+
+    classifiers=[
+        'Development Status :: 5 - Production/Stable',
+        'Environment :: Console',
+        'Intended Audience :: Science/Research',
+        'Intended Audience :: Developers',
+        'License :: OSI Approved :: BSD License',
+        'Operating System :: MacOS :: MacOS X',
+        'Operating System :: POSIX',
+        'Programming Language :: Python :: 3.7',
+        'Topic :: Text Processing :: Linguistic',
+        'Topic :: Multimedia :: Sound/Audio :: Speech',
+        'Topic :: Scientific/Engineering :: Artificial Intelligence',
+        'Natural Language :: Japanese',
+    ]
 )
