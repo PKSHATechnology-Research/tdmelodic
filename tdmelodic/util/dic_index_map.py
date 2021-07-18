@@ -23,3 +23,12 @@ ipadic_index_map = {
     "GOSHU": 0,  # Not used. Dummy value for now.
     "ACCENT": 0,  # Not used. Dummy value for now.
 }
+
+def get_dictionary_index_map(mode):
+    if mode == "unidic":
+        IDX_MAP = unidic_index_map
+    elif mode == "ipadic":
+        IDX_MAP = ipadic_index_map
+    else:
+        IDX_MAP = unidic_index_map
+    return IDX_MAP

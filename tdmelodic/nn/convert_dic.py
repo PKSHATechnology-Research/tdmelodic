@@ -23,7 +23,7 @@ from .loader.data_loader import NeologdDictionaryLoader
 from .lang.japanese.kana.mora_sep import sep_katakana2mora
 from .inference import InferAccent
 
-from ..util.dic_index_map import dic_index_map
+from ..util.dic_index_map import get_dictionary_index_map
 
 # hyper params
 gpu_id = -1
@@ -32,12 +32,7 @@ bs = 64
 def apply_all(
     test_csv, output_csv, up_symbol="[", down_symbol="]", mode="unidic"
 ):
-    if mode == "unidic":
-        index_map = dic_index_map.unidic_index_map
-    elif mode == "ipadic":
-        index_map = dic_index_map.ipadic_index_map
-    else:
-        index_map = dic_index_map.unidic_index_map
+    index_map = get_dictionary_index_map(mode)
 
     test_dat = NeologdDictionaryLoader(
         test_csv, infer_mode=True, index_map=index_map, store_entire_line=False

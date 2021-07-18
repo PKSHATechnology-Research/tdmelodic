@@ -16,7 +16,7 @@ from tqdm import tqdm
 
 # ------------------------------------------------------------------------------------
 # see also mecabrc
-from ..util.dic_index_map import dic_index_map
+from ..util.dic_index_map import get_dictionary_index_map
 
 # ------------------------------------------------------------------------------------
 def count_lines(fname):
@@ -83,12 +83,7 @@ def joshi_no_yomi(line, IDX_MAP):
 
 # ------------------------------------------------------------------------------------
 def main_(neologd_csv, output_csv, mode):
-    if mode == "unidic":
-        IDX_MAP = dic_index_map.unidic_index_map
-    elif mode == "ipadic":
-        IDX_MAP = dic_index_map.ipadic_index_map
-    else:
-        IDX_MAP = dic_index_map.unidic_index_map
+    IDX_MAP = get_dictionary_index_map(mode)
 
     L = count_lines(neologd_csv)
     fp_in = csv.reader(open(neologd_csv, 'r'))
