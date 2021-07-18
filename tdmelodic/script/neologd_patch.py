@@ -16,14 +16,7 @@ from tqdm import tqdm
 
 # ------------------------------------------------------------------------------------
 # see also mecabrc
-IDX_SURFACE= 0
-IDX_COST   = 3
-IDX_POS1   = 4 +  0 # f[0]:   pos1
-IDX_POS2   = 4 +  1 # f[1]:   pos2
-IDX_POS3   = 4 +  2 # f[2]:   pos3
-IDX_YOMI   = 4 +  9 # f[9]:   pron
-IDX_GOSHU  = 4 + 12 # f[12]:  goshu
-IDX_ACCENT = 4 + 23 # f[23]:  aType
+from ..util.dic_index_map import dic_index_map
 
 # ------------------------------------------------------------------------------------
 def count_lines(fname):
@@ -33,21 +26,21 @@ def count_lines(fname):
     return i + 1
 
 # ------------------------------------------------------------------------------------
-def modify_katakana_errors(line):
+def modify_katakana_errors(line, IDX_MAP):
     # katakana regex
-    line[IDX_YOMI] = line[IDX_YOMI]\
+    line[IDX_MAP["YOMI"]] = line[IDX_MAP["YOMI"]]\
                     .replace("ーィ","ウィ")\
                     .replace("ーェ","ウェ")\
                     .replace("ーォ","ウォ")
     return line
 
 # ------------------------------------------------------------------------------------
-def modify_yomi_of_numerals(line):
+def modify_yomi_of_numerals(line, IDX_MAP):
     """
     数値の読みを簡易的に修正する（完全なものではない）
     """
 
-    surface = line[IDX_SURFACE]
+    surface = line[IDX_MAP["SURFACE"]]
     # 1文字目が数字で2文字以上の長さがあるもの
     num=[str(i) for i in range(10)] + ['１','２','３','４','５','６','７','８','９','０']
     if (surface[0] in num) and len(line[1]) >= 2:
@@ -69,7 +62,7 @@ def modify_yomi_of_numerals(line):
                 (r"ニーニチ", r"ニニチ" ), # 12日など
                 (r"ゴーニチ", r"ゴニチ" ) # 15日など
             ]
-    yomi = line[IDX_YOMI]
+    yomi = line[IDX_MAP["YOMI"]]
 
     for regex1, regex2 in filters:
         prev_yomi = ''
@@ -78,35 +71,42 @@ def modify_yomi_of_numerals(line):
             if re.search(regex1, yomi):
                 yomi = re.sub(regex1, regex2, yomi)
 
-    line[IDX_YOMI] = yomi
+    line[IDX_MAP["YOMI"]] = yomi
 
     return line
 
 # ------------------------------------------------------------------------------------
-def joshi_no_yomi(line):
+def joshi_no_yomi(line, IDX_MAP):
     # TODO
     # neologdの読みは　ワガハイ【ハ】ネコデアル　のように助詞「は」等の読みが適切に処理されていないケースがある。
     return line
 
 # ------------------------------------------------------------------------------------
-def main_(neologd_csv, output_csv):
+def main_(neologd_csv, output_csv, mode):
+    if mode == "unidic":
+        IDX_MAP = dic_index_map.unidic_index_map
+    elif mode == "ipadic":
+        IDX_MAP = dic_index_map.ipadic_index_map
+    else:
+        IDX_MAP = dic_index_map.unidic_index_map
+
     L = count_lines(neologd_csv)
     fp_in = csv.reader(open(neologd_csv, 'r'))
 
     with open(output_csv, mode='w') as fp_out:
         for line in tqdm(fp_in, total=L):
             # 「スーェーデン」「ノルーェー」のようなエラーを修正する
-            line = modify_katakana_errors(line)
+            line = modify_katakana_errors(line, IDX_MAP)
 
             # 数値表現の読みを変更する
-            line = modify_yomi_of_numerals(line)
+            line = modify_yomi_of_numerals(line, IDX_MAP)
 
             # 助詞の読みを修正する（TODO）
-            line = joshi_no_yomi(line)
+            line = joshi_no_yomi(line, IDX_MAP)
 
             # neologdの末尾に付加的なカラムを追加する（unidic-kana-accentとの互換性のため）
             line = line + ['' for i in range(10)]
-            line[IDX_ACCENT] = '@'
+            line[IDX_MAP["ACCENT"]] = '@'
 
             # 出力
             line = ','.join(line) + '\n'
@@ -121,12 +121,20 @@ def main():
                         help='input csv (neologd dicitionary file)')
     parser.add_argument('-o', '--output', type=str,
                         help='output csv')
+    parser.add_argument(
+        "-m",
+        "--mode",
+        type=str,
+        help="dictionary format type",
+        choices=["unidic", "ipadic"],
+        default="unidic",
+    )
     args = parser.parse_args()
     if args.input == args.output:
         print("[ Error ] intput and output files should be different.")
     else:
         try:
-            main_(args.input, args.output)
+            main_(args.input, args.output, args.mode)
         except Exception as e:
             print(e)
 

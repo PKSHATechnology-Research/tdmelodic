@@ -23,46 +23,21 @@ from .loader.data_loader import NeologdDictionaryLoader
 from .lang.japanese.kana.mora_sep import sep_katakana2mora
 from .inference import InferAccent
 
+from ..util.dic_index_map import dic_index_map
+
 # hyper params
 gpu_id = -1
 bs = 64
-
-unidic_index_map = {
-    # see also mecabrc
-    "SURFACE": 0,
-    "COST": 3,
-    "POS1": 4 + 0,  # f[0]:   pos1
-    "POS2": 4 + 1,  # f[1]:   pos2
-    "POS3": 4 + 2,  # f[2]:   pos3
-    "POS4": 4 + 3,  # f[3]:   pos4
-    "YOMI": 4 + 9,  # f[9]:   pron
-    "GOSHU": 4 + 12,  # f[12]:  goshu
-    "ACCENT": 4 + 23,  # f[23]:  aType
-}
-
-ipadic_index_map = {
-    # see also mecabrc
-    "SURFACE": 0,
-    "COST": 3,
-    "POS1": 4,  # Not used. Dummy value for now.
-    "POS2": 5,  # Not used. Dummy value for now.
-    "POS3": 6,  # Not used. Dummy value for now.
-    "POS4": 7,  # Not used. Dummy value for now.
-    "YOMI": 12,
-    "GOSHU": 0,  # Not used. Dummy value for now.
-    "ACCENT": 0,  # Not used. Dummy value for now.
-}
-
 
 def apply_all(
     test_csv, output_csv, up_symbol="[", down_symbol="]", mode="unidic"
 ):
     if mode == "unidic":
-        index_map = unidic_index_map
+        index_map = dic_index_map.unidic_index_map
     elif mode == "ipadic":
-        index_map = ipadic_index_map
+        index_map = dic_index_map.ipadic_index_map
     else:
-        index_map = unidic_index_map
+        index_map = dic_index_map.unidic_index_map
 
     test_dat = NeologdDictionaryLoader(
         test_csv, infer_mode=True, index_map=index_map, store_entire_line=False
