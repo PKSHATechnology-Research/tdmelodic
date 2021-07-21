@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tdmelodic \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-07-21 22:18+0900\n"
+"POT-Creation-Date: 2021-07-21 22:52+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Hideyuki Tachibana <h_tachibana@pkshatech.com>\n"
 "Language-Team: \n"
@@ -34,17 +34,15 @@ msgid "git clone NEologd"
 msgstr "NEologd 辞書ファイルをダウンロード"
 
 #: ../../pages/unidic-dicgen.md:6
-msgid ""
-"In this section, we always work in the docker container we have just "
-"created."
-msgstr ""
+msgid "First, download the NEologd dictionary as follows."
+msgstr "まず、以下のようなコマンドで NEologd の辞書をダウンロードしてください。"
 
 #: ../../pages/unidic-dicgen.md:14
 msgid "Extract the NEologd vocabulary file and apply a patch"
 msgstr "NEologd 辞書ファイルの抽出と、パッチによる微修正"
 
 #: ../../pages/unidic-dicgen.md:16
-msgid "First, extract the csv file of NEologd dictionary using `unxz` command."
+msgid "Then, extract the csv file of NEologd dictionary using `unxz` command."
 msgstr "次に `unxz` コマンドで、NEologd の単語リスト（CSVファイル）を抽出します。"
 
 #: ../../pages/unidic-dicgen.md:26
@@ -66,7 +64,9 @@ msgstr "推論"
 msgid ""
 "_WARNING! THIS TAKES MUCH TIME!_ (FYI: It took about 2.5 hours in a "
 "MacBookPro, 5 hours in our Linux server.)"
-msgstr "注意：_この処理はかなりの時間がかかります！_（参考までに、筆者の MacBookPro では2時間半、Linux サーバーでは5時間かかりました。）"
+msgstr ""
+"注意： _この処理はかなりの時間がかかります！_ （参考までに、筆者の MacBookPro では2時間半、Linux "
+"サーバーでは5時間かかりました。）"
 
 #: ../../pages/unidic-dicgen.md:42
 msgid ""

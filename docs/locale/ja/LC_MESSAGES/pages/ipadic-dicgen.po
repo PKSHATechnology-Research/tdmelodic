@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tdmelodic \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-06-22 16:10+0900\n"
+"POT-Creation-Date: 2021-07-21 23:42+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Hideyuki Tachibana <h_tachibana@pkshatech.com>\n"
 "Language-Team: \n"
@@ -19,20 +19,93 @@ msgstr ""
 
 #: ../../pages/ipadic-dicgen.md:1
 msgid "Dictionary Generation for IPADIC users"
-msgstr ""
+msgstr "IPADIC ユーザー向け辞書生成"
 
 #: ../../pages/ipadic-dicgen.md:2
-msgid "under construction"
+msgid "_UNDER CONSTRUCTION_"
 msgstr "準備中"
 
-#: ../../pages/ipadic-dicgen.md:3
-msgid "Prepare the base dictionary"
-msgstr ""
-
 #: ../../pages/ipadic-dicgen.md:4
-msgid "Inference"
-msgstr ""
+msgid "WARNING: _This section takes several hours or days._"
+msgstr "注意：_この作業は数時間から数日かかる可能性があります。_"
 
-#: ../../pages/ipadic-dicgen.md:5
-msgid "Postprocess"
+#: ../../pages/ipadic-dicgen.md:6
+msgid "Prepare the base dictionary"
+msgstr "ベースになる辞書の準備"
+
+#: ../../pages/ipadic-dicgen.md:7
+msgid "Download IPADIC"
+msgstr "IPADIC のダウンロード"
+
+#: ../../pages/ipadic-dicgen.md:9
+msgid ""
+"First, download IPADIC manually from "
+"[https://taku910.github.io/mecab](https://taku910.github.io/mecab)"
 msgstr ""
+"はじめに、[https://taku910.github.io/mecab](https://taku910.github.io/mecab) "
+"からIPADICをダウンロードしてください。"
+
+#: ../../pages/ipadic-dicgen.md:15
+msgid ""
+"By trying `ls mecab-ipadic-2.7.0-XXXX`, you will find many CSV files and "
+"configuration files in the directory."
+msgstr ""
+"ダウンロードした圧縮ファイルを展開して得られたディレクトリの中を `ls` などのコマンドで見てみると、"
+"多数の CSV ファイルと設定ファイルがあるのが確認できます。"
+
+#: ../../pages/ipadic-dicgen.md:18
+msgid "Download NEologd"
+msgstr "NEologd のダウンロード"
+
+#: ../../pages/ipadic-dicgen.md:19
+msgid "Also, download the NEologd dictionary as follows."
+msgstr "同様に、NEologdの辞書ファイルをダウンロードしてください。"
+
+#: ../../pages/ipadic-dicgen.md:27
+msgid ""
+"Then, extract the csv file of NEologd dictionary using `unxz` command. If"
+" your system has the unxz command,"
+msgstr ""
+"次に `unxz` コマンドで、NEologd の単語リスト（CSVファイル）を抽出します。"
+"もし `unxz` コマンドがインストールされている場合は以下のようなコマンドを実行してください。"
+
+#: ../../pages/ipadic-dicgen.md:32
+msgid "Or, otherwise,"
+msgstr "`unxz`がない場合は、dockerを使用して以下のコマンドで同様のことができます。"
+
+#: ../../pages/ipadic-dicgen.md:40
+msgid "Thus many CSV files will be created at `./mecab-ipadic-neologd/seed/`."
+msgstr "この処理により、多数のCSVファイルが `./mecab-ipadic-neologd/seed/` 配下に生成されます。"
+
+#: ../../pages/ipadic-dicgen.md:42
+msgid "Inference"
+msgstr "推論"
+
+#: ../../pages/ipadic-dicgen.md:44
+msgid "_WARNING! THIS TAKES MUCH TIME!_"
+msgstr ""
+"注意： _この処理はかなりの時間がかかります！_"
+
+#: ../../pages/ipadic-dicgen.md:46
+msgid ""
+"Now let generate the accent dictionary. It estimates the accent of the "
+"words listed in NEologd dictionary by a machine learning -based "
+"technique."
+msgstr ""
+"では、アクセント辞書を生成しましょう。ここでは、NEologd "
+"の辞書ファイルに掲載されている全ての単語について、機械学習ベースの手法により、アクセント情報を推定します。以下のコマンドにより、各単語にアクセント情報を付与した新しい辞書が生成されます。"
+
+#: ../../pages/ipadic-dicgen.md:50
+msgid "IPADIC"
+msgstr "IPADIC"
+
+#: ../../pages/ipadic-dicgen.md:57
+msgid "NEologd"
+msgstr "NEologd"
+
+#: ../../pages/ipadic-dicgen.md:64
+msgid ""
+"Thus we obtain dictionary files `*.csv.accent` with the accent "
+"information added."
+msgstr ""
+"以上の作業により、アクセント情報が付与された辞書ファイル `*.csv.accent` が得られます。"

@@ -19,7 +19,7 @@ msgstr ""
 
 #: ../../pages/docker.md:1
 msgid "Build the Docker image"
-msgstr "docker イメージをビルト"
+msgstr "docker イメージをビルド"
 
 #: ../../pages/docker.md:3
 msgid "Download codes and data"
@@ -65,7 +65,7 @@ msgid ""
 "It is recommended that you keep this file somewhere in your local file "
 "system."
 msgstr ""
-"注意：**このファイルは後ほど再利用します。**ダウンロード先のサイトに負荷をかけすぎることのないよう、何度もダウンロードするのは避けてください。ダウンロードした"
+"注意： **このファイルは後ほど再利用します。** ダウンロード先のサイトに負荷をかけすぎることのないよう、何度もダウンロードするのは避けてください。ダウンロードした"
 " zip ファイルはローカルのどこかに保管しておくことを推奨します。"
 
 #: ../../pages/docker.md:32
