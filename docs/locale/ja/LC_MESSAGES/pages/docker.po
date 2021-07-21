@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tdmelodic \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-06-22 16:10+0900\n"
+"POT-Creation-Date: 2021-07-21 22:18+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Hideyuki Tachibana <h_tachibana@pkshatech.com>\n"
 "Language-Team: \n"
@@ -31,10 +31,11 @@ msgstr "事前準備"
 
 #: ../../pages/docker.md:6
 msgid ""
-"Please set up git, docker and mecab (such as libmecab-dev) on your UNIX-"
-"like system such as Ubuntu or MacOS."
+"Please set up `git`, `docker` and `mecab` (such as `libmecab-dev`) on "
+"your UNIX-like system such as Ubuntu or MacOS."
 msgstr ""
-"お手元の Unix 系処理系（UbuntuやMacOSなど）に、Git, Docker, MeCab (libmecab-devなど)をセットアップしてください。"
+"お手元の Unix 系処理系（UbuntuやMacOSなど）に、Git, Docker, MeCab (libmecab-"
+"devなど)をセットアップしてください。"
 
 #: ../../pages/docker.md:8
 msgid "git clone"
@@ -50,24 +51,22 @@ msgstr "UniDic の辞書ファイルをダウンロード"
 
 #: ../../pages/docker.md:19
 msgid ""
-"Download the UniDic file. Several versions have been published, but the "
-"version we need is uniDic-mecab_kana-accent-2.1.2_src.zip."
+"Download the UniDic file from [NINJAL](https://unidic.ninjal.ac.jp/). "
+"Several versions have been published, but the version we need is `uniDic-"
+"mecab_kana-accent-2.1.2_src.zip`."
 msgstr ""
-"UniDic の辞書ファイルをダウンロードしてください。"
-"複数のバージョンが公開されていますが、このモジュールでは unidic-mecab_kana-accent-2.1.2_src.zip を使います。"
-
+"[国立国語研究所のサイト](https://unidic.ninjal.ac.jp/)から UniDic の辞書ファイルをダウンロードしてください。複数のバージョンが公開されていますが、このモジュールでは "
+"`unidic-mecab_kana-accent-2.1.2_src.zip` を使います。"
 
 #: ../../pages/docker.md:27
 msgid ""
-"Note: This file will be reused later. Please do not download the file "
-"more than once to avoid overloading the site you are downloading from. It"
-" is recommended that you keep this file somewhere in your local file "
+"Note: **This file will be reused later.** Please do not download the file"
+" more than once to avoid overloading the site you are downloading from. "
+"It is recommended that you keep this file somewhere in your local file "
 "system."
 msgstr ""
-"注意：このファイルは後ほど再利用します。"
-"ダウンロード先のサイトに負荷をかけすぎることのないよう、何度もダウンロードするのは避けてください。"
-"ダウンロードした zip ファイルはローカルのどこかに保管しておくことを推奨します。"
-
+"注意：**このファイルは後ほど再利用します。**ダウンロード先のサイトに負荷をかけすぎることのないよう、何度もダウンロードするのは避けてください。ダウンロードした"
+" zip ファイルはローカルのどこかに保管しておくことを推奨します。"
 
 #: ../../pages/docker.md:32
 msgid "Docker build"
@@ -77,8 +76,7 @@ msgstr "Docker ビルド"
 msgid ""
 "Build the docker image using following commands. It will take a few "
 "minutes."
-msgstr ""
-"以下のコマンドでdockerのイメージをビルドしてください。これには数分かかります。"
+msgstr "以下のコマンドでdockerのイメージをビルドしてください。これには数分かかります。"
 
 #: ../../pages/docker.md:42
 msgid "Test some commands if needed"

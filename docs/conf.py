@@ -13,7 +13,7 @@
 # import os
 # import sys
 # sys.path.insert(0, os.path.abspath('.'))
-from recommonmark.parser import CommonMarkParser
+#from recommonmark.parser import CommonMarkParser
 
 # -- Project information -----------------------------------------------------
 
@@ -27,12 +27,13 @@ author = 'Hideyuki Tachibana'
 # Add any Sphinx extension module names here, as strings. They can be
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
-extensions = ['recommonmark']
+#extensions = ['recommonmark']
+extensions = ['myst_parser']
 
 source_suffix = ['.rst', '.md']
-source_parsers = {
-    '.md' : CommonMarkParser
-}
+#source_parsers = {
+#    '.md' : CommonMarkParser
+#}
 
 
 # Add any paths that contain templates here, relative to this directory.
@@ -81,3 +82,12 @@ latex_docclass = {
 # locale
 locale_dirs = ['locale/']
 gettext_compact = False
+
+# link
+if False:
+    from recommonmark.transform import AutoStructify
+    def setup(app):
+        app.add_config_value('recommonmark_config', {
+            'enable_auto_doc_ref': True,
+        }, True)
+        app.add_transform(AutoStructify)

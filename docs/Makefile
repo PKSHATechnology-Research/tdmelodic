@@ -21,3 +21,7 @@ help:
 
 ja:
 	make -e SPHINXOPTS="-D language='ja'" html
+
+translation:
+	make gettext
+	sphinx-intl update -d locale -l ja

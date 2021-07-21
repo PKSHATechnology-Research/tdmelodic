@@ -31,10 +31,9 @@ Thus, an _n_-mora word basically has one of the _n_+1 possible accent patterns a
 - `*[***]*`
 - `*[****]`
 
-### Accent type: representation of accent nuclei by digits
+### Representation of accent nuclei by digits
 
-Accent patterns are often expressed by the digits which indicate the positions of the accent nuclei.
-This digit is often called an accent type.
+Accent patterns (accent types) are often expressed by the digits which indicate the positions of the accent nuclei.
 Some accent dictionaries including UniDic use this notation.
 
 - `Accent type = 0` means that there are no accent nuclei (no fall `]`).
