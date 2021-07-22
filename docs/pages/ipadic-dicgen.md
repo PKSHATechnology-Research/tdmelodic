@@ -1,5 +1,4 @@
 # Dictionary Generation for IPADIC users
-_UNDER CONSTRUCTION_
 
 WARNING: _This section takes several hours or days._
 
@@ -15,6 +14,16 @@ tar zxfv mecab-ipadic-2.7.0-XXXX.tar.gz
 ```
 By trying `ls mecab-ipadic-2.7.0-XXXX`, you will find many CSV files and configuration files
 in the directory.
+We convert the encoding of these dicrionaty files from EUC-JP to UTF-8.
+If your system has `nkf` commnad,
+```sh
+find ./mecab-ipadic-2.7.0-* -type f -name "*.csv" | xargs -I{} nkf -w --overwrite {}
+```
+Otherwise, you can use docker.
+```sh
+docker run -v $(pwd):/root/workspace tdmelodic:latest \
+    find ./mecab-ipadic-2.7.0-* -type f -name "*.csv" | xargs -I{} nkf -w --overwrite {}
+```
 
 ### Download NEologd
 Also, download the NEologd dictionary as follows.

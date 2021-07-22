@@ -37,7 +37,7 @@ cp ${UNIDIC_ZIP} .
 
 
 ## Use UniDic-tdmelodic
-This sections some examples.
+Here are some examples.
 
 ### Example 1
 

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tdmelodic \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-06-22 16:10+0900\n"
+"POT-Creation-Date: 2021-07-23 00:59+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Hideyuki Tachibana <h_tachibana@pkshatech.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -19,16 +19,47 @@ msgstr ""
 
 #: ../../pages/ipadic-usage.md:1
 msgid "Usage of IPADIC-tdmelodic as a MeCab dictionary"
-msgstr ""
+msgstr "IPADIC-tdmelodic を MeCab 辞書として活用"
 
 #: ../../pages/ipadic-usage.md:3
-msgid "under construction"
-msgstr "準備中"
+msgid "Install IPADIC-tdmelodic"
+msgstr "IPADIC-tdmelodic のインストール"
 
-#: ../../pages/ipadic-usage.md:5
-msgid "Install UniDic-tdmelodic"
+#: ../../pages/ipadic-usage.md:4
+msgid ""
+"You can install `tdmelodic-ipadic` by replacing all the CSV files with "
+"the generated `*.csv.accent` files, and running the installation script "
+"with appropriate command line options."
 msgstr ""
+"前の章で作成した `*.csv.accent` ファイルを IPADIC のディレクトリ配下に配置し、"
+"適切なコマンドラインオプションを与えてインストール用スクリプトを実行することで、"
+" `tdmelodic-ipadic` をインストールできます。"
 
-#: ../../pages/ipadic-usage.md:6
-msgid "Use UniDic-tdmelodic"
-msgstr ""
+#: ../../pages/ipadic-usage.md:42
+msgid "Use IPADIC-tdmelodic"
+msgstr "UniDic-tdmelodic の使用例"
+
+#: ../../pages/ipadic-usage.md:43
+msgid "Here are some examples."
+msgstr "いくつかの例をご覧ください。"
+
+#: ../../pages/ipadic-usage.md:45
+msgid "Example 1"
+msgstr "例1"
+
+#: ../../pages/ipadic-usage.md:70
+msgid "Example 2"
+msgstr "例2"
+
+#: ../../pages/ipadic-usage.md:80
+msgid "Example 3"
+msgstr "例3"
+
+#~ msgid "under construction"
+#~ msgstr "準備中"
+
+#~ msgid "Install UniDic-tdmelodic"
+#~ msgstr ""
+
+#~ msgid "Use UniDic-tdmelodic"
+#~ msgstr ""
