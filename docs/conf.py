@@ -29,7 +29,7 @@ author = 'Hideyuki Tachibana'
 # ones.
 #extensions = ['recommonmark']
 extensions = ['myst_parser',
-    'sphinx.ext.imgconverter'
+    #'sphinx.ext.imgconverter'
 ]
 
 source_suffix = ['.rst', '.md']
