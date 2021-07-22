@@ -16,7 +16,7 @@
 #from recommonmark.parser import CommonMarkParser
 
 # -- Project information -----------------------------------------------------
-
+import sys
 project = 'tdmelodic'
 copyright = '2019-, Hideyuki Tachibana, PKSHA Technology Inc'
 author = 'Hideyuki Tachibana'
@@ -28,7 +28,9 @@ author = 'Hideyuki Tachibana'
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
 #extensions = ['recommonmark']
-extensions = ['myst_parser']
+extensions = ['myst_parser',
+    'sphinx.ext.imgconverter'
+]
 
 source_suffix = ['.rst', '.md']
 #source_parsers = {
@@ -66,28 +68,32 @@ html_theme = 'sphinx_rtd_theme'
 html_static_path = ['_static']
 html_logo = "logo_tdmelodic.png"
 
-
 # latex
+__latex_lang = 'ja' if 'language=ja' in sys.argv else 'en'
 latex_engine = 'lualatex'
 latex_use_xindy = False
 latex_elements = {
-    'preamble' : '\\usepackage{luatexja-fontspec}\n'
+    'preamble' : r"""
+        \usepackage{luatexja}
+        \usepackage{luatexja-fontspec}
+        \usepackage[ipa]{luatexja-preset}
+        """,
+    'fncychap': '',
+    'tableofcontents': r"""
+        \renewcommand{\contentsname}{""" \
+        + ("目次" if __latex_lang == 'ja' else "Table of Contents") +
+        r"""}
+        \sphinxtableofcontents""",
+    'fvset' : r"""\fvset{tabsize=2,fontsize=\footnotesize}"""
 }
 
 latex_docclass = {
-    'howto' : 'article',
-    'manual' : 'report',
+    'howto' : 'article', # 'jsbook'
+    'manual' : 'ltjbook' if __latex_lang == 'ja' else 'report' # 'jreport'
 }
+
+latex_show_urls = 'footnote'
 
 # locale
 locale_dirs = ['locale/']
 gettext_compact = False
-
-# link
-if False:
-    from recommonmark.transform import AutoStructify
-    def setup(app):
-        app.add_config_value('recommonmark_config', {
-            'enable_auto_doc_ref': True,
-        }, True)
-        app.add_transform(AutoStructify)

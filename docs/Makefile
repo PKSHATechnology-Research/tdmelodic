@@ -19,8 +19,11 @@ help:
 %: Makefile
 	@$(SPHINXBUILD) -M $@ "$(SOURCEDIR)" "$(BUILDDIR)" $(SPHINXOPTS) $(O)
 
-ja:
+jahtml:
 	make -e SPHINXOPTS="-D language='ja'" html
+
+jalatex:
+	make -e SPHINXOPTS="-D language='ja'" latexpdf
 
 translation:
 	make gettext
