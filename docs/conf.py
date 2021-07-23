@@ -13,10 +13,10 @@
 # import os
 # import sys
 # sys.path.insert(0, os.path.abspath('.'))
-from recommonmark.parser import CommonMarkParser
+#from recommonmark.parser import CommonMarkParser
 
 # -- Project information -----------------------------------------------------
-
+import sys
 project = 'tdmelodic'
 copyright = '2019-, Hideyuki Tachibana, PKSHA Technology Inc'
 author = 'Hideyuki Tachibana'
@@ -27,12 +27,15 @@ author = 'Hideyuki Tachibana'
 # Add any Sphinx extension module names here, as strings. They can be
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
-extensions = ['recommonmark']
+#extensions = ['recommonmark']
+extensions = ['myst_parser',
+    #'sphinx.ext.imgconverter'
+]
 
 source_suffix = ['.rst', '.md']
-source_parsers = {
-    '.md' : CommonMarkParser
-}
+#source_parsers = {
+#    '.md' : CommonMarkParser
+#}
 
 
 # Add any paths that contain templates here, relative to this directory.
@@ -65,18 +68,31 @@ html_theme = 'sphinx_rtd_theme'
 html_static_path = ['_static']
 html_logo = "logo_tdmelodic.png"
 
-
 # latex
+__latex_lang = 'ja' if 'language=ja' in sys.argv else 'en'
 latex_engine = 'lualatex'
 latex_use_xindy = False
 latex_elements = {
-    'preamble' : '\\usepackage{luatexja-fontspec}\n'
+    'preamble' : r"""
+        \usepackage{luatexja}
+        \usepackage{luatexja-fontspec}
+        \usepackage[ipa]{luatexja-preset}
+        """,
+    'fncychap': '',
+    'tableofcontents': r"""
+        \renewcommand{\contentsname}{""" \
+        + ("目次" if __latex_lang == 'ja' else "Table of Contents") +
+        r"""}
+        \sphinxtableofcontents""",
+    'fvset' : r"""\fvset{tabsize=2,fontsize=\footnotesize}"""
 }
 
 latex_docclass = {
-    'howto' : 'article',
-    'manual' : 'report',
+    'howto' : 'article', # 'jsbook'
+    'manual' : 'ltjbook' if __latex_lang == 'ja' else 'report' # 'jreport'
 }
+
+latex_show_urls = 'footnote'
 
 # locale
 locale_dirs = ['locale/']

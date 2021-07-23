@@ -25,7 +25,7 @@ from .lang.japanese.kana.mora_sep import sep_katakana2mora
 
 # ------------------------------------------------------------------------------
 # hyper params
-gpu_id = -1 # cpu
+gpu_id = -1  # cpu
 bs = 1
 embed_dim = 64
 
@@ -67,7 +67,7 @@ class InferAccent(object):
         self.net = self.__load_model(model_path, model_dim)
 
     def __load_model(self, model_path, model_dim):
-        print("[ Loading model ] model_path=\'{}\'".format(model_path))
+        print("[ Loading model ] model_path='{}'".format(model_path))
         net = Net(embed_dim=model_dim)
         chainer.serializers.load_npz(model_path, net)
         return net

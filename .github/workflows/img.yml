@@ -6,13 +6,13 @@ on:
   pull_request:
     branches: [main, master]
     paths:
-      - 'imgs/*.ly'
+      - 'docs/imgs/*.ly'
       - '.github/workflows/img.yml'
   schedule:
     # Monthly check (12:10 PM UTC, 28th day of every month)
     - cron: '10 12 27 * *'
 env:
-  IMG_DIR: imgs
+  IMG_DIR: docs/imgs
 jobs:
   build_sheets:
     runs-on: ubuntu-latest

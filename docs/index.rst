@@ -1,17 +1,7 @@
 tdmelodic Documentation
 =======================
 
-
-.. image:: https://github.com/PKSHATechnology-Research/tdmelodic/actions/workflows/docker-image.yml/badge.svg
-   :target: https://github.com/PKSHATechnology-Research/tdmelodic/actions/workflows/docker-image.yml
-.. image:: https://github.com/PKSHATechnology-Research/tdmelodic/actions/workflows/img.yml/badge.svg
-   :target: https://github.com/PKSHATechnology-Research/tdmelodic/actions/workflows/img.yml
-.. image:: https://img.shields.io/badge/arXiv-2009.09679-B31B1B.svg
-   :target: https://arxiv.org/abs/2009.09679
-.. image:: https://img.shields.io/badge/License-BSD%203--Clause-blue.svg
-   :target: https://opensource.org/licenses/BSD-3-Clause
-
-**Tokyo Dialect MELOdic accent DICtionary**
+| **Tokyo Dialect MELOdic accent DICtionary**
 
 This module generates a large scale accent dictionary of
 Japanese (Tokyo dialect) using a neural network based technique.

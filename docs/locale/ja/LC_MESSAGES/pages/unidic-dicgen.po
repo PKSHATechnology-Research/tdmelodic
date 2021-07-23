@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tdmelodic \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-06-22 16:10+0900\n"
+"POT-Creation-Date: 2021-07-21 22:52+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Hideyuki Tachibana <h_tachibana@pkshatech.com>\n"
 "Language-Team: \n"
@@ -22,8 +22,8 @@ msgid "Dictionary generation for UniDic users"
 msgstr "UniDic ユーザー向け辞書生成"
 
 #: ../../pages/unidic-dicgen.md:2
-msgid "WARNING: This section takes several hours or days."
-msgstr "注意：この作業は数時間から数日かかる可能性があります。"
+msgid "WARNING: _This section takes several hours or days._"
+msgstr "注意：_この作業は数時間から数日かかる可能性があります。_"
 
 #: ../../pages/unidic-dicgen.md:4
 msgid "Prepare the base dictionary"
@@ -34,29 +34,27 @@ msgid "git clone NEologd"
 msgstr "NEologd 辞書ファイルをダウンロード"
 
 #: ../../pages/unidic-dicgen.md:6
-msgid ""
-"In this section, we always work in the docker container we have just "
-"created."
-msgstr ""
+msgid "First, download the NEologd dictionary as follows."
+msgstr "まず、以下のようなコマンドで NEologd の辞書をダウンロードしてください。"
 
 #: ../../pages/unidic-dicgen.md:14
 msgid "Extract the NEologd vocabulary file and apply a patch"
 msgstr "NEologd 辞書ファイルの抽出と、パッチによる微修正"
 
 #: ../../pages/unidic-dicgen.md:16
-msgid "First, extract the csv file of NEologd dictionary using unxz command."
-msgstr "次に unxz コマンドで、NEologd の単語リスト（CSVファイル）を抽出します。"
+msgid "Then, extract the csv file of NEologd dictionary using `unxz` command."
+msgstr "次に `unxz` コマンドで、NEologd の単語リスト（CSVファイル）を抽出します。"
 
 #: ../../pages/unidic-dicgen.md:26
 msgid ""
-"This will generate a CSV file named mecab-unidic-user-dict-"
-"seed.yyyymmdd.csv. Then, apply the patch to the NEologd dictionary which "
-"we have just extracted, as follows. This creates a dictionary file "
-"neologd_modified.csv in the /tmp directory of the docker instance."
+"This will generate a CSV file named `mecab-unidic-user-dict-"
+"seed.yyyymmdd.csv`. Then, apply the patch to the NEologd dictionary which"
+" we have just extracted, as follows. This creates a dictionary file "
+"`neologd_modified.csv` in the `/tmp` directory of the docker instance."
 msgstr ""
-"これにより、mecab-unidic-user-dict-seed.yyyymmdd.csv といったファイル名の CSV ファイルが生成されます。"
-"次に、ここで抽出した CSV ファイルにパッチを当てます。"
-"これにより /tmp ディレクトリ配下に neologd_modified.csv というファイルが作られます。"
+"これにより、`mecab-unidic-user-dict-seed.yyyymmdd.csv` といったファイル名の CSV "
+"ファイルが生成されます。次に、ここで抽出した CSV ファイルにパッチを当てます。これにより `/tmp` ディレクトリ配下に "
+"`neologd_modified.csv` というファイルが作られます。"
 
 #: ../../pages/unidic-dicgen.md:37
 msgid "Inference"
@@ -64,11 +62,11 @@ msgstr "推論"
 
 #: ../../pages/unidic-dicgen.md:39
 msgid ""
-"WARNING! THIS TAKES MUCH TIME! (FYI: It took about 2.5 hours in a "
+"_WARNING! THIS TAKES MUCH TIME!_ (FYI: It took about 2.5 hours in a "
 "MacBookPro, 5 hours in our Linux server.)"
 msgstr ""
-"注意：この処理はかなりの時間がかかります！"
-"（参考までに、筆者の MacBookPro では2時間半、Linux サーバーでは5時間かかりました。）"
+"注意： _この処理はかなりの時間がかかります！_ （参考までに、筆者の MacBookPro では2時間半、Linux "
+"サーバーでは5時間かかりました。）"
 
 #: ../../pages/unidic-dicgen.md:42
 msgid ""
@@ -76,10 +74,8 @@ msgid ""
 "words listed in NEologd dictionary by a machine learning -based "
 "technique."
 msgstr ""
-"では、アクセント辞書を生成しましょう。"
-"ここでは、NEologd の辞書ファイルに掲載されている全ての単語について、機械学習ベースの手法により、アクセント情報を推定します。"
-"以下のコマンドにより、各単語にアクセント情報を付与した新しい辞書が生成されます。"
-
+"では、アクセント辞書を生成しましょう。ここでは、NEologd "
+"の辞書ファイルに掲載されている全ての単語について、機械学習ベースの手法により、アクセント情報を推定します。以下のコマンドにより、各単語にアクセント情報を付与した新しい辞書が生成されます。"
 
 #: ../../pages/unidic-dicgen.md:54
 msgid "Postprocess"

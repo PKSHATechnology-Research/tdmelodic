@@ -12,6 +12,7 @@ RUN apt-get update -y && \
     	libblas3 libblas-dev \
         mecab libmecab-dev swig \
         locales \
+        nkf \
         fonts-ipafont fonts-ipaexfont fonts-takao-pgothic fonts-takao-mincho \
         python3-dev python3-pip python3-setuptools python3-tk && \
     rm -rf /var/lib/apt/lists/*

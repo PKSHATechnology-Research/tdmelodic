@@ -3,7 +3,7 @@ WARNING: _This section takes several hours or days._
 
 ## Prepare the base dictionary
 ### git clone NEologd
-In this section, we always work in the docker container we have just created.
+First, download the NEologd dictionary as follows.
 
 ```sh
 WORKDIR=/path/to/your/work/dir
@@ -13,7 +13,7 @@ git clone --depth 1 https://github.com/neologd/mecab-unidic-neologd/
 
 ### Extract the NEologd vocabulary file and apply a patch
 
-First, extract the csv file of NEologd dictionary using `unxz` command.
+Then, extract the csv file of NEologd dictionary using `unxz` command.
 
 ```sh
 # if your system has the unxz command
@@ -46,6 +46,7 @@ by a machine learning -based technique.
 ```sh
 docker run -v $(pwd):/root/workspace tdmelodic:latest \
     tdmelodic-convert \
+    -m unidic \
     --input /tmp/neologd_modified.csv \
     --output ${WORKDIR}/tdmelodic_original.csv
 cp ${WORKDIR}/tdmelodic_original.csv ${WORKDIR}/tdmelodic.csv # backup
