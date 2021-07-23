@@ -1,5 +1,5 @@
 <p align="center">
-<img src="https://github.com/PKSHATechnology-Research/tdmelodic/raw/master/imgs/logo/logo_tdmelodic.svg" width="200" />
+<img src="https://github.com/PKSHATechnology-Research/tdmelodic/raw/master/docs/imgs/logo/logo_tdmelodic.svg" width="200" />
 </p>
 
 
