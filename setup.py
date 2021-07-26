@@ -29,7 +29,7 @@ setup(
     description="tdmelodic: Tokyo Japanese Accent Estimator",
     long_description=_readme(),
     long_description_content_type="text/markdown",
- 
+
     install_requires=_requirements(),
     tests_requires=_requirements(),
     setup_requires=[],
@@ -43,8 +43,8 @@ setup(
     entry_points={
         'console_scripts':[
             'tdmelodic-convert = tdmelodic.nn.convert_dic:main',
-            'tdmelodic-neologd-patch = tdmelodic.script.neologd_patch:main',
-            'tdmelodic-modify-unigram-cost = tdmelodic.script.postprocess_modify_unigram_cost:main',
+            'tdmelodic-neologd-patch = tdmelodic.filters.neologd_patch:main',
+            'tdmelodic-modify-unigram-cost = tdmelodic.filters.postprocess_modify_unigram_cost:main',
         ]
     },
 

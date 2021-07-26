@@ -14,24 +14,16 @@ import regex as re
 import csv
 from tqdm import tqdm
 
-# ------------------------------------------------------------------------------------
-# see also mecabrc
 from ..util.dic_index_map import get_dictionary_index_map
-
-# ------------------------------------------------------------------------------------
-def count_lines(fname):
-    with open(fname, 'r') as f:
-        for i, l in enumerate(f):
-            pass
-    return i + 1
+from ..util.util import count_lines
 
 # ------------------------------------------------------------------------------------
 def modify_katakana_errors(line, IDX_MAP):
     # katakana regex
     line[IDX_MAP["YOMI"]] = line[IDX_MAP["YOMI"]]\
-                    .replace("ーィ","ウィ")\
-                    .replace("ーェ","ウェ")\
-                    .replace("ーォ","ウォ")
+        .replace("ーィ","ウィ")\
+        .replace("ーェ","ウェ")\
+        .replace("ーォ","ウォ")
     return line
 
 # ------------------------------------------------------------------------------------
@@ -50,18 +42,18 @@ def modify_yomi_of_numerals(line, IDX_MAP):
         return line
 
     filters=[
-                (r"ニ(テン\p{Katakana}+)", r"ニー\1" ),
-                (r"ゴ(テン\p{Katakana}+)", r"ゴー\1" ),
-                (r"ニ(イチ|ニ|サン|ヨン|ゴ|ロク|ナナ|ハチ|キュウ|キュー|レー|レイ|ゼロ)", r"ニー\1" ),
-                (r"ゴ(イチ|ゴ|サン|ヨン|ゴ|ロク|ナナ|ハチ|キュウ|キュー|レー|レイ|ゼロ)", r"ゴー\1" ),
-                (r"イチ(サ^ン|シ|ス|セ|ソ|タ|チ|ツ|テ|ト|カ|キ^ュ|ケ|コ|パ|ピ|プ|ペ|ポ)", r"イッ\1" ),
-                (r"ハチ(サ^ン|シ|ス|セ|ソ|タ|チ|ツ|テ|ト|カ|キ^ュ|ケ|コ|パ|ピ|プ|ペ|ポ)", r"ハッ\1" ),
-                (r"ジュウ(サ^ン|シ^チ|ス|セ|ソ|タ|チ|ツ|テ|ト|カ|キ^ュ|ケ|コ|パ|ピ|プ|ペ|ポ)", r"ジュッ\1" ),
+        (r"ニ(テン\p{Katakana}+)", r"ニー\1" ),
+        (r"ゴ(テン\p{Katakana}+)", r"ゴー\1" ),
+        (r"ニ(イチ|ニ|サン|ヨン|ゴ|ロク|ナナ|ハチ|キュウ|キュー|レー|レイ|ゼロ)", r"ニー\1" ),
+        (r"ゴ(イチ|ゴ|サン|ヨン|ゴ|ロク|ナナ|ハチ|キュウ|キュー|レー|レイ|ゼロ)", r"ゴー\1" ),
+        (r"イチ(サ^ン|シ|ス|セ|ソ|タ|チ|ツ|テ|ト|カ|キ^ュ|ケ|コ|パ|ピ|プ|ペ|ポ)", r"イッ\1" ),
+        (r"ハチ(サ^ン|シ|ス|セ|ソ|タ|チ|ツ|テ|ト|カ|キ^ュ|ケ|コ|パ|ピ|プ|ペ|ポ)", r"ハッ\1" ),
+        (r"ジュウ(サ^ン|シ^チ|ス|セ|ソ|タ|チ|ツ|テ|ト|カ|キ^ュ|ケ|コ|パ|ピ|プ|ペ|ポ)", r"ジュッ\1" ),
 #                (r"ンエ", r"ンイェ" ), # 「万円」などを en -> yen
-                (r"ヨンニチ", r"ヨッカ" ),
-                (r"ニーニチ", r"ニニチ" ), # 12日など
-                (r"ゴーニチ", r"ゴニチ" ) # 15日など
-            ]
+        (r"ヨンニチ", r"ヨッカ" ),
+        (r"ニーニチ", r"ニニチ" ), # 12日など
+        (r"ゴーニチ", r"ゴニチ" ) # 15日など
+    ]
     yomi = line[IDX_MAP["YOMI"]]
 
     for regex1, regex2 in filters:
@@ -82,45 +74,53 @@ def joshi_no_yomi(line, IDX_MAP):
     return line
 
 # ------------------------------------------------------------------------------------
-def main_(neologd_csv, output_csv, mode):
+def main_(fp_in, fp_out, mode):
     IDX_MAP = get_dictionary_index_map(mode)
 
-    L = count_lines(neologd_csv)
-    fp_in = csv.reader(open(neologd_csv, 'r'))
+    L = count_lines(fp_in)
 
-    with open(output_csv, mode='w') as fp_out:
-        for line in tqdm(fp_in, total=L):
-            # 「スーェーデン」「ノルーェー」のようなエラーを修正する
-            line = modify_katakana_errors(line, IDX_MAP)
+    for line in tqdm(csv.reader(fp_in), total=L):
+        # 「スーェーデン」「ノルーェー」のようなエラーを修正する
+        line = modify_katakana_errors(line, IDX_MAP)
 
-            # 数値表現の読みを変更する
-            line = modify_yomi_of_numerals(line, IDX_MAP)
+        # 数値表現の読みを変更する
+        line = modify_yomi_of_numerals(line, IDX_MAP)
 
-            # 助詞の読みを修正する（TODO）
-            line = joshi_no_yomi(line, IDX_MAP)
+        # 助詞の読みを修正する（TODO）
+        line = joshi_no_yomi(line, IDX_MAP)
 
-            # neologdの末尾に付加的なカラムを追加する（unidic-kana-accentとの互換性のため）
-            line = line + ['' for i in range(10)]
-            line[IDX_MAP["ACCENT"]] = '@'
+        # neologdの末尾に付加的なカラムを追加する（unidic-kana-accentとの互換性のため）
+        line = line + ['' for i in range(10)]
+        line[IDX_MAP["ACCENT"]] = '@'
 
-            # 出力
-            line = ','.join(line) + '\n'
-            fp_out.write(line)
+        # 出力
+        line = ','.join(line) + '\n'
+        fp_out.write(line)
 
-    print("Complete! Saved the converted file as ... ", output_csv)
+    print("Complete!", file=sys.stderr)
     return
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument('-i', '--input', type=str,
-                        help='input csv (neologd dicitionary file)')
-    parser.add_argument('-o', '--output', type=str,
-                        help='output csv')
+    parser.add_argument(
+        '-i',
+        '--input',
+        nargs='?',
+        type=argparse.FileType("r"),
+        default=sys.stdin,
+        help='input CSV file (NEologd dicitionary file) <default=STDIN>')
+    parser.add_argument(
+        '-o',
+        '--output',
+        nargs='?',
+        type=argparse.FileType("w"),
+        default=sys.stdout,
+        help='output CSV file <default=STDOUT>')
     parser.add_argument(
         "-m",
         "--mode",
         type=str,
-        help="dictionary format type",
+        help="dictionary format type <default=unidic>",
         choices=["unidic", "ipadic"],
         default="unidic",
     )
