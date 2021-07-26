@@ -6,25 +6,6 @@ import regex as re
 from .dic_index_map import get_dictionary_index_map
 
 class WordType(object):
-    if False:
-        dics = {
-            "katakana":{
-                "SURFACE" : r"^[\p{Katakana}・&＆!！ー＝\s　]+",
-                "LEMMA" : r"[\p{Han}\p{Hiragana}a-zA-Z0-9]+",
-            }
-        }
-        def __init__(self):
-            self.map = get_dictionary_index_map("unidic")
-            for key, rules in self.dics.items():
-                print(key, rules)
-                setattr(self.__class__, 'is_{}'.format(key), self.build_rule(rules))
-            print(self.__dict__)
-
-        def build_rule(self, rules):
-            print(rules)
-            return lambda self, text : all(
-                    [re.search(regex, text.split(",")[self.map[idx_]], flags=0) for idx_, regex in rules.items()])
-
     def __init__(self):
         self.map = get_dictionary_index_map("unidic")
 
