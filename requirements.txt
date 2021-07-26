@@ -6,3 +6,4 @@ python-Levenshtein>=0.12.0
 tqdm>=4.42.1
 regex>=2020.1.8
 matplotlib>=3.0.0
+romkan>=0.2.1
