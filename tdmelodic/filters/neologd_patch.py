@@ -17,55 +17,11 @@ from tqdm import tqdm
 from ..util.dic_index_map import get_dictionary_index_map
 from ..util.util import count_lines
 
-# ------------------------------------------------------------------------------------
-def modify_katakana_errors(line, IDX_MAP):
-    # katakana regex
-    line[IDX_MAP["YOMI"]] = line[IDX_MAP["YOMI"]]\
-        .replace("ーィ","ウィ")\
-        .replace("ーェ","ウェ")\
-        .replace("ーォ","ウォ")
-    return line
+from ..util.word_type import WordType
+from .modules.yomi_corrector.basic import modify_longvowel_errors
+from .modules.yomi_corrector.basic import modify_yomi_of_numerals
+from .modules.add_accent_column import add_accent_column
 
-# ------------------------------------------------------------------------------------
-def modify_yomi_of_numerals(line, IDX_MAP):
-    """
-    数値の読みを簡易的に修正する（完全なものではない）
-    """
-
-    surface = line[IDX_MAP["SURFACE"]]
-    # 1文字目が数字で2文字以上の長さがあるもの
-    num=[str(i) for i in range(10)] + ['１','２','３','４','５','６','７','８','９','０']
-    if (surface[0] in num) and len(line[1]) >= 2:
-        pass
-    else:
-        # otherwise do nothing
-        return line
-
-    filters=[
-        (r"ニ(テン\p{Katakana}+)", r"ニー\1" ),
-        (r"ゴ(テン\p{Katakana}+)", r"ゴー\1" ),
-        (r"ニ(イチ|ニ|サン|ヨン|ゴ|ロク|ナナ|ハチ|キュウ|キュー|レー|レイ|ゼロ)", r"ニー\1" ),
-        (r"ゴ(イチ|ゴ|サン|ヨン|ゴ|ロク|ナナ|ハチ|キュウ|キュー|レー|レイ|ゼロ)", r"ゴー\1" ),
-        (r"イチ(サ^ン|シ|ス|セ|ソ|タ|チ|ツ|テ|ト|カ|キ^ュ|ケ|コ|パ|ピ|プ|ペ|ポ)", r"イッ\1" ),
-        (r"ハチ(サ^ン|シ|ス|セ|ソ|タ|チ|ツ|テ|ト|カ|キ^ュ|ケ|コ|パ|ピ|プ|ペ|ポ)", r"ハッ\1" ),
-        (r"ジュウ(サ^ン|シ^チ|ス|セ|ソ|タ|チ|ツ|テ|ト|カ|キ^ュ|ケ|コ|パ|ピ|プ|ペ|ポ)", r"ジュッ\1" ),
-#                (r"ンエ", r"ンイェ" ), # 「万円」などを en -> yen
-        (r"ヨンニチ", r"ヨッカ" ),
-        (r"ニーニチ", r"ニニチ" ), # 12日など
-        (r"ゴーニチ", r"ゴニチ" ) # 15日など
-    ]
-    yomi = line[IDX_MAP["YOMI"]]
-
-    for regex1, regex2 in filters:
-        prev_yomi = ''
-        while prev_yomi != yomi: # 変化しなくなるまでループ
-            prev_yomi = yomi
-            if re.search(regex1, yomi):
-                yomi = re.sub(regex1, regex2, yomi)
-
-    line[IDX_MAP["YOMI"]] = yomi
-
-    return line
 
 # ------------------------------------------------------------------------------------
 def joshi_no_yomi(line, IDX_MAP):
@@ -77,25 +33,23 @@ def joshi_no_yomi(line, IDX_MAP):
 def main_(fp_in, fp_out, mode):
     IDX_MAP = get_dictionary_index_map(mode)
 
+    wt = WordType()
     L = count_lines(fp_in)
 
     for line in tqdm(csv.reader(fp_in), total=L):
-        # 「スーェーデン」「ノルーェー」のようなエラーを修正する
-        line = modify_katakana_errors(line, IDX_MAP)
+        line = modify_longvowel_errors(line, idx_yomi=IDX_MAP["YOMI"])
 
-        # 数値表現の読みを変更する
-        line = modify_yomi_of_numerals(line, IDX_MAP)
+        if wt.is_numeral(line):
+            line = modify_yomi_of_numerals(line, idx_surface=IDX_MAP["SURFACE"], idx_yomi=IDX_MAP["YOMI"])
 
         # 助詞の読みを修正する（TODO）
-        line = joshi_no_yomi(line, IDX_MAP)
+        # line = joshi_no_yomi(line, IDX_MAP)
 
         # neologdの末尾に付加的なカラムを追加する（unidic-kana-accentとの互換性のため）
-        line = line + ['' for i in range(10)]
-        line[IDX_MAP["ACCENT"]] = '@'
+        line = add_accent_column(line, idx_accent=IDX_MAP["ACCENT"])
 
-        # 出力
-        line = ','.join(line) + '\n'
-        fp_out.write(line)
+        # write
+        fp_out.write(','.join(line) + '\n')
 
     print("Complete!", file=sys.stderr)
     return
