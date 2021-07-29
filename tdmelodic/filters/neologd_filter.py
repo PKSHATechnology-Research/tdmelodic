@@ -17,8 +17,8 @@ import tempfile
 
 from ..util.dic_index_map import get_dictionary_index_map
 from ..util.util import count_lines
-from .remove_duplicates import main_ as rmdups
-from .detect_weird_yomi import main_ as detyom
+from .modules.remove_duplicates import main_ as rmdups
+from .modules.detect_weird_yomi import main_ as detyom
 
 def main_(fp_in, fp_out):
     if True:

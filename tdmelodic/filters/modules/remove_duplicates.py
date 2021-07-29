@@ -21,10 +21,10 @@ import romkan
 import jaconv
 from dataclasses import dataclass
 
-from ..nn.lang.japanese.kansuji import numeric2kanji
-from ..util.dic_index_map import get_dictionary_index_map
-from ..util.util import count_lines
-from ..util.word_type import WordType
+from ...nn.lang.japanese.kansuji import numeric2kanji
+from ...util.dic_index_map import get_dictionary_index_map
+from ...util.util import count_lines
+from ...util.word_type import WordType
 
 IDX_MAP = get_dictionary_index_map("unidic")
 
@@ -35,6 +35,7 @@ class UniDic2(UniDic):
     def eval(self, *args, **kwargs):
         distance1 = self.eval_normal(*args, **kwargs)
         distance2 = self.eval_force_romaji_to_kana(*args, **kwargs)
+        distance2 -= 2. # prioritize romaji yomi
         return min(distance1, distance2)
 
     def eval_normal(self, text, kana_ref, nbest=20):
@@ -42,7 +43,7 @@ class UniDic2(UniDic):
         text = jaconv.h2z(text, digit=True, ascii=True, kana=True) # zenkaku
         p = self._UniDic__parse(text, nbest=nbest)
         kanas = ["".join([e["pron"] for e in p_]) for p_ in p]
-        dist = [Levenshtein.distance(k, kana_ref) for rank, k in enumerate(kanas)]
+        dist = [0.1 * rank + Levenshtein.distance(k, kana_ref) for rank, k in enumerate(kanas)]
         rank = [i for i, v in sorted(enumerate(dist), key=lambda v: v[1])]
         ld = dist[rank[0]]
         return ld
@@ -55,26 +56,29 @@ class UniDic2(UniDic):
             return 12345
         return self.eval_normal(p, kana_ref, nbest)
 
-    def eval_force_number_english(self, text, kana_ref, nbest=20):
-        """数字を無理やり英語読みする。"""
-        # TODO
-        pass
-
 # ------------------------------------------------------------------------------------
 def normalize_surface(text):
-    # 全て全角に統一して処理する。
+    # hankaku
     text = unicodedata.normalize("NFKC",text)
-    text = jaconv.h2z(text, digit=True, ascii=True, kana=True)
+    text = jaconv.h2z(text, digit=True, ascii=True, kana=False)
 
     # kansuji
     text = numeric2kanji(text)
 
-    # (株), 株式会社などは無視
-    text = text.replace("（株）","株式会社")
-    text = text.replace("（有）","有限会社")
+    # (株), 株式会社など
+    text = text.replace("（株）","・カブシキガイシャ・")
+    text = text.replace("（有）","・ユウゲンガイシャ・")
+    text = text.replace("＆","・アンド・")
     return text
 
 # ------------------------------------------------------------------------------------
+if False:
+    class LineInfo(object):
+        def __init__(self, **kwargs):
+            print(kwargs)
+            for k, v in kwargs.items():
+                setattr(self, k, v)
+
 @dataclass
 class LineInfo(object):
     surf: str
@@ -86,35 +90,43 @@ def get_line_info(line):
     y = line[IDX_MAP["YOMI"]]
     pos = "-".join([line[i] for i in [IDX_MAP["POS1"], IDX_MAP["POS2"], IDX_MAP["POS3"]]])
     s = normalize_surface(s)
-    y = y.replace("[","").replace("]","") # remove accent marks
+#    y = normalize_yomi(y)
 
     return LineInfo(s, y, pos)
 
 # ------------------------------------------------------------------------------------
 def main_(fp_in, fp_out):
     unidic = UniDic2()
+    prev_line = [""] * 100
     c = 0
     L = count_lines(fp_in)
     wt = WordType()
 
-    for line in tqdm(csv.reader(fp_in), total=L):
-        if wt.is_hashtag(line) or wt.is_noisy_katakana(line):
-            # remove hashtag and noisy katakana
-            continue
-        elif wt.is_person(line) or wt.is_emoji(line) or wt.is_symbol(line) or wt.is_numeral(line):
-            fp_out.write(",".join(line) + "\n")
+    for i, curr_line in enumerate(tqdm(csv.reader(fp_in), total=L)):
+        prev = get_line_info(prev_line)
+        curr = get_line_info(curr_line)
+
+        if prev.surf == curr.surf and prev.pos == curr.pos and \
+            not wt.is_person(prev_line) and not wt.is_placename(prev_line):
+            # if the surface form and pos are the same
+            distance_p = unidic.eval(prev.surf, prev.yomi)
+            distance_c = unidic.eval(curr.surf, curr.yomi)
         else:
-            info = get_line_info(line)
-            dist = unidic.eval(info.surf, info.yomi)
-            ratio = float(dist) / float(len(info.yomi))
+            distance_p = 0
+            distance_c = 100
 
-            # levenshtein distance が 10 以上か、読みの長さの 70% が間違っている場合は除去。
-            if dist > 10 or ratio > 0.7:
-                pass
-            else:
-                fp_out.write(",".join(line) + "\n")
+        if distance_p > distance_c:
+            c += 1
+            if c % 100 == 0:
+                print(c, curr.surf, "| deleted: ", prev.yomi, distance_p, " | left: ", curr.yomi, distance_c, file=sys.stderr)
+        else:
+            if i != 0:
+                fp_out.write(",".join(prev_line) + "\n")
 
-    fp_out.write(",".join(line) + "\n")
+        prev_line = curr_line
+        continue
+
+    fp_out.write(",".join(prev_line) + "\n")
 
 # ------------------------------------------------------------------------------------
 def main():
