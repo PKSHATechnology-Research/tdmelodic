@@ -26,66 +26,100 @@ from .modules.add_accent_column import add_accent_column
 # ------------------------------------------------------------------------------------
 def joshi_no_yomi(line, IDX_MAP):
     # TODO
-    # neologdの読みは　ワガハイ【ハ】ネコデアル　のように助詞「は」等の読みが適切に処理されていないケースがある。
+    # neologdの読みは　ワガハイ【ハ】ネコデアル　のように助詞「は」「へ」「を」の読みが適切に処理されていないケースがある。
     return line
 
 # ------------------------------------------------------------------------------------
-def main_(fp_in, fp_out, mode):
-    IDX_MAP = get_dictionary_index_map(mode)
+class NeologdPatch(object):
+    def __init__(self, *args, **kwargs):
+        for k, v in kwargs.items():
+            if k != "input" and k != "output":
+                self.__setattr__(k, v)
+        self.IDX_MAP = get_dictionary_index_map(self.mode)
+        self.wt = WordType()
+        print("[ Info ]")
+        print("* Long vowel errors will" + (" " if self.c_lv else " **NOT** ") + "be corrected.", file=sys.stderr)
+        print("* Numeral yomi errors will" + (" " if self.c_y_num else " **NOT** ") + "be corrected.", file=sys.stderr)
 
-    wt = WordType()
-    L = count_lines(fp_in)
+    def process_single_line(self, line):
+        if self.c_lv:
+            line = modify_longvowel_errors(line, idx_yomi=self.IDX_MAP["YOMI"])
 
-    for line in tqdm(csv.reader(fp_in), total=L):
-        line = modify_longvowel_errors(line, idx_yomi=IDX_MAP["YOMI"])
-
-        if wt.is_numeral(line):
-            line = modify_yomi_of_numerals(line, idx_surface=IDX_MAP["SURFACE"], idx_yomi=IDX_MAP["YOMI"])
+        if self.c_y_num:
+            if self.wt.is_numeral(line):
+                line = modify_yomi_of_numerals(line,
+                    idx_surface=self.IDX_MAP["SURFACE"], idx_yomi=self.IDX_MAP["YOMI"])
 
         # 助詞の読みを修正する（TODO）
-        # line = joshi_no_yomi(line, IDX_MAP)
+        line = joshi_no_yomi(line, self.IDX_MAP)
 
         # neologdの末尾に付加的なカラムを追加する（unidic-kana-accentとの互換性のため）
-        line = add_accent_column(line, idx_accent=IDX_MAP["ACCENT"])
+        line = add_accent_column(line, idx_accent=self.IDX_MAP["ACCENT"])
+        return line
 
-        # write
-        fp_out.write(','.join(line) + '\n')
+    def __call__(self, fp_in, fp_out):
+        L = count_lines(fp_in)
 
-    print("Complete!", file=sys.stderr)
-    return
+        for line in tqdm(csv.reader(fp_in), total=L):
+            line = self.process_single_line(line)
+            fp_out.write(','.join(line) + '\n')
+
+        print("[ Complete! ]", file=sys.stderr)
+        return
+
+# ------------------------------------------------------------------------------------
+def my_add_argument(parser, option_name, default, help_):
+    help_ = help_ + " <default={}>".format(str(default))
+    if sys.version_info >= (3, 9):
+        parser.add_argument("--" + option_name,
+            action=argparse.BooleanOptionalAction,
+            default=default,
+            help=help_)
+    else:
+        parser.add_argument("--" + option_name,
+            action="store_true",
+            default=default,
+            help=help_)
+        parser.add_argument("--no-" + option_name,
+            action="store_false",
+            dest=option_name,
+            default=default)
 
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument(
-        '-i',
-        '--input',
+        '-i', '--input',
         nargs='?',
         type=argparse.FileType("r"),
         default=sys.stdin,
         help='input CSV file (NEologd dicitionary file) <default=STDIN>')
     parser.add_argument(
-        '-o',
-        '--output',
+        '-o', '--output',
         nargs='?',
         type=argparse.FileType("w"),
         default=sys.stdout,
         help='output CSV file <default=STDOUT>')
     parser.add_argument(
-        "-m",
-        "--mode",
+        "-m", "--mode",
         type=str,
-        help="dictionary format type <default=unidic>",
         choices=["unidic", "ipadic"],
         default="unidic",
+        help="dictionary format type <default=unidic>",
     )
+    my_add_argument(parser, "c_lv", True, "correct long vowel errors or not")
+    my_add_argument(parser, "c_y_num", True, "correct the yomi of numerals or not")
+
     args = parser.parse_args()
+    n = NeologdPatch(**vars(args))
+
     if args.input == args.output:
-        print("[ Error ] intput and output files should be different.")
-    else:
-        try:
-            main_(args.input, args.output, args.mode)
-        except Exception as e:
-            print(e)
+        print("[ Error ] intput and output files should be different.", file=sys.stderr)
+        sys.exit(0)
+
+    try:
+        n(args.input, args.output)
+    except Exception as e:
+        print(e)
 
 if __name__ == '__main__':
     main()

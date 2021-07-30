@@ -3,8 +3,6 @@ from unittest import TestCase
 from tdmelodic.util.word_type import WordType as W
 
 class TestWordType(unittest.TestCase):
-    """test class of tashizan.py
-    """
     def __init__(self, *args, **kwargs):
         super(TestWordType, self).__init__(*args, **kwargs)
         self.w = W()
