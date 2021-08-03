@@ -55,11 +55,6 @@ class UniDic2(UniDic):
             return 12345
         return self.eval_normal(p, kana_ref, nbest)
 
-    def eval_force_number_english(self, text, kana_ref, nbest=20):
-        """数字を無理やり英語読みする。"""
-        # TODO
-        pass
-
 # ------------------------------------------------------------------------------------
 def normalize_surface(text):
     # 全て全角に統一して処理する。
@@ -95,14 +90,11 @@ def main_(fp_in, fp_out):
     unidic = UniDic2()
     c = 0
     L = count_lines(fp_in)
-    wt = WordType()
 
     for line in tqdm(csv.reader(fp_in), total=L):
-        if wt.is_hashtag(line) or wt.is_noisy_katakana(line):
-            # remove hashtag and noisy katakana
+        line = w(line)
+        if line is None:
             continue
-        elif wt.is_person(line) or wt.is_emoji(line) or wt.is_symbol(line) or wt.is_numeral(line):
-            fp_out.write(",".join(line) + "\n")
         else:
             info = get_line_info(line)
             dist = unidic.eval(info.surf, info.yomi)

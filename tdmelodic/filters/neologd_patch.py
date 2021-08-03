@@ -38,14 +38,46 @@ class NeologdPatch(object):
         self.IDX_MAP = get_dictionary_index_map(self.mode)
         self.wt = WordType()
         print("[ Info ]")
-        print("* Long vowel errors will" + (" " if self.c_lv else " **NOT** ") + "be corrected.", file=sys.stderr)
-        print("* Numeral yomi errors will" + (" " if self.c_y_num else " **NOT** ") + "be corrected.", file=sys.stderr)
+        print("* Hash tags will" + (" " if self.rm_hashtag else " **NOT** ") + "be removed.", file=sys.stderr)
+        print("* Noisy katakana words will" + (" " if self.rm_noisy_katakana else " **NOT** ") + "be removed.", file=sys.stderr)
+        print("* Person names will" + (" " if self.rm_person else " **NOT** ") + "be removed.", file=sys.stderr)
+        print("* Emojis will" + (" " if self.rm_emoji else " **NOT** ") + "be removed.", file=sys.stderr)
+        print("* Symbols will" + (" " if self.rm_symbol else " **NOT** ") + "be removed.", file=sys.stderr)
+        print("* Numerals will" + (" " if self.rm_numeral else " **NOT** ") + "be removed.", file=sys.stderr)
+        print("* Long vowel errors will" + (" " if self.cor_longvow else " **NOT** ") + "be corrected.", file=sys.stderr)
+        print("* Numeral yomi errors will" + (" " if self.cor_yomi_num else " **NOT** ") + "be corrected.", file=sys.stderr)
 
     def process_single_line(self, line):
-        if self.c_lv:
+        # remove words by word types
+        if self.rm_hashtag:
+            if self.wt.is_hashtag(line):
+                return None
+
+        if self.rm_noisy_katakana:
+            if self.wt.is_noisy_katakana(line):
+                return None
+
+        if self.rm_person:
+            if self.wt.is_person(line):
+                return None
+
+        if self.rm_emoji:
+            if self.wt.is_emoji(line):
+                return None
+
+        if self.rm_symbol:
+            if self.wt.is_symbol(line):
+                return None
+
+        if self.rm_numeral:
+            if self.wt.is_numeral(line):
+                return None
+
+        # correct yomi
+        if self.cor_longvow:
             line = modify_longvowel_errors(line, idx_yomi=self.IDX_MAP["YOMI"])
 
-        if self.c_y_num:
+        if self.cor_yomi_num:
             if self.wt.is_numeral(line):
                 line = modify_yomi_of_numerals(line,
                     idx_surface=self.IDX_MAP["SURFACE"], idx_yomi=self.IDX_MAP["YOMI"])
@@ -62,7 +94,10 @@ class NeologdPatch(object):
 
         for line in tqdm(csv.reader(fp_in), total=L):
             line = self.process_single_line(line)
-            fp_out.write(','.join(line) + '\n')
+            if line is None:
+                continue
+            else:
+                fp_out.write(','.join(line) + '\n')
 
         print("[ Complete! ]", file=sys.stderr)
         return
@@ -106,8 +141,14 @@ def main():
         default="unidic",
         help="dictionary format type <default=unidic>",
     )
-    my_add_argument(parser, "c_lv", True, "correct long vowel errors or not")
-    my_add_argument(parser, "c_y_num", True, "correct the yomi of numerals or not")
+    my_add_argument(parser, "rm_hashtag", True, "remove hash tags or not")
+    my_add_argument(parser, "rm_noisy_katakana", True, "remove noisy katakana words or not")
+    my_add_argument(parser, "rm_person", False, "remove person names or not")
+    my_add_argument(parser, "rm_emoji", False, "remove emojis or not")
+    my_add_argument(parser, "rm_symbol", False, "remove symbols or not")
+    my_add_argument(parser, "rm_numeral", False, "remove numerals or not")
+    my_add_argument(parser, "cor_longvow", True, "correct long vowel errors or not")
+    my_add_argument(parser, "cor_yomi_num", True, "correct the yomi of numerals or not")
 
     args = parser.parse_args()
     n = NeologdPatch(**vars(args))

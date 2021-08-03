@@ -72,13 +72,6 @@ def normalize_surface(text):
     return text
 
 # ------------------------------------------------------------------------------------
-if False:
-    class LineInfo(object):
-        def __init__(self, **kwargs):
-            print(kwargs)
-            for k, v in kwargs.items():
-                setattr(self, k, v)
-
 @dataclass
 class LineInfo(object):
     surf: str
@@ -90,7 +83,6 @@ def get_line_info(line):
     y = line[IDX_MAP["YOMI"]]
     pos = "-".join([line[i] for i in [IDX_MAP["POS1"], IDX_MAP["POS2"], IDX_MAP["POS3"]]])
     s = normalize_surface(s)
-#    y = normalize_yomi(y)
 
     return LineInfo(s, y, pos)
 
