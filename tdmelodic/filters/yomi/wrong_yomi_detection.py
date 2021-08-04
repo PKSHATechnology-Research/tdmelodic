@@ -18,10 +18,10 @@ import unicodedata
 import jaconv
 from dataclasses import dataclass
 
-from ....nn.lang.japanese.kansuji import numeric2kanji
-from ....util.dic_index_map import get_dictionary_index_map
-from ....util.util import count_lines
-from ....util.word_type import WordType
+from tdmelodic.nn.lang.japanese.kansuji import numeric2kanji
+from tdmelodic.util.dic_index_map import get_dictionary_index_map
+from tdmelodic.util.util import count_lines
+from tdmelodic.util.word_type import WordType
 from .yomieval import YomiEvaluator
 
 

@@ -13,8 +13,8 @@ import argparse
 import csv
 import copy
 from tqdm import tqdm
-from ..util.dic_index_map import get_dictionary_index_map
-from ..util.util import count_lines
+from tdmelodic.util.dic_index_map import get_dictionary_index_map
+from tdmelodic.util.util import count_lines
 
 # unigram costなどを後処理で微調整するためのスクリプト
 

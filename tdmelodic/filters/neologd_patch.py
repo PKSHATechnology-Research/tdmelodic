@@ -15,14 +15,14 @@ import csv
 from tqdm import tqdm
 import copy
 
-from ..util.dic_index_map import get_dictionary_index_map
-from ..util.util import count_lines
+from tdmelodic.util.dic_index_map import get_dictionary_index_map
+from tdmelodic.util.util import count_lines
+from tdmelodic.util.word_type import WordType
 
-from ..util.word_type import WordType
-from .modules.yomi.basic import modify_longvowel_errors
-from .modules.yomi.basic import modify_yomi_of_numerals
-from .modules.yomi.particle_yomi import joshi_no_yomi
-from .modules.yomi.wrong_yomi_detection import WrongYomiDetector
+from .yomi.basic import modify_longvowel_errors
+from .yomi.basic import modify_yomi_of_numerals
+from .yomi.particle_yomi import joshi_no_yomi
+from .yomi.wrong_yomi_detection import WrongYomiDetector
 
 
 # ------------------------------------------------------------------------------------
