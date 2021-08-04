@@ -13,14 +13,14 @@ import argparse
 import regex as re
 import csv
 from tqdm import tqdm
+import copy
 
 from ..util.dic_index_map import get_dictionary_index_map
 from ..util.util import count_lines
 
 from ..util.word_type import WordType
-from .modules.yomi_corrector.basic import modify_longvowel_errors
-from .modules.yomi_corrector.basic import modify_yomi_of_numerals
-from .modules.add_accent_column import add_accent_column
+from .modules.yomi.basic import modify_longvowel_errors
+from .modules.yomi.basic import modify_yomi_of_numerals
 
 
 # ------------------------------------------------------------------------------------
@@ -47,7 +47,13 @@ class NeologdPatch(object):
         print("* Long vowel errors will" + (" " if self.cor_longvow else " **NOT** ") + "be corrected.", file=sys.stderr)
         print("* Numeral yomi errors will" + (" " if self.cor_yomi_num else " **NOT** ") + "be corrected.", file=sys.stderr)
 
+    def add_accent_column(self, line, idx_accent=None):
+        line = line + ['' for i in range(10)]
+        line[idx_accent] = '@'
+        return line
+
     def process_single_line(self, line):
+        # ----------------------------------------------------------------------
         # remove words by word types
         if self.rm_hashtag:
             if self.wt.is_hashtag(line):
@@ -73,6 +79,9 @@ class NeologdPatch(object):
             if self.wt.is_numeral(line):
                 return None
 
+        line = copy.deepcopy(line)
+
+        # ----------------------------------------------------------------------
         # correct yomi
         if self.cor_longvow:
             line = modify_longvowel_errors(line, idx_yomi=self.IDX_MAP["YOMI"])
@@ -85,22 +94,32 @@ class NeologdPatch(object):
         # 助詞の読みを修正する（TODO）
         line = joshi_no_yomi(line, self.IDX_MAP)
 
-        # neologdの末尾に付加的なカラムを追加する（unidic-kana-accentとの互換性のため）
-        line = add_accent_column(line, idx_accent=self.IDX_MAP["ACCENT"])
+        # ----------------------------------------------------------------------
+        # add additional columns for compatibility with unidic-kana-accent
+        line = self.add_accent_column(line, idx_accent=self.IDX_MAP["ACCENT"])
+
+        # ----------------------------------------------------------------------
         return line
 
     def __call__(self, fp_in, fp_out):
         L = count_lines(fp_in)
-
+        n_removed = 0
+        n_corrected= 0
         for line in tqdm(csv.reader(fp_in), total=L):
-            line = self.process_single_line(line)
-            if line is None:
+            line_processed = self.process_single_line(line)
+            if line_processed is None:
+                n_removed += 1
                 continue
-            else:
-                fp_out.write(','.join(line) + '\n')
+            if line_processed != line:
+                n_corrected += 1
+            fp_out.write(','.join(line_processed) + '\n')
 
         print("[ Complete! ]", file=sys.stderr)
+        print("* number of removed entries ", n_removed, file=sys.stderr)
+        print("* number of corrected entries ", n_corrected, file=sys.stderr)
+        print("[ Done ]", file=sys.stderr)
         return
+
 
 # ------------------------------------------------------------------------------------
 def my_add_argument(parser, option_name, default, help_):

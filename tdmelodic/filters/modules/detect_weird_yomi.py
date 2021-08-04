@@ -14,10 +14,7 @@ import regex as re
 import csv
 from tqdm import tqdm
 
-from tdmelodic.nn.lang.mecab.unidic import UniDic
-import Levenshtein
 import unicodedata
-import romkan
 import jaconv
 from dataclasses import dataclass
 
@@ -25,35 +22,9 @@ from ...nn.lang.japanese.kansuji import numeric2kanji
 from ...util.dic_index_map import get_dictionary_index_map
 from ...util.util import count_lines
 from ...util.word_type import WordType
+from .yomi.yomieval import YomiEvaluator
 
 IDX_MAP = get_dictionary_index_map("unidic")
-
-class UniDic2(UniDic):
-    def __init__(self, **kwargs):
-        UniDic.__init__(self, **kwargs)
-
-    def eval(self, *args, **kwargs):
-        distance1 = self.eval_normal(*args, **kwargs)
-        distance2 = self.eval_force_romaji_to_kana(*args, **kwargs)
-        return min(distance1, distance2)
-
-    def eval_normal(self, text, kana_ref, nbest=20):
-        '''一番読みが近いものとの距離を評価して返す。順位も考慮に入れる。'''
-        text = jaconv.h2z(text, digit=True, ascii=True, kana=True) # zenkaku
-        p = self._UniDic__parse(text, nbest=nbest)
-        kanas = ["".join([e["pron"] for e in p_]) for p_ in p]
-        dist = [Levenshtein.distance(k, kana_ref) for rank, k in enumerate(kanas)]
-        rank = [i for i, v in sorted(enumerate(dist), key=lambda v: v[1])]
-        ld = dist[rank[0]]
-        return ld
-
-    def eval_force_romaji_to_kana(self, text, kana_ref, nbest=20):
-        """アルファベットをローマ字読みできそうな箇所を無理やり仮名に変換してからさらにUniDicで分析してより良い読みを探る。"""
-        p_ = jaconv.z2h(text, digit=True, ascii=True, kana=False) # hankaku
-        p = romkan.to_katakana(p_) # romanize as possible
-        if p_ == p: # 変化がないものは以下の処理を行わずに戻る。戻り値は十分大きければなんでも良い。
-            return 12345
-        return self.eval_normal(p, kana_ref, nbest)
 
 # ------------------------------------------------------------------------------------
 def normalize_surface(text):
@@ -87,12 +58,11 @@ def get_line_info(line):
 
 # ------------------------------------------------------------------------------------
 def main_(fp_in, fp_out):
-    unidic = UniDic2()
+    unidic = YomiEvaluator(0, 0)
     c = 0
     L = count_lines(fp_in)
 
     for line in tqdm(csv.reader(fp_in), total=L):
-        line = w(line)
         if line is None:
             continue
         else:
