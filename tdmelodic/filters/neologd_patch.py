@@ -21,13 +21,9 @@ from ..util.util import count_lines
 from ..util.word_type import WordType
 from .modules.yomi.basic import modify_longvowel_errors
 from .modules.yomi.basic import modify_yomi_of_numerals
+from .modules.yomi.particle_yomi import joshi_no_yomi
+from .modules.yomi.wrong_yomi_detection import WrongYomiDetector
 
-
-# ------------------------------------------------------------------------------------
-def joshi_no_yomi(line, IDX_MAP):
-    # TODO
-    # neologdの読みは　ワガハイ【ハ】ネコデアル　のように助詞「は」「へ」「を」の読みが適切に処理されていないケースがある。
-    return line
 
 # ------------------------------------------------------------------------------------
 class NeologdPatch(object):
@@ -37,6 +33,7 @@ class NeologdPatch(object):
                 self.__setattr__(k, v)
         self.IDX_MAP = get_dictionary_index_map(self.mode)
         self.wt = WordType()
+        self.wrong_yomi_detector = WrongYomiDetector()
         print("[ Info ]")
         print("* Hash tags will" + (" " if self.rm_hashtag else " **NOT** ") + "be removed.", file=sys.stderr)
         print("* Noisy katakana words will" + (" " if self.rm_noisy_katakana else " **NOT** ") + "be removed.", file=sys.stderr)
@@ -44,6 +41,7 @@ class NeologdPatch(object):
         print("* Emojis will" + (" " if self.rm_emoji else " **NOT** ") + "be removed.", file=sys.stderr)
         print("* Symbols will" + (" " if self.rm_symbol else " **NOT** ") + "be removed.", file=sys.stderr)
         print("* Numerals will" + (" " if self.rm_numeral else " **NOT** ") + "be removed.", file=sys.stderr)
+        print("* Wrong yomi words will" + (" " if self.rm_wrong_yomi else " **NOT** ") + "be removed.", file=sys.stderr)
         print("* Long vowel errors will" + (" " if self.cor_longvow else " **NOT** ") + "be corrected.", file=sys.stderr)
         print("* Numeral yomi errors will" + (" " if self.cor_yomi_num else " **NOT** ") + "be corrected.", file=sys.stderr)
 
@@ -95,6 +93,13 @@ class NeologdPatch(object):
         line = joshi_no_yomi(line, self.IDX_MAP)
 
         # ----------------------------------------------------------------------
+        # remove words with their yomi
+        if self.rm_wrong_yomi:
+            line = self.wrong_yomi_detector(line)
+            if line is None:
+                return None
+
+        # ----------------------------------------------------------------------
         # add additional columns for compatibility with unidic-kana-accent
         line = self.add_accent_column(line, idx_accent=self.IDX_MAP["ACCENT"])
 
@@ -110,7 +115,7 @@ class NeologdPatch(object):
             if line_processed is None:
                 n_removed += 1
                 continue
-            if line_processed != line:
+            if line_processed[:20] != line[:20]:
                 n_corrected += 1
             fp_out.write(','.join(line_processed) + '\n')
 
@@ -166,6 +171,7 @@ def main():
     my_add_argument(parser, "rm_emoji", False, "remove emojis or not")
     my_add_argument(parser, "rm_symbol", False, "remove symbols or not")
     my_add_argument(parser, "rm_numeral", False, "remove numerals or not")
+    my_add_argument(parser, "rm_wrong_yomi", False, "remove words with possibly wrong yomi or not")
     my_add_argument(parser, "cor_longvow", True, "correct long vowel errors or not")
     my_add_argument(parser, "cor_yomi_num", True, "correct the yomi of numerals or not")
 

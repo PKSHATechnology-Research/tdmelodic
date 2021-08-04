@@ -18,7 +18,6 @@ import tempfile
 from ..util.dic_index_map import get_dictionary_index_map
 from ..util.util import count_lines
 from .modules.remove_duplicates import main_ as rmdups
-from .modules.detect_weird_yomi import main_ as detyom
 
 def main_(fp_in, fp_out):
     if True:
@@ -27,14 +26,6 @@ def main_(fp_in, fp_out):
         rmdups(fp_in, fp_tmp)
         fp_tmp.seek(0)
         fp_in.close() # CPython's GC will automatically closes the previous fp_in without doing this
-        fp_in = fp_tmp
-
-    if False:
-        fp_tmp = tempfile.NamedTemporaryFile("w+")
-        print("creating temporary file", fp_tmp.name, file=sys.stderr)
-        detyom(fp_in, fp_tmp)
-        fp_tmp.seek(0)
-        fp_in.close()
         fp_in = fp_tmp
 
     # output
