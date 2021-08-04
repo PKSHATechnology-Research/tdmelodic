@@ -5,7 +5,6 @@
 # This source code is licensed under the BSD-style license found in the
 # LICENSE file in the root directory of this source tree.
 # -----------------------------------------------------------------------------
-
 # -*- coding: utf-8 -*-
 import sys
 import os
@@ -18,10 +17,10 @@ import jaconv
 import unicodedata
 from dataclasses import dataclass
 
-from ...nn.lang.japanese.kansuji import numeric2kanji
-from ...util.dic_index_map import get_dictionary_index_map
-from ...util.util import count_lines
-from ...util.word_type import WordType
+from tdmelodic.nn.lang.japanese.kansuji import numeric2kanji
+from tdmelodic.util.dic_index_map import get_dictionary_index_map
+from tdmelodic.util.util import count_lines
+from tdmelodic.util.word_type import WordType
 from .yomi.yomieval import YomiEvaluator
 
 IDX_MAP = get_dictionary_index_map("unidic")
@@ -56,8 +55,7 @@ def get_line_info(line):
 
     return LineInfo(s, y, pos)
 
-# ------------------------------------------------------------------------------------
-def main_(fp_in, fp_out):
+def rmdups(fp_in, fp_out):
     yomieval = YomiEvaluator()
     prev_line = [""] * 100
     c = 0
@@ -89,38 +87,3 @@ def main_(fp_in, fp_out):
         continue
 
     fp_out.write(",".join(prev_line) + "\n")
-
-# ------------------------------------------------------------------------------------
-def main():
-    parser = argparse.ArgumentParser(
-        description="""
-        Remove duplicate entries from the base dictionary.
-        Duplicate entries are removed based on the correctness of their yomis.
-        """
-    )
-    parser.add_argument(
-        '-i',
-        '--input',
-        nargs='?',
-        type=argparse.FileType("r"),
-        default=sys.stdin,
-        help='input CSV file (NEologd dicitionary file) <default=STDIN>')
-    parser.add_argument(
-        '-o',
-        '--output',
-        nargs='?',
-        type=argparse.FileType("w"),
-        default=sys.stdout,
-        help='output CSV file <default=STDOUT>')
-    args = parser.parse_args()
-
-    if args.input == args.output:
-        print("[ Error ] intput and output files should be different.")
-    else:
-        try:
-            main_(args.input, args.output)
-        except Exception as e:
-            print(e)
-
-if __name__ == '__main__':
-    main()

@@ -2,7 +2,7 @@ import unittest
 from unittest import TestCase
 
 import argparse
-from tdmelodic.filters.neologd_patch import my_add_argument
+from tdmelodic.filters.neologd_preprocess import my_add_argument
 
 class Test(unittest.TestCase):
     def __init__(self, *args, **kwargs):

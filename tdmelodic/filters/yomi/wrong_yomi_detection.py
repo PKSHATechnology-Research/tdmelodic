@@ -31,7 +31,7 @@ class LineInfo(object):
     yomi: str
     pos: str
 
-class WrongYomiDetector(object):
+class SimpleWrongYomiDetector(object):
     def __init__(self, distance_threshold=10, ratio_threshold=0.7):
         """
 If the Levenshtein distance between the provided yomi and the predicted yomi from the surface form

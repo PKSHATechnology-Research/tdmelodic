@@ -13,6 +13,7 @@ import argparse
 import regex as re
 import csv
 from tqdm import tqdm
+import tempfile
 import copy
 
 from tdmelodic.util.dic_index_map import get_dictionary_index_map
@@ -22,10 +23,8 @@ from tdmelodic.util.word_type import WordType
 from .yomi.basic import modify_longvowel_errors
 from .yomi.basic import modify_yomi_of_numerals
 from .yomi.particle_yomi import joshi_no_yomi
-from .yomi.wrong_yomi_detection import WrongYomiDetector
+from .yomi.wrong_yomi_detection import SimpleWrongYomiDetector
 
-
-# ------------------------------------------------------------------------------------
 class NeologdPatch(object):
     def __init__(self, *args, **kwargs):
         for k, v in kwargs.items():
@@ -33,7 +32,7 @@ class NeologdPatch(object):
                 self.__setattr__(k, v)
         self.IDX_MAP = get_dictionary_index_map(self.mode)
         self.wt = WordType()
-        self.wrong_yomi_detector = WrongYomiDetector()
+        self.wrong_yomi_detector = SimpleWrongYomiDetector()
         print("[ Info ]")
         print("* Hash tags will" + (" " if self.rm_hashtag else " **NOT** ") + "be removed.", file=sys.stderr)
         print("* Noisy katakana words will" + (" " if self.rm_noisy_katakana else " **NOT** ") + "be removed.", file=sys.stderr)
@@ -124,68 +123,3 @@ class NeologdPatch(object):
         print("* number of corrected entries ", n_corrected, file=sys.stderr)
         print("[ Done ]", file=sys.stderr)
         return
-
-
-# ------------------------------------------------------------------------------------
-def my_add_argument(parser, option_name, default, help_):
-    help_ = help_ + " <default={}>".format(str(default))
-    if sys.version_info >= (3, 9):
-        parser.add_argument("--" + option_name,
-            action=argparse.BooleanOptionalAction,
-            default=default,
-            help=help_)
-    else:
-        parser.add_argument("--" + option_name,
-            action="store_true",
-            default=default,
-            help=help_)
-        parser.add_argument("--no-" + option_name,
-            action="store_false",
-            dest=option_name,
-            default=default)
-
-def main():
-    parser = argparse.ArgumentParser()
-    parser.add_argument(
-        '-i', '--input',
-        nargs='?',
-        type=argparse.FileType("r"),
-        default=sys.stdin,
-        help='input CSV file (NEologd dicitionary file) <default=STDIN>')
-    parser.add_argument(
-        '-o', '--output',
-        nargs='?',
-        type=argparse.FileType("w"),
-        default=sys.stdout,
-        help='output CSV file <default=STDOUT>')
-    parser.add_argument(
-        "-m", "--mode",
-        type=str,
-        choices=["unidic", "ipadic"],
-        default="unidic",
-        help="dictionary format type <default=unidic>",
-    )
-    my_add_argument(parser, "rm_hashtag", True, "remove hash tags or not")
-    my_add_argument(parser, "rm_noisy_katakana", True, "remove noisy katakana words or not")
-    my_add_argument(parser, "rm_person", False, "remove person names or not")
-    my_add_argument(parser, "rm_emoji", False, "remove emojis or not")
-    my_add_argument(parser, "rm_symbol", False, "remove symbols or not")
-    my_add_argument(parser, "rm_numeral", False, "remove numerals or not")
-    my_add_argument(parser, "rm_wrong_yomi", False, "remove words with possibly wrong yomi or not")
-    my_add_argument(parser, "cor_longvow", True, "correct long vowel errors or not")
-    my_add_argument(parser, "cor_yomi_num", True, "correct the yomi of numerals or not")
-
-    args = parser.parse_args()
-    n = NeologdPatch(**vars(args))
-
-    if args.input == args.output:
-        print("[ Error ] intput and output files should be different.", file=sys.stderr)
-        sys.exit(0)
-
-    try:
-        n(args.input, args.output)
-    except Exception as e:
-        print(e)
-
-if __name__ == '__main__':
-    main()
