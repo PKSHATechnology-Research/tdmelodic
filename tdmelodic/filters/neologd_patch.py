@@ -15,6 +15,8 @@ import csv
 from tqdm import tqdm
 import tempfile
 import copy
+import unicodedata
+import jaconv
 
 from tdmelodic.util.dic_index_map import get_dictionary_index_map
 from tdmelodic.util.util import count_lines
@@ -43,10 +45,21 @@ class NeologdPatch(object):
         print("* Wrong yomi words will" + (" " if self.rm_wrong_yomi else " **NOT** ") + "be removed.", file=sys.stderr)
         print("* Long vowel errors will" + (" " if self.cor_longvow else " **NOT** ") + "be corrected.", file=sys.stderr)
         print("* Numeral yomi errors will" + (" " if self.cor_yomi_num else " **NOT** ") + "be corrected.", file=sys.stderr)
+        print("* Surface forms will" + (" " if self.normalize else " **NOT** ") + "be normalized.", file=sys.stderr)
 
     def add_accent_column(self, line, idx_accent=None):
         line = line + ['' for i in range(10)]
         line[idx_accent] = '@'
+        return line
+
+    def normalize_surface(self, line, idx_surface=None):
+        s = line[idx_surface]
+        s = unicodedata.normalize("NFKC", s)
+        s = s.upper()
+        s = jaconv.normalize(s, "NFKC")
+        s = jaconv.h2z(s, digit=True, ascii=True, kana=True)
+        s = s.replace("\u00A5", "\uFFE5") # yen symbol
+        line[idx_surface] = s
         return line
 
     def process_single_line(self, line):
@@ -90,6 +103,12 @@ class NeologdPatch(object):
 
         # 助詞の読みを修正する（TODO）
         line = joshi_no_yomi(line, self.IDX_MAP)
+
+        # ----------------------------------------------------------------------
+        # normalize surface
+        if self.normalize:
+            line = self.normalize_surface(line, idx_surface=self.IDX_MAP["SURFACE"])
+
 
         # ----------------------------------------------------------------------
         # remove words with their yomi

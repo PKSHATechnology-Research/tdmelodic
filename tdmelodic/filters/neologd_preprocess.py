@@ -101,6 +101,11 @@ def main():
     my_add_argument(parser, "rm_wrong_yomi", False, "remove words with possibly wrong yomi or not")
     my_add_argument(parser, "cor_longvow", True, "correct long vowel errors or not")
     my_add_argument(parser, "cor_yomi_num", True, "correct the yomi of numerals or not")
+    my_add_argument(parser, "normalize", False, "noamlize the surface forms by applying "
+        "NFKC Unicode normalization, "
+        "capitalization of alphabets, "
+        "and "
+        "hankaku-to-zenkaku converter.")
 
     args = parser.parse_args()
     if args.input == args.output:
