@@ -35,17 +35,27 @@ class NeologdPatch(object):
         self.IDX_MAP = get_dictionary_index_map(self.mode)
         self.wt = WordType()
         self.wrong_yomi_detector = SimpleWrongYomiDetector()
-        print("[ Info ]")
-        print("* Hash tags will" + (" " if self.rm_hashtag else " **NOT** ") + "be removed.", file=sys.stderr)
-        print("* Noisy katakana words will" + (" " if self.rm_noisy_katakana else " **NOT** ") + "be removed.", file=sys.stderr)
-        print("* Person names will" + (" " if self.rm_person else " **NOT** ") + "be removed.", file=sys.stderr)
-        print("* Emojis will" + (" " if self.rm_emoji else " **NOT** ") + "be removed.", file=sys.stderr)
-        print("* Symbols will" + (" " if self.rm_symbol else " **NOT** ") + "be removed.", file=sys.stderr)
-        print("* Numerals will" + (" " if self.rm_numeral else " **NOT** ") + "be removed.", file=sys.stderr)
-        print("* Wrong yomi words will" + (" " if self.rm_wrong_yomi else " **NOT** ") + "be removed.", file=sys.stderr)
-        print("* Long vowel errors will" + (" " if self.cor_longvow else " **NOT** ") + "be corrected.", file=sys.stderr)
-        print("* Numeral yomi errors will" + (" " if self.cor_yomi_num else " **NOT** ") + "be corrected.", file=sys.stderr)
-        print("* Surface forms will" + (" " if self.normalize else " **NOT** ") + "be normalized.", file=sys.stderr)
+
+    def showinfo(self):
+        print("[ Info ]", file=sys.stderr)
+        self.message("* {} Hash tags will{}be removed.", self.rm_hashtag)
+        self.message("* {} Noisy katakana words will{}be removed.", self.rm_noisy_katakana)
+        self.message("* {} Person names will{}be removed.", self.rm_person)
+        self.message("* {} Emojis will{}be removed.", self.rm_emoji)
+        self.message("* {} Symbols will{}be removed.", self.rm_symbol)
+        self.message("* {} Numerals will{}be removed.", self.rm_numeral)
+        self.message("* {} Wrong yomi words will{}be removed.", self.rm_wrong_yomi)
+        self.message("* {} Long vowel errors will{}be corrected.", self.cor_longvow)
+        self.message("* {} Numeral yomi errors will{}be corrected.", self.cor_yomi_num)
+        self.message("* {} Surface forms will{}be normalized.", self.normalize)
+
+    @classmethod
+    def message(cls, message, flag):
+        if flag:
+            message = message.format("✅", " ")
+        else:
+            message = message.format("❌", " *NOT* ")
+        print(message, file=sys.stderr)
 
     def add_accent_column(self, line, idx_accent=None):
         line = line + ['' for i in range(10)]
@@ -125,6 +135,7 @@ class NeologdPatch(object):
         return line
 
     def __call__(self, fp_in, fp_out):
+        self.showinfo()
         L = count_lines(fp_in)
         n_removed = 0
         n_corrected= 0
@@ -138,7 +149,6 @@ class NeologdPatch(object):
             fp_out.write(','.join(line_processed) + '\n')
 
         print("[ Complete! ]", file=sys.stderr)
-        print("* number of removed entries ", n_removed, file=sys.stderr)
-        print("* number of corrected entries ", n_corrected, file=sys.stderr)
-        print("[ Done ]", file=sys.stderr)
+        print("* ℹ️  Number of removed entries ", n_removed, file=sys.stderr)
+        print("* ℹ️  Number of corrected entries ", n_corrected, file=sys.stderr)
         return

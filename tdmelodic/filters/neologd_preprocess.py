@@ -22,7 +22,7 @@ class Preprocess(object):
 
     def do_rmdups(self, fp_in):
         fp_tmp = tempfile.NamedTemporaryFile("w+")
-        print("creating temporary file", fp_tmp.name, file=sys.stderr)
+        print("... creating a temporary file", fp_tmp.name, file=sys.stderr)
         rmdups(fp_in, fp_tmp)
         fp_tmp.seek(0)
         fp_in.close() # CPython's GC will automatically closes the previous fp_in without doing this
@@ -31,7 +31,7 @@ class Preprocess(object):
 
     def do_neologd_patch(self, fp_in):
         fp_tmp = tempfile.NamedTemporaryFile("w+")
-        print("creating temporary file", fp_tmp.name, file=sys.stderr)
+        print("... creating a temporary file", fp_tmp.name, file=sys.stderr)
         self.neologd_patch_module(fp_in, fp_tmp)
         fp_tmp.seek(0)
         fp_in.close() # CPython's GC will automatically closes the previous fp_in without doing this
@@ -46,12 +46,16 @@ class Preprocess(object):
         fp_out.close()
 
     def __call__(self, fp_in, fp_out):
+        print("[ Info ]", file=sys.stderr)
+        NeologdPatch.message("* {} Duplicate entried will{}be removed.", self.flag_rmdups)
         if self.flag_rmdups:
             fp_in = self.do_rmdups(fp_in)
 
         fp_in = self.do_neologd_patch(fp_in)
 
+        print("[ Saving ]", file=sys.stderr)
         self.copy_temp_to_output(fp_in, fp_out)
+        print("[ Done ]", file=sys.stderr)
 
 def my_add_argument(parser, option_name, default, help_):
     help_ = help_ + " <default={}>".format(str(default))
@@ -101,7 +105,7 @@ def main():
     my_add_argument(parser, "rm_wrong_yomi", False, "remove words with possibly wrong yomi or not")
     my_add_argument(parser, "cor_longvow", True, "correct long vowel errors or not")
     my_add_argument(parser, "cor_yomi_num", True, "correct the yomi of numerals or not")
-    my_add_argument(parser, "normalize", False, "noamlize the surface forms by applying "
+    my_add_argument(parser, "normalize", False, "normalize the surface forms by applying "
         "NFKC Unicode normalization, "
         "capitalization of alphabets, "
         "and "

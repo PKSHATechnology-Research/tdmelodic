@@ -56,12 +56,14 @@ def get_line_info(line):
     return LineInfo(s, y, pos)
 
 def rmdups(fp_in, fp_out):
+
     yomieval = YomiEvaluator()
     prev_line = [""] * 100
     c = 0
     L = count_lines(fp_in)
     wt = WordType()
 
+    print("[ Removing duplicate entries ]", file=sys.stderr)
     for i, curr_line in enumerate(tqdm(csv.reader(fp_in), total=L)):
         prev = get_line_info(prev_line)
         curr = get_line_info(curr_line)
@@ -77,8 +79,8 @@ def rmdups(fp_in, fp_out):
 
         if distance_p > distance_c:
             c += 1
-            if c % 100 == 0:
-                print(c, curr.surf, "| deleted: ", prev.yomi, distance_p, " | left: ", curr.yomi, distance_c, file=sys.stderr)
+            # if c % 100 == 0:
+            #    print(c, curr.surf, "| deleted: ", prev.yomi, distance_p, " | left: ", curr.yomi, distance_c, file=sys.stderr)
         else:
             if i != 0:
                 fp_out.write(",".join(prev_line) + "\n")
@@ -87,3 +89,4 @@ def rmdups(fp_in, fp_out):
         continue
 
     fp_out.write(",".join(prev_line) + "\n")
+    print("* ℹ️  Number of removed duplicate entries ", c, file=sys.stderr)
