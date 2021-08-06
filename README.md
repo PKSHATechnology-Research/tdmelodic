@@ -7,6 +7,7 @@
 
 [![document](https://readthedocs.org/projects/tdmelodic/badge/?version=latest)](https://tdmelodic.readthedocs.io/en/latest)
 [![arXiv](https://img.shields.io/badge/arXiv-2009.09679-B31B1B.svg)](https://arxiv.org/abs/2009.09679)
+[![Python unittest](https://github.com/PKSHATechnology-Research/tdmelodic/actions/workflows/test.yml/badge.svg)](https://github.com/PKSHATechnology-Research/tdmelodic/actions/workflows/test.yml)
 [![Docker](https://github.com/PKSHATechnology-Research/tdmelodic/actions/workflows/docker-image.yml/badge.svg)](https://github.com/PKSHATechnology-Research/tdmelodic/actions/workflows/docker-image.yml)
 [![Lilypond](https://github.com/PKSHATechnology-Research/tdmelodic/actions/workflows/img.yml/badge.svg)](https://github.com/PKSHATechnology-Research/tdmelodic/actions/workflows/img.yml)
 [![License](https://img.shields.io/badge/License-BSD%203--Clause-blue.svg)](https://opensource.org/licenses/BSD-3-Clause)
