@@ -29,7 +29,7 @@ This creates a dictionary file `neologd_modified.csv` in the `/tmp` directory of
 
 ```sh
 docker run -v $(pwd):/root/workspace tdmelodic:latest \
-    tdmelodic-neologd-patch \
+    tdmelodic-neologd-preprocess \
     --input `ls mecab-unidic-neologd/seed/mecab-unidic-user-dict-seed*.csv | tail -n 1` \
     --output /tmp/neologd_modified.csv
 ```

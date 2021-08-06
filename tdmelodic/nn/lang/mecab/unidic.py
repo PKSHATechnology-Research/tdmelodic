@@ -39,8 +39,8 @@ class UniDic(object):
 
         self.unidic_path  = unidic_path
         self.mecabrc_path = mecabrc_path
-        print("[ MeCab setting ] unidic=\'{}\'".format(self.unidic_path))
-        print("[ MeCab setting ] mecabrc=\'{}\'".format(self.mecabrc_path))
+        print("[ MeCab setting ] unidic=\'{}\'".format(self.unidic_path), file=sys.stderr)
+        print("[ MeCab setting ] mecabrc=\'{}\'".format(self.mecabrc_path), file=sys.stderr)
 
         self.__init_mecab()
 

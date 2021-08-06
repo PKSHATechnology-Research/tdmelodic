@@ -88,7 +88,7 @@ def num2kansuji(num_str, mode='digit'):
     '''
 
     if len(num_str) > 72:
-        print(" ********** error 73文字以上の数字が入力されました。無視してそのまま出力します。 **************", len(num_str))
+        print(" ********** error 73文字以上の数字が入力されました。無視してそのまま出力します。 **************", file=sys.stderr)
         return num_str
 
     num_str = num_str.replace(",", '') # 桁区切りのカンマは削除
@@ -131,36 +131,3 @@ def numeric2kanji(text_orig):
 
     converted = "".join([t + str(d) for t, d in zip(split, digits)])
     return converted
-
-
-if __name__ =='__main__':
-    # tests
-    print(num2kansuji("123"))
-    print(num2kansuji("100"))
-    print(num2kansuji("103"))
-    print(num2kansuji("111"))
-    print(num2kansuji("123456"))
-    print(num2kansuji("123412341234"))
-    print(num2kansuji("100010001000"))
-    print(num2kansuji("100011001000"))
-    print(num2kansuji("1020304050607080"))
-    print(num2kansuji("123412341234123400001234"))
-    print(num2kansuji("12345678901234567890123456789012345678901234567890123456789012345678901"))
-    print(num2kansuji("123456789012345678901234567890123456789012345678901234567890123456789012"))
-    print(num2kansuji("1234567890123456789012345678901234567890123456789012345678901234567890123"))
-    print(num2kansuji("12"))
-    print(num2kansuji("12."))
-    print(num2kansuji("12.345"))
-    print(num2kansuji(".345"))
-    print(num2kansuji("3.141592"))
-
-    print( "----------" )
-    print(num2kansuji("100010001000", mode='replace'))
-    print(num2kansuji("100011001000", mode='replace'))
-    print(num2kansuji("1020304050607080", mode='replace'))
-    print(num2kansuji("12345678901234567890123456789012345678901234567890123456789012345678901", mode='replace'))
-
-    print( "----------" )
-    print(numeric2kanji("<BOS>金額は1234567円です<EOS>"))
-    print(numeric2kanji("１２３４５６は３４.５で、さらに0.１２３４５になります。0.1.2.3.4."))
-    print(numeric2kanji("1000000円、10000000円、100000000円、1000円、100000000000円"))
