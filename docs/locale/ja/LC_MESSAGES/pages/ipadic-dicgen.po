@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tdmelodic \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-07-23 01:07+0900\n"
+"POT-Creation-Date: 2021-08-20 03:46+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Hideyuki Tachibana <h_tachibana@pkshatech.com>\n"
 "Language-Team: \n"
@@ -75,19 +75,19 @@ msgstr ""
 msgid "Or, otherwise,"
 msgstr "`unxz`がない場合は、dockerを使用して以下のコマンドで同様のことができます。"
 
-#: ../../pages/ipadic-dicgen.md:49
+#: ../../pages/ipadic-dicgen.md:46
 msgid "Thus many CSV files will be created at `./mecab-ipadic-neologd/seed/`."
 msgstr "この処理により、多数のCSVファイルが `./mecab-ipadic-neologd/seed/` 配下に生成されます。"
 
-#: ../../pages/ipadic-dicgen.md:51
+#: ../../pages/ipadic-dicgen.md:48
 msgid "Inference"
 msgstr "推論"
 
-#: ../../pages/ipadic-dicgen.md:53
+#: ../../pages/ipadic-dicgen.md:50
 msgid "_WARNING! THIS TAKES MUCH TIME!_"
 msgstr "注意： _この処理はかなりの時間がかかります！_"
 
-#: ../../pages/ipadic-dicgen.md:55
+#: ../../pages/ipadic-dicgen.md:52
 msgid ""
 "Now let generate the accent dictionary. It estimates the accent of the "
 "words listed in NEologd dictionary by a machine learning -based "
@@ -96,15 +96,23 @@ msgstr ""
 "では、アクセント辞書を生成しましょう。ここでは、NEologd "
 "の辞書ファイルに掲載されている全ての単語について、機械学習ベースの手法により、アクセント情報を推定します。以下のコマンドにより、各単語にアクセント情報を付与した新しい辞書が生成されます。"
 
-#: ../../pages/ipadic-dicgen.md:59
+#: ../../pages/ipadic-dicgen.md:56
 msgid "IPADIC"
 msgstr "IPADIC"
 
-#: ../../pages/ipadic-dicgen.md:66
+#: ../../pages/ipadic-dicgen.md:63
 msgid "NEologd"
 msgstr "NEologd"
 
-#: ../../pages/ipadic-dicgen.md:73
+#: ../../pages/ipadic-dicgen.md:64
+msgid "Use preprocessor if necessary."
+msgstr "まず、もし必要であれば以下のコマンドで前処理を行ってください。"
+
+#: ../../pages/ipadic-dicgen.md:70
+msgid "Then,"
+msgstr "次に、以下のコマンドによりアクセントを推定します。"
+
+#: ../../pages/ipadic-dicgen.md:77
 msgid ""
 "Thus we obtain dictionary files `*.csv.accent` with the accent "
 "information added."
