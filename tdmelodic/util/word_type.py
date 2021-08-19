@@ -26,7 +26,7 @@ class WordType(object):
 
     def is_noisy_katakana(self, line):
         """ extract word such that the surface form is katakana but the lemma form contains kanji or hiragana """
-        flag1 = re.search(r"^[\p{Han}\p{Hiragana}a-zA-Z0-9]+$", line[self.map["LEMMA"]], flags=0)
+        flag1 = re.search(r"[\p{Han}\p{Hiragana}a-zA-Z0-9]+", line[self.map["LEMMA"]], flags=0)
         flag2 = re.search(r"^[\p{Katakana}・&＆!！ー＝\s　]+$", line[self.map["SURFACE"]], flags=0)
         return all([flag1, flag2])
 
