@@ -16,14 +16,15 @@ from .neologd_patch import NeologdPatch
 from .neologd_rmdups import rmdups
 
 class Preprocess(object):
-    def __init__(self, flag_rmdups, neologd_patch):
+    def __init__(self, flag_rmdups, neologd_patch, dictionary_type="unidic"):
         self.flag_rmdups = flag_rmdups
         self.neologd_patch_module = neologd_patch
+        self.dictionary_type = dictionary_type
 
     def do_rmdups(self, fp_in):
         fp_tmp = tempfile.NamedTemporaryFile("w+")
-        print("... creating a temporary file", fp_tmp.name, file=sys.stderr)
-        rmdups(fp_in, fp_tmp)
+        print("📌  creating a temporary file", fp_tmp.name, file=sys.stderr)
+        rmdups(fp_in, fp_tmp, self.dictionary_type)
         fp_tmp.seek(0)
         fp_in.close() # CPython's GC will automatically closes the previous fp_in without doing this
         fp_in = fp_tmp
@@ -31,7 +32,7 @@ class Preprocess(object):
 
     def do_neologd_patch(self, fp_in):
         fp_tmp = tempfile.NamedTemporaryFile("w+")
-        print("... creating a temporary file", fp_tmp.name, file=sys.stderr)
+        print("📌  creating a temporary file", fp_tmp.name, file=sys.stderr)
         self.neologd_patch_module(fp_in, fp_tmp)
         fp_tmp.seek(0)
         fp_in.close() # CPython's GC will automatically closes the previous fp_in without doing this
@@ -47,7 +48,7 @@ class Preprocess(object):
 
     def __call__(self, fp_in, fp_out):
         print("ℹ️  [ Info ]", file=sys.stderr)
-        NeologdPatch.message("* {} Duplicate entried will{}be removed.", self.flag_rmdups)
+        NeologdPatch.message("| {} Duplicate entried will{}be removed.", self.flag_rmdups)
         if self.flag_rmdups:
             fp_in = self.do_rmdups(fp_in)
 
@@ -117,7 +118,7 @@ def main():
         print("[ Error ] intput and output files should be different.", file=sys.stderr)
         sys.exit(0)
     try:
-        preprocess = Preprocess(args.rmdups, NeologdPatch(**vars(args)))
+        preprocess = Preprocess(args.rmdups, NeologdPatch(**vars(args)), dictionary_type=args.mode)
         preprocess(args.input, args.output)
     except Exception as e:
         print(e, file=sys.stderr)

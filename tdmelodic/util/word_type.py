@@ -6,8 +6,8 @@ import regex as re
 from .dic_index_map import get_dictionary_index_map
 
 class WordType(object):
-    def __init__(self):
-        self.map = get_dictionary_index_map("unidic")
+    def __init__(self, mode="unidic"):
+        self.map = get_dictionary_index_map(mode)
 
     def is_symbol(self, line):
         flag1 = re.search(r"^記号$", line[self.map["POS1"]], flags=0)

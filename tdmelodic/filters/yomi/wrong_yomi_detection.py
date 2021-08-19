@@ -32,7 +32,7 @@ class LineInfo(object):
     pos: str
 
 class SimpleWrongYomiDetector(object):
-    def __init__(self, distance_threshold=10, ratio_threshold=0.7):
+    def __init__(self, distance_threshold=10, ratio_threshold=0.7, mode="unidic"):
         """
 If the Levenshtein distance between the provided yomi and the predicted yomi from the surface form
 is greater than the given thresholds, the entry will be removed.
@@ -41,7 +41,7 @@ is greater than the given thresholds, the entry will be removed.
         self.ratio_threshold = ratio_threshold
 
         self.yomieval = YomiEvaluator(rank_weight=0, romaji_priority=0, nbest=10)
-        self.IDX_MAP = get_dictionary_index_map("unidic")
+        self.IDX_MAP = get_dictionary_index_map(mode)
         self.wt = WordType()
 
     def __call__(self, line):
