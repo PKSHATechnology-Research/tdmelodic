@@ -89,4 +89,4 @@ def rmdups(fp_in, fp_out):
         continue
 
     fp_out.write(",".join(prev_line) + "\n")
-    print("* ℹ️  Number of removed duplicate entries ", c, file=sys.stderr)
+    print("📊  Number of removed duplicate entries ", c, file=sys.stderr)

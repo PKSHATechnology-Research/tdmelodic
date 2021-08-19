@@ -24,7 +24,7 @@ from tdmelodic.util.word_type import WordType
 
 from .yomi.basic import modify_longvowel_errors
 from .yomi.basic import modify_yomi_of_numerals
-from .yomi.particle_yomi import joshi_no_yomi
+from .yomi.particle_yomi import ParticleYomi
 from .yomi.wrong_yomi_detection import SimpleWrongYomiDetector
 
 class NeologdPatch(object):
@@ -35,6 +35,7 @@ class NeologdPatch(object):
         self.IDX_MAP = get_dictionary_index_map(self.mode)
         self.wt = WordType()
         self.wrong_yomi_detector = SimpleWrongYomiDetector()
+        self.particle_yomi = ParticleYomi()
 
     def showinfo(self):
         print("[ Info ]", file=sys.stderr)
@@ -45,6 +46,7 @@ class NeologdPatch(object):
         self.message("* {} Symbols will{}be removed.", self.rm_symbol)
         self.message("* {} Numerals will{}be removed.", self.rm_numeral)
         self.message("* {} Wrong yomi words will{}be removed.", self.rm_wrong_yomi)
+        self.message("* {} Words with special particles \"は\" and \"へ\" will{}be removed", self.rm_special_particle)
         self.message("* {} Long vowel errors will{}be corrected.", self.cor_longvow)
         self.message("* {} Numeral yomi errors will{}be corrected.", self.cor_yomi_num)
         self.message("* {} Surface forms will{}be normalized.", self.normalize)
@@ -111,8 +113,12 @@ class NeologdPatch(object):
                 line = modify_yomi_of_numerals(line,
                     idx_surface=self.IDX_MAP["SURFACE"], idx_yomi=self.IDX_MAP["YOMI"])
 
+        # ----------------------------------------------------------------------
         # 助詞の読みを修正する（TODO）
-        line = joshi_no_yomi(line, self.IDX_MAP)
+        if self.rm_special_particle:
+            line = self.particle_yomi(line, self.IDX_MAP)
+            if line is None:
+                return None
 
         # ----------------------------------------------------------------------
         # normalize surface
@@ -148,7 +154,7 @@ class NeologdPatch(object):
                 n_corrected += 1
             fp_out.write(','.join(line_processed) + '\n')
 
-        print("[ Complete! ]", file=sys.stderr)
-        print("* ℹ️  Number of removed entries ", n_removed, file=sys.stderr)
-        print("* ℹ️  Number of corrected entries ", n_corrected, file=sys.stderr)
+        print("🍺  [ Complete! ]", file=sys.stderr)
+        print("📊  Number of removed entries ", n_removed, file=sys.stderr)
+        print("📊  Number of corrected entries ", n_corrected, file=sys.stderr)
         return

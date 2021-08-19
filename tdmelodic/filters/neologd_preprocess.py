@@ -46,16 +46,16 @@ class Preprocess(object):
         fp_out.close()
 
     def __call__(self, fp_in, fp_out):
-        print("[ Info ]", file=sys.stderr)
+        print("ℹ️  [ Info ]", file=sys.stderr)
         NeologdPatch.message("* {} Duplicate entried will{}be removed.", self.flag_rmdups)
         if self.flag_rmdups:
             fp_in = self.do_rmdups(fp_in)
 
         fp_in = self.do_neologd_patch(fp_in)
 
-        print("[ Saving ]", file=sys.stderr)
+        print("💾  [ Saving ]", file=sys.stderr)
         self.copy_temp_to_output(fp_in, fp_out)
-        print("[ Done ]", file=sys.stderr)
+        print("🍺  [ Done ]", file=sys.stderr)
 
 def my_add_argument(parser, option_name, default, help_):
     help_ = help_ + " <default={}>".format(str(default))
@@ -102,7 +102,8 @@ def main():
     my_add_argument(parser, "rm_emoji", False, "remove emojis or not")
     my_add_argument(parser, "rm_symbol", False, "remove symbols or not")
     my_add_argument(parser, "rm_numeral", False, "remove numerals or not")
-    my_add_argument(parser, "rm_wrong_yomi", False, "remove words with possibly wrong yomi or not")
+    my_add_argument(parser, "rm_wrong_yomi", True, "remove words with possibly wrong yomi or not")
+    my_add_argument(parser, "rm_special_particle", True, "remove words with special particles \"は\" or \"へ\"")
     my_add_argument(parser, "cor_longvow", True, "correct long vowel errors or not")
     my_add_argument(parser, "cor_yomi_num", True, "correct the yomi of numerals or not")
     my_add_argument(parser, "normalize", False, "normalize the surface forms by applying "
