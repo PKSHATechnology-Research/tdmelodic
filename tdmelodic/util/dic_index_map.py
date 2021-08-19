@@ -30,8 +30,8 @@ ipadic_index_map = {
     "POS4": 7,
     "LEMMA": 10,
     "YOMI": 12,
-    "GOSHU": 13,  # Not used. Dummy value for now.
-    "ACCENT": 13,  # Not used. Dummy value for now.
+    "GOSHU": 9, # We do not use this element. Dummy value.
+    "ACCENT": 9, # We do not use this element. Dummy value.
 }
 
 def get_dictionary_index_map(mode):
