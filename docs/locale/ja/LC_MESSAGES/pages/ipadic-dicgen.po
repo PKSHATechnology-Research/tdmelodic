@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tdmelodic \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-08-20 03:46+0900\n"
+"POT-Creation-Date: 2021-08-20 18:55+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Hideyuki Tachibana <h_tachibana@pkshatech.com>\n"
 "Language-Team: \n"
@@ -100,20 +100,29 @@ msgstr ""
 msgid "IPADIC"
 msgstr "IPADIC"
 
-#: ../../pages/ipadic-dicgen.md:63
+#: ../../pages/ipadic-dicgen.md:62
+msgid "Or, following commands will also work."
+msgstr "もしくは、以下のコマンドでも同様に辞書を生成できます。"
+
+#: ../../pages/ipadic-dicgen.md:71
 msgid "NEologd"
 msgstr "NEologd"
 
-#: ../../pages/ipadic-dicgen.md:64
-msgid "Use preprocessor if necessary."
+#: ../../pages/ipadic-dicgen.md:72
+msgid "Use preprocessor if necessary. (try `-h` to show preprocessing options.)"
 msgstr "まず、もし必要であれば以下のコマンドで前処理を行ってください。"
+"(`-h` により前処理のオプションを表示できます。)"
 
-#: ../../pages/ipadic-dicgen.md:70
+#: ../../pages/ipadic-dicgen.md:78
 msgid "Then,"
 msgstr "次に、以下のコマンドによりアクセントを推定します。"
 
-#: ../../pages/ipadic-dicgen.md:77
+#: ../../pages/ipadic-dicgen.md:85
 msgid ""
 "Thus we obtain dictionary files `*.csv.accent` with the accent "
 "information added."
 msgstr "以上の作業により、アクセント情報が付与された辞書ファイル `*.csv.accent` が得られます。"
+
+#: ../../pages/ipadic-dicgen.md:87
+msgid "Alternatively, following commands will also work."
+msgstr "もしくは、以下のようなコマンドでも辞書ファイルが得られます。"

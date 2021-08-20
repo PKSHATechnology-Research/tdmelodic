@@ -33,7 +33,6 @@ class NeologdPatch(object):
             if k != "input" and k != "output":
                 self.__setattr__(k, v)
         self.IDX_MAP = get_dictionary_index_map(self.mode) # dictionary type
-        print(self.IDX_MAP, file=sys.stderr)
         self.wt = WordType(self.mode)
         self.wrong_yomi_detector = SimpleWrongYomiDetector(mode=self.mode)
         self.particle_yomi = ParticleYomi()
