@@ -12,6 +12,25 @@ import MeCab
 import Levenshtein
 import numpy as np
 
+class Singleton:
+    """ Singleton pattern """
+    _instance = None
+    def __new__(cls):
+        if cls._instance is None:
+            cls._instance = super().__new__(cls)
+            cls._instance.is_initialized = False
+        return cls._instance
+
+    @property
+    def singleton_initialized(cls):
+        return cls.is_initialized
+
+    @singleton_initialized.setter
+    def singleton_initialized(self, boolean):
+        assert boolean == True
+        self.is_initialized = boolean
+
+
 def get_mecab_default_path():
     out = subprocess.Popen(['mecab-config', '--dicdir'],
                            stdout=subprocess.PIPE,
@@ -30,19 +49,22 @@ mapping=["surface",
     "cost_uni",
     "cost_bi"] + list(range(100))
 
-class UniDic(object):
+class UniDic(Singleton):
     def __init__(self,
-                # unidic_path  = "/usr/lib/mecab/dic/unidic", # default setting in our docker image
                 unidic_path  = get_mecab_default_path() + "/unidic",
                 mecabrc_path = os.path.dirname(os.path.abspath(__file__)) + "/my_mecabrc",
             ):
+        if self.singleton_initialized:
+            return
+        else:
+            self.singleton_initialized = True
 
-        self.unidic_path  = unidic_path
-        self.mecabrc_path = mecabrc_path
-        print("[ MeCab setting ] unidic=\'{}\'".format(self.unidic_path), file=sys.stderr)
-        print("[ MeCab setting ] mecabrc=\'{}\'".format(self.mecabrc_path), file=sys.stderr)
+            self.unidic_path  = unidic_path
+            self.mecabrc_path = mecabrc_path
+            print("ℹ️  [ MeCab setting ] unidic=\'{}\'".format(self.unidic_path), file=sys.stderr)
+            print("ℹ️  [ MeCab setting ] mecabrc=\'{}\'".format(self.mecabrc_path), file=sys.stderr)
 
-        self.__init_mecab()
+            self.__init_mecab()
 
     def __init_mecab(self):
         self.unidic_acc = MeCab.Tagger(

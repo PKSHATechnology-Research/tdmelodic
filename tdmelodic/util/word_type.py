@@ -6,8 +6,8 @@ import regex as re
 from .dic_index_map import get_dictionary_index_map
 
 class WordType(object):
-    def __init__(self):
-        self.map = get_dictionary_index_map("unidic")
+    def __init__(self, mode="unidic"):
+        self.map = get_dictionary_index_map(mode)
 
     def is_symbol(self, line):
         flag1 = re.search(r"^記号$", line[self.map["POS1"]], flags=0)
@@ -26,7 +26,7 @@ class WordType(object):
 
     def is_noisy_katakana(self, line):
         """ extract word such that the surface form is katakana but the lemma form contains kanji or hiragana """
-        flag1 = re.search(r"^[\p{Han}\p{Hiragana}a-zA-Z0-9]+$", line[self.map["LEMMA"]], flags=0)
+        flag1 = re.search(r"[\p{Han}\p{Hiragana}a-zA-Z0-9]+", line[self.map["LEMMA"]], flags=0)
         flag2 = re.search(r"^[\p{Katakana}・&＆!！ー＝\s　]+$", line[self.map["SURFACE"]], flags=0)
         return all([flag1, flag2])
 

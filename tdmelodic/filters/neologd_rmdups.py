@@ -23,8 +23,6 @@ from tdmelodic.util.util import count_lines
 from tdmelodic.util.word_type import WordType
 from .yomi.yomieval import YomiEvaluator
 
-IDX_MAP = get_dictionary_index_map("unidic")
-
 # ------------------------------------------------------------------------------------
 def normalize_surface(text):
     # hankaku
@@ -47,7 +45,7 @@ class LineInfo(object):
     yomi: str
     pos: str
 
-def get_line_info(line):
+def get_line_info(line, IDX_MAP):
     s = line[IDX_MAP["SURFACE"]]
     y = line[IDX_MAP["YOMI"]]
     pos = "-".join([line[i] for i in [IDX_MAP["POS1"], IDX_MAP["POS2"], IDX_MAP["POS3"]]])
@@ -55,18 +53,22 @@ def get_line_info(line):
 
     return LineInfo(s, y, pos)
 
-def rmdups(fp_in, fp_out):
+def rmdups(fp_in, fp_out, dictionary_type="unidic"):
+    """
+    dictionary_type: unidic or ipadic
+    """
+    IDX_MAP = get_dictionary_index_map(dictionary_type)
 
     yomieval = YomiEvaluator()
     prev_line = [""] * 100
     c = 0
     L = count_lines(fp_in)
-    wt = WordType()
+    wt = WordType(dictionary_type)
 
-    print("[ Removing duplicate entries ]", file=sys.stderr)
+    print("ℹ️  [ Removing duplicate entries ]", file=sys.stderr)
     for i, curr_line in enumerate(tqdm(csv.reader(fp_in), total=L)):
-        prev = get_line_info(prev_line)
-        curr = get_line_info(curr_line)
+        prev = get_line_info(prev_line, IDX_MAP)
+        curr = get_line_info(curr_line, IDX_MAP)
 
         if prev.surf == curr.surf and prev.pos == curr.pos and \
             not wt.is_person(prev_line) and not wt.is_placename(prev_line):
@@ -89,4 +91,4 @@ def rmdups(fp_in, fp_out):
         continue
 
     fp_out.write(",".join(prev_line) + "\n")
-    print("* ℹ️  Number of removed duplicate entries ", c, file=sys.stderr)
+    print("📊  Number of removed duplicate entries ", c, file=sys.stderr)
