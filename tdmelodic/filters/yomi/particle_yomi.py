@@ -22,10 +22,6 @@ class Alignment(object):
 class DetectWrongParticle(object):
     def __init__(self):
         self.unidic = UniDic()
-        self.unidic = UniDic()
-        self.unidic = UniDic()
-        self.unidic = UniDic()
-        self.unidic = UniDic()
         self.special_particles = [
             Word("は", "ワ", "助詞"),
             Word("へ", "エ", "助詞"),
