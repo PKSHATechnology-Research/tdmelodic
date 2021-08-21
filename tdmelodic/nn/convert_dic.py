@@ -86,7 +86,6 @@ def apply_all(
                 line = proc(i, orig_info, a_est)
                 csv_out.writerow(line)
 
-
 # =============================================================================================
 def main():
     parser = argparse.ArgumentParser()
