@@ -40,6 +40,12 @@ NEologd is a very large Japanese dictionary but it does not provide accent infor
    pages/unidic-usage.md
    pages/ipadic-usage.md
 
+.. toctree::
+   :maxdepth: 3
+   :caption: One-by-one Manual Inference Mode
+
+   pages/onebyone.md
+
 Citation
 --------
 
