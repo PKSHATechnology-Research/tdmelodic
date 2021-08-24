@@ -22,7 +22,7 @@ Then you will have the following result.
 
 It is convenient to define an alias command as follows.
 ```sh
-alias tdmelodic-s2ya=docker run tdmelodic:latest tdmelodic-s2ya
+alias tdmelodic-s2ya="docker run tdmelodic:latest tdmelodic-s2ya"
 ```
 Using this, try other examples.
 ```sh
@@ -69,7 +69,7 @@ $ echo 権利の行使及び義務の履行は、信義に従い誠実に行わ�
 
 For example,
 ```sh
-$ alias tdmelodic-sy2a=docker run -v tdmelodic:latest tdmelodic-sy2a
+$ alias tdmelodic-sy2a="docker run -v tdmelodic:latest tdmelodic-sy2a"
 $ echo 機械学習,きかいがくしゅー | tdmelodic-sy2a
 キ[カイガ]クシュー
 ```
