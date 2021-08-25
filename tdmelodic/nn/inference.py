@@ -49,14 +49,15 @@ class model_downloader(object):
         return not os.path.exists(path_) or os.path.getsize(path_) == 0
 
     def __download(self):
-        print("[ tdmelodic Model Downloader ] Downloading the pretrained model.")
-        print("[ tdmelodic Model Downloader ] From {}".format(self.url))
-        print("[ tdmelodic Model Downloader ] To   {}".format(self.path))
+        print("🌐  [ tdmelodic Model Downloader ] Downloading the pretrained model.")
+        print("🌐  [ tdmelodic Model Downloader ] From {}".format(self.url))
+        print("🌐  [ tdmelodic Model Downloader ] To   {}".format(self.path))
         urllib.request.urlretrieve(self.url, self.path)
-        print("[ tdmelodic Model Downloader ] Done")
+        print("🌐  [ tdmelodic Model Downloader ] Done")
 
-    def __already_downloaded(self):
-        print("[ tdmelodic Model Downloader ] The tdmelodic pretrained model already on your system.")
+    def __already_downloaded(self, verbose=False):
+        if verbose:
+            print("🌐  [ tdmelodic Model Downloader ] The tdmelodic pretrained model already on your system.")
 
 # ------------------------------------------------------------------------------
 class InferAccent(object):
@@ -66,8 +67,9 @@ class InferAccent(object):
         model_downloader(model_path)
         self.net = self.__load_model(model_path, model_dim)
 
-    def __load_model(self, model_path, model_dim):
-        print("[ Loading model ] model_path='{}'".format(model_path))
+    def __load_model(self, model_path, model_dim, verbose=False):
+        if verbose:
+            print("[ Loading model ] model_path='{}'".format(model_path))
         net = Net(embed_dim=model_dim)
         chainer.serializers.load_npz(model_path, net)
         return net

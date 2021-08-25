@@ -53,6 +53,7 @@ class UniDic(Singleton):
     def __init__(self,
                 unidic_path  = get_mecab_default_path() + "/unidic",
                 mecabrc_path = os.path.dirname(os.path.abspath(__file__)) + "/my_mecabrc",
+                verbose = False
             ):
         if self.singleton_initialized:
             return
@@ -61,8 +62,9 @@ class UniDic(Singleton):
 
             self.unidic_path  = unidic_path
             self.mecabrc_path = mecabrc_path
-            print("ℹ️  [ MeCab setting ] unidic=\'{}\'".format(self.unidic_path), file=sys.stderr)
-            print("ℹ️  [ MeCab setting ] mecabrc=\'{}\'".format(self.mecabrc_path), file=sys.stderr)
+            if verbose:
+                print("ℹ️  [ MeCab setting ] unidic=\'{}\'".format(self.unidic_path), file=sys.stderr)
+                print("ℹ️  [ MeCab setting ] mecabrc=\'{}\'".format(self.mecabrc_path), file=sys.stderr)
 
             self.__init_mecab()
 
@@ -102,3 +104,9 @@ class UniDic(Singleton):
 
         ld = dist[rank[0]]
         return p, rank, ld
+
+    def get_yomi(self, surface):
+        words = self.unidic_acc.parse(surface)
+        parsed = [word.split("\t") for word in words.split("\n")]
+        yomis = [entry[1] for entry in parsed if len(entry) > 1]
+        return "".join(yomis)

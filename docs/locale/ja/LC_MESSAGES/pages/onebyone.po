@@ -1,0 +1,99 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2019-, Hideyuki Tachibana, PKSHA Technology Inc
+# This file is distributed under the same license as the tdmelodic package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2021.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: tdmelodic \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-08-24 16:00+0900\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.9.1\n"
+
+#: ../../pages/onebyone.md:1
+msgid "One-by-one Manual Inference Mode"
+msgstr "一件ずつ推論するモード"
+
+#: ../../pages/onebyone.md:3
+msgid ""
+"In some cases, you may want to estimate the accent for one word, rather "
+"than the entire dictionary at once. This page introduces the tools for "
+"this purpose."
+msgstr ""
+"辞書全体を一度に推論するのではなく、個々の単語について一つずつアクセント推定したいケースもあるでしょう。"
+"このページではそのためのツールを紹介します。"
+
+#: ../../pages/onebyone.md:7
+msgid "s2ya: Surface -> Yomi & Accent"
+msgstr "s2ya: 表層形 → 読み＆アクセント"
+
+#: ../../pages/onebyone.md:9
+msgid ""
+"`s2ya` estimates the reading (`yomi`) and accent of a word from its "
+"orthographic form (`surface`). For yomi, it uses the best estimates from "
+"MeCab and UniDic."
+msgstr ""
+"`s2ya` は、単語の標準的な表記法（表層形）から、その読みとアクセントを推定します。"
+"読みの推定には、MeCab と UniDic による最適解を利用します。"
+
+#: ../../pages/onebyone.md:12
+msgid "Input: Orthographic (surface) form, such as kanji"
+msgstr "入力：漢字などによる、標準的な表記法（表層形）"
+
+#: ../../pages/onebyone.md:13
+msgid "Output: Reading (yomi) and Accent"
+msgstr "出力：読みとアクセント"
+
+#: ../../pages/onebyone.md:18
+msgid "Then you will have the following result."
+msgstr "すると以下のような結果が得られます。"
+
+#: ../../pages/onebyone.md:23
+msgid "It is convenient to define an alias command as follows."
+msgstr "以下のようなエイリアスを利用すると便利です。"
+
+#: ../../pages/onebyone.md:27
+msgid "Using this, try other examples."
+msgstr "このコマンドを使って、他の単語も試してみてください。"
+
+#: ../../pages/onebyone.md:45
+msgid "It also predicts the accents of sentences."
+msgstr "同様にして、文のアクセントも推定できます。"
+
+#: ../../pages/onebyone.md:63
+msgid "sy2a: Surface & Yomi -> Accent"
+msgstr "sy2a: 表層形＆読み → アクセント"
+
+#: ../../pages/onebyone.md:65
+msgid ""
+"`sy2a` estimates the accent of a word from its orthographic form "
+"(`surface`) and the reading (`yomi`)."
+msgstr ""
+"`sy2a` は、単語の表層形と読みから、アクセントを推定するツールです。"
+
+#: ../../pages/onebyone.md:67
+msgid "Input: Orthographic (surface) form, such as kanji, and reading (yomi)."
+msgstr "入力：表層形（漢字など）と読み"
+
+#: ../../pages/onebyone.md:68
+msgid "Output: Accent"
+msgstr "出力：アクセント"
+
+#: ../../pages/onebyone.md:70
+msgid "For example,"
+msgstr "例えば以下のように使用します。"
+
+#: ../../pages/onebyone.md:77
+msgid "Try other examples."
+msgstr "他の例"
+
+#: ../../pages/onebyone.md:89
+msgid "It can also predict the accents of sentences."
+msgstr "また、文のアクセントも同様に推定できます。"

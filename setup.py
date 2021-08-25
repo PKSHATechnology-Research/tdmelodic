@@ -43,6 +43,8 @@ setup(
     entry_points={
         'console_scripts':[
             'tdmelodic-convert = tdmelodic.nn.convert_dic:main',
+            'tdmelodic-sy2a = tdmelodic.nn.convert:main_sy2a',
+            'tdmelodic-s2ya = tdmelodic.nn.convert:main_s2ya',
             'tdmelodic-neologd-preprocess = tdmelodic.filters.neologd_preprocess:main',
             'tdmelodic-modify-unigram-cost = tdmelodic.filters.postprocess_modify_unigram_cost:main',
         ]
