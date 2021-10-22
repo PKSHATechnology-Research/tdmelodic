@@ -25,13 +25,20 @@ docker run -v $(pwd):/root/workspace tdmelodic:latest \
 
 This will generate a CSV file named `mecab-unidic-user-dict-seed.yyyymmdd.csv`.
 Then, apply the patch to the NEologd dictionary which we have just extracted, as follows.
-This creates a dictionary file `neologd_modified.csv` in the `/tmp` directory of the docker instance.
+This creates a dictionary file `neologd_modified.csv` in the working directory.
 
 ```sh
 docker run -v $(pwd):/root/workspace tdmelodic:latest \
     tdmelodic-neologd-preprocess \
     --input `ls mecab-unidic-neologd/seed/mecab-unidic-user-dict-seed*.csv | tail -n 1` \
-    --output /tmp/neologd_modified.csv
+    --output neologd_modified.csv \
+    --no-rmdups --no-rm_wrong_yomi
+```
+
+`--no-rmdups`, `--no-rm_wrong_yomi` are options whether or not to remove certain words.
+These options can be found with the following command.
+```
+docker run tdmelodic:latest tdmelodic-neologd-preprocess -h
 ```
 
 ## Inference
@@ -47,7 +54,7 @@ by a machine learning -based technique.
 docker run -v $(pwd):/root/workspace tdmelodic:latest \
     tdmelodic-convert \
     -m unidic \
-    --input /tmp/neologd_modified.csv \
+    --input neologd_modified.csv \
     --output ${WORKDIR}/tdmelodic_original.csv
 cp ${WORKDIR}/tdmelodic_original.csv ${WORKDIR}/tdmelodic.csv # backup
 ```

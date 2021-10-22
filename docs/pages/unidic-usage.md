@@ -1,40 +1,38 @@
 # Usage of UniDic-tdmelodic as a MeCab dictionary
 
 ## Install UniDic-tdmelodic
-You can install `tdmelodic` by placing the `tdmelodic.csv` under `seed/` directory of NEologd,
-modifying NEologd's installation script appropriately, and giving appropriate command line options.
-There is a script to do these procedure automatically.
-Run it and you are able to install it.
 
+You can install `tdmelodic` (`tdmelodic-unidic`) by copying the content of `tdmelodic.csv` we have just created
+to the UniDic default dictionary (`lex.csv`), and running the
+installation script with appropriate command line options.
+
+Firstly, specify the file paths.
 ```sh
-# paths
 WORKDIR=/path/to/your/work/dir
-NEOLOGD_SRC_DIR=${WORKDIR}/mecab-unidic-neologd
-UNIDIC_ZIP=${WORKDIR}/unidic-mecab_kana-accent-2.1.2_src.zip
+UNIDIC_ZIP_PATH=/path/to/your/unidic/file/unidic-mecab_kana-accent-2.1.2_src.zip
 TDMELODIC_CSV=${WORKDIR}/tdmelodic.csv
-
-# modify mecab-unidic-neologd installation script
-cd $WORKDIR
-docker run -v $(pwd):/root/workspace tdmelodic:latest \
-    bash /tmp/script/gen_installer.sh \
-    --neologd=${NEOLOGD_SRC_DIR} \
-    --unidic=${UNIDIC_ZIP} \
-    --dictionary=${TDMELODIC_CSV}
-
-cd ${NEOLOGD_SRC_DIR}
-chmod +x ./bin/*
-chmod +x ./libexec/*
-
-# install UniDic
-cp ${UNIDIC_ZIP} .
-./libexec/install-mecab-unidic_kana-accent.sh
-
-# install tdmelodic
-./bin/install-tdmelodic --prefix `mecab-config --dicdir`/tdmelodic
-# Other installation destinations will also be fine. For example,
-# ./bin/install-tdmelodic --prefix `mecab-config --dicdir`/unidic-tdmelodic
 ```
 
+Then unzip the UniDic file.
+```sh
+cd ${WORKDIR}
+cp ${UNIDIC_ZIP_PATH} .
+unzip unidic-mecab_kana-accent-2.1.2_src.zip
+```
+
+Concatenate the dictionaries.
+```sh
+cd ${WORKDIR}/unidic-mecab_kana-accent-2.1.2_src
+cp lex.csv lex_bak.csv # backup
+cat ${TDMELODIC_CSV} >> lex.csv
+```
+
+Finally, install `tdmelodic`.
+```sh
+./configure --with-dicdir=`mecab-config --dicdir`/tdmelodic
+make
+make install
+```
 
 ## Use UniDic-tdmelodic
 Here are some examples.

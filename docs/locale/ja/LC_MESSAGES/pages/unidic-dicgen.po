@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tdmelodic \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-07-21 22:52+0900\n"
+"POT-Creation-Date: 2021-10-22 18:34+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Hideyuki Tachibana <h_tachibana@pkshatech.com>\n"
 "Language-Team: \n"
@@ -50,17 +50,25 @@ msgid ""
 "This will generate a CSV file named `mecab-unidic-user-dict-"
 "seed.yyyymmdd.csv`. Then, apply the patch to the NEologd dictionary which"
 " we have just extracted, as follows. This creates a dictionary file "
-"`neologd_modified.csv` in the `/tmp` directory of the docker instance."
+"`neologd_modified.csv` in the working directory."
 msgstr ""
 "これにより、`mecab-unidic-user-dict-seed.yyyymmdd.csv` といったファイル名の CSV "
-"ファイルが生成されます。次に、ここで抽出した CSV ファイルにパッチを当てます。これにより `/tmp` ディレクトリ配下に "
+"ファイルが生成されます。次に、ここで抽出した CSV ファイルにパッチを当てます。これにより作業ディレクトリ配下に "
 "`neologd_modified.csv` というファイルが作られます。"
 
-#: ../../pages/unidic-dicgen.md:37
+#: ../../pages/unidic-dicgen.md:38
+msgid ""
+"`--no-rmdups`, `--no-rm_wrong_yomi` are options whether or not to remove "
+"certain words. These options can be found with the following command."
+msgstr ""
+"`--no-rmdups`, `--no-rm_wrong_yomi` などのオプションは、あるカテゴリーに属する単語を辞書から除去するかどうかを指定するためのものです。"
+"これらのオプションは以下のコマンドにより確認できます。"
+
+#: ../../pages/unidic-dicgen.md:44
 msgid "Inference"
 msgstr "推論"
 
-#: ../../pages/unidic-dicgen.md:39
+#: ../../pages/unidic-dicgen.md:46
 msgid ""
 "_WARNING! THIS TAKES MUCH TIME!_ (FYI: It took about 2.5 hours in a "
 "MacBookPro, 5 hours in our Linux server.)"
@@ -68,7 +76,7 @@ msgstr ""
 "注意： _この処理はかなりの時間がかかります！_ （参考までに、筆者の MacBookPro では2時間半、Linux "
 "サーバーでは5時間かかりました。）"
 
-#: ../../pages/unidic-dicgen.md:42
+#: ../../pages/unidic-dicgen.md:49
 msgid ""
 "Now let generate the accent dictionary. It estimates the accent of the "
 "words listed in NEologd dictionary by a machine learning -based "
@@ -77,10 +85,10 @@ msgstr ""
 "では、アクセント辞書を生成しましょう。ここでは、NEologd "
 "の辞書ファイルに掲載されている全ての単語について、機械学習ベースの手法により、アクセント情報を推定します。以下のコマンドにより、各単語にアクセント情報を付与した新しい辞書が生成されます。"
 
-#: ../../pages/unidic-dicgen.md:54
+#: ../../pages/unidic-dicgen.md:62
 msgid "Postprocess"
 msgstr "後処理"
 
-#: ../../pages/unidic-dicgen.md:56
+#: ../../pages/unidic-dicgen.md:64
 msgid "Unigram costs can be fixed using the following script."
 msgstr "以下のスクリプトにより、単語生起確率（条件付確率場におけるユニグラム・コスト）の微修正などの後処理を行います。"
