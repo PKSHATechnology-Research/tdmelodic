@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tdmelodic \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-07-23 00:59+0900\n"
+"POT-Creation-Date: 2021-10-22 18:34+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Hideyuki Tachibana <h_tachibana@pkshatech.com>\n"
 "Language-Team: \n"
@@ -25,40 +25,53 @@ msgstr "UniDic-tdmelodic を MeCab 辞書として活用"
 msgid "Install UniDic-tdmelodic"
 msgstr "UniDic-tdmelodic のインストール"
 
-#: ../../pages/unidic-usage.md:4
+#: ../../pages/unidic-usage.md:5
 msgid ""
-"You can install `tdmelodic` by placing the `tdmelodic.csv` under `seed/` "
-"directory of NEologd, modifying NEologd's installation script "
-"appropriately, and giving appropriate command line options. There is a "
-"script to do these procedure automatically. Run it and you are able to "
-"install it."
+"You can install `tdmelodic` (`tdmelodic-unidic`) by copying the content "
+"of `tdmelodic.csv` we have just created to the UniDic default dictionary "
+"(`lex.csv`), and running the installation script with appropriate command"
+" line options."
 msgstr ""
-"前章で作成した CSV 形式の辞書ファイルを `mecab-unidic-neologd` の `seed/` ディレクトリ配下に配置し、 "
-"NEologd のインストールスクリプトを適当に修正し、さらに適当なコマンドラインオプションを与えてスクリプトを実行することで、UniDic-"
-"tdmelodic を MeCab "
-"のシステム辞書としてインストールすることができます。これらの処理を自動で行うためのスクリプトを用意してありますので、それを以下のようにして実行すると"
-" UniDic-tdmelodic をインストールすることができます。"
+"前の章で作成した `tdmelodic.csv` ファイルの中身を UniDic "
+"のデフォルトの辞書(`lex.csv`)にコピーし、適切なコマンドラインオプションを与えてインストール用スクリプトを実行することで、 `tdmelodic` "
+"(`tdmelodic-upadic`) をインストールできます。"
 
-#: ../../pages/unidic-usage.md:39
+#: ../../pages/unidic-usage.md:9
+msgid "Firstly, specify the file paths."
+msgstr "まず、ファイルのパスを指定します。"
+
+#: ../../pages/unidic-usage.md:16
+msgid "Then unzip the UniDic file."
+msgstr "次に、UniDicのzipファイルを展開します。"
+
+#: ../../pages/unidic-usage.md:23
+msgid "Concatenate the dictionaries."
+msgstr "次に、辞書ファイルを結合します。"
+
+#: ../../pages/unidic-usage.md:30
+msgid "Finally, install `tdmelodic`."
+msgstr "最後に、`tdmelodic`をインストールします。"
+
+#: ../../pages/unidic-usage.md:37
 msgid "Use UniDic-tdmelodic"
 msgstr "UniDic-tdmelodic の使用例"
 
-#: ../../pages/unidic-usage.md:40
+#: ../../pages/unidic-usage.md:38
 msgid "Here are some examples."
 msgstr "いくつかの例をご覧ください。"
 
-#: ../../pages/unidic-usage.md:42
+#: ../../pages/unidic-usage.md:40
 msgid "Example 1"
 msgstr "例1"
 
-#: ../../pages/unidic-usage.md:66
+#: ../../pages/unidic-usage.md:64
 msgid "Cf."
 msgstr ""
 
-#: ../../pages/unidic-usage.md:94
+#: ../../pages/unidic-usage.md:92
 msgid "Example 2"
 msgstr "例2"
 
-#: ../../pages/unidic-usage.md:116
+#: ../../pages/unidic-usage.md:114
 msgid "Example 3"
 msgstr "例3"
