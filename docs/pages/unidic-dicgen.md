@@ -19,7 +19,7 @@ Then, extract the csv file of NEologd dictionary using `unxz` command.
 # if your system has the unxz command
 unxz -k `ls mecab-unidic-neologd/seed/*.xz | tail -n 1`
 # otherwise
-docker run -v $(pwd):/root/workspace tdmelodic:latest \
+docker run --rm -v $(pwd):/root/workspace tdmelodic:latest \
     unxz -k `ls mecab-unidic-neologd/seed/*.xz | tail -n 1`
 ```
 
@@ -28,7 +28,7 @@ Then, apply the patch to the NEologd dictionary which we have just extracted, as
 This creates a dictionary file `neologd_modified.csv` in the working directory.
 
 ```sh
-docker run -v $(pwd):/root/workspace tdmelodic:latest \
+docker run --rm -v $(pwd):/root/workspace tdmelodic:latest \
     tdmelodic-neologd-preprocess \
     --input `ls mecab-unidic-neologd/seed/mecab-unidic-user-dict-seed*.csv | tail -n 1` \
     --output neologd_modified.csv \
@@ -38,7 +38,7 @@ docker run -v $(pwd):/root/workspace tdmelodic:latest \
 `--no-rmdups`, `--no-rm_wrong_yomi` are options whether or not to remove certain words.
 These options can be found with the following command.
 ```
-docker run tdmelodic:latest tdmelodic-neologd-preprocess -h
+docker run --rm tdmelodic:latest tdmelodic-neologd-preprocess -h
 ```
 
 ## Inference
@@ -51,7 +51,7 @@ It estimates the accent of the words listed in NEologd dictionary
 by a machine learning -based technique.
 
 ```sh
-docker run -v $(pwd):/root/workspace tdmelodic:latest \
+docker run --rm -v $(pwd):/root/workspace tdmelodic:latest \
     tdmelodic-convert \
     -m unidic \
     --input neologd_modified.csv \
@@ -64,7 +64,7 @@ cp ${WORKDIR}/tdmelodic_original.csv ${WORKDIR}/tdmelodic.csv # backup
 Unigram costs can be fixed using the following script.
 ```sh
 cp ${WORKDIR}/tdmelodic.csv ${WORKDIR}/tdmelodic.csv.bak
-docker run -v $(pwd):/root/workspace tdmelodic:latest \
+docker run --rm -v $(pwd):/root/workspace tdmelodic:latest \
     tdmelodic-modify-unigram-cost \
     -i tdmelodic.csv.bak \
     -o tdmelodic.csv
