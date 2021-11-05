@@ -21,7 +21,7 @@ find ./mecab-ipadic-2.7.0-* -type f -name "*.csv" | xargs -I{} nkf -w --overwrit
 ```
 Otherwise, you can use docker.
 ```sh
-docker run -v $(pwd):/root/workspace tdmelodic:latest \
+docker run --rm -v $(pwd):/root/workspace tdmelodic:latest \
     find ./mecab-ipadic-2.7.0-* -type f -name "*.csv" | xargs -I{} nkf -w --overwrite {}
 ```
 
@@ -41,7 +41,7 @@ find ./mecab-ipadic-neologd/seed/ -type f -name "*.xz" | xargs -I{} unxz -k {}
 Or, otherwise,
 ```sh
 find ./mecab-ipadic-neologd/seed/ -type f -name "*.xz" | xargs -I{} \
-   docker run -v $(pwd):/root/workspace tdmelodic:latest unxz -k {}
+   docker run --rm -v $(pwd):/root/workspace tdmelodic:latest unxz -k {}
 ```
 Thus many CSV files will be created at `./mecab-ipadic-neologd/seed/`.
 
@@ -56,13 +56,13 @@ by a machine learning -based technique.
 ### IPADIC
 ```
 find ./mecab-ipadic-2.7.0-*/ -type f -name "*.csv" | xargs -I{} \
-    docker run -v $(pwd):/root/workspace tdmelodic:latest \
+    docker run --rm -v $(pwd):/root/workspace tdmelodic:latest \
         tdmelodic-convert -m ipadic --input {} --output {}.accent
 ```
 Or, following commands will also work.
 ```sh
 cat ./mecab-ipadic-2.7.0-*/*.csv > ipadic_all.csv
-docker run -v $(pwd):/root/workspace tdmelodic:latest \
+docker run --rm -v $(pwd):/root/workspace tdmelodic:latest \
     tdmelodic-convert -m ipadic \
         --input ipadic_all.csv \
         --output ipadic_all.csv.accent
@@ -72,13 +72,13 @@ docker run -v $(pwd):/root/workspace tdmelodic:latest \
 Use preprocessor if necessary. (try `-h` to show preprocessing options.)
 ```sh
 find ./mecab-ipadic-neologd/seed/ -type f -name "*.csv" | xargs -I{} \
-    docker run -v $(pwd):/root/workspace tdmelodic:latest \
+    docker run --rm -v $(pwd):/root/workspace tdmelodic:latest \
         tdmelodic-neologd-preprocess -m ipadic --input {} --output {}.preprocessed
 ```
 Then,
 ```sh
 find ./mecab-ipadic-neologd/seed/ -type f -name "*.csv" | xargs -I{} \
-    docker run -v $(pwd):/root/workspace tdmelodic:latest \
+    docker run --rm -v $(pwd):/root/workspace tdmelodic:latest \
         tdmelodic-convert -m ipadic --input {}.preprocessed --output {}.accent
 ```
 
@@ -88,12 +88,12 @@ Alternatively, following commands will also work.
 ```sh
 cat ./mecab-ipadic-neologd/seed/*.csv > neologd_all.csv
 
-docker run -v $(pwd):/root/workspace tdmelodic:latest \
+docker run --rm -v $(pwd):/root/workspace tdmelodic:latest \
     tdmelodic-neologd-preprocess -m ipadic \
         --input neologd_all.csv \
         --output neologd_all.csv.preprocessed
 
-docker run -v $(pwd):/root/workspace tdmelodic:latest \
+docker run --rm -v $(pwd):/root/workspace tdmelodic:latest \
     tdmelodic-convert -m ipadic \
         --input neologd_all.csv.preprocessed \
         --output neologd_all.csv.accent

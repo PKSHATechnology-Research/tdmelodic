@@ -43,14 +43,14 @@ docker build -t tdmelodic:latest . # --no-cache
 If needed, try following commands and check the results.
 
 ```console
-you@machine:~$ docker run tdmelodic:latest /bin/bash -c "echo 深層学習 | mecab -d \`mecab-config --dicdir\`/unidic"
+you@machine:~$ docker run --rm tdmelodic:latest /bin/bash -c "echo 深層学習 | mecab -d \`mecab-config --dicdir\`/unidic"
 深層	シンソー	シンソウ	深層	名詞-普通名詞-一般			0
 学習	ガクシュー	ガクシュウ	学習	名詞-普通名詞-サ変可能			0
 EOS
 ```
 
 ```console
-you@machine:~$ docker run -it tdmelodic:latest
+you@machine:~$ docker run -it --rm tdmelodic:latest
 root@docker:~/workspace$ echo 深層学習 | mecab -d `mecab-config --dicdir`/unidic
 深層	シンソー	シンソウ	深層	名詞-普通名詞-一般			0
 学習	ガクシュー	ガクシュウ	学習	名詞-普通名詞-サ変可能			0
