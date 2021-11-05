@@ -3,12 +3,11 @@
 # This file is distributed under the same license as the tdmelodic package.
 # Hideyuki Tachibana, 2021.
 #
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: tdmelodic \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-07-21 22:18+0900\n"
+"POT-Creation-Date: 2021-11-05 18:26+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Hideyuki Tachibana <h_tachibana@pkshatech.com>\n"
 "Language-Team: \n"
@@ -51,12 +50,13 @@ msgstr "UniDic の辞書ファイルをダウンロード"
 
 #: ../../pages/docker.md:19
 msgid ""
-"Download the UniDic file from [NINJAL](https://unidic.ninjal.ac.jp/). "
-"Several versions have been published, but the version we need is `uniDic-"
-"mecab_kana-accent-2.1.2_src.zip`."
+"Download the UniDic file from [NINJAL](https://ccd.ninjal.ac.jp/unidic/)."
+" Several versions have been published, but the version we need is "
+"`uniDic-mecab_kana-accent-2.1.2_src.zip`."
 msgstr ""
-"[国立国語研究所のサイト](https://unidic.ninjal.ac.jp/)から UniDic の辞書ファイルをダウンロードしてください。複数のバージョンが公開されていますが、このモジュールでは "
-"`unidic-mecab_kana-accent-2.1.2_src.zip` を使います。"
+"[国立国語研究所のサイト](https://ccd.ninjal.ac.jp/unidic/)から UniDic "
+"の辞書ファイルをダウンロードしてください。複数のバージョンが公開されていますが、"
+"このモジュールでは `unidic-mecab_kana-accent-2.1.2_src.zip` を使います。"
 
 #: ../../pages/docker.md:27
 msgid ""
@@ -65,8 +65,9 @@ msgid ""
 "It is recommended that you keep this file somewhere in your local file "
 "system."
 msgstr ""
-"注意： **このファイルは後ほど再利用します。** ダウンロード先のサイトに負荷をかけすぎることのないよう、何度もダウンロードするのは避けてください。ダウンロードした"
-" zip ファイルはローカルのどこかに保管しておくことを推奨します。"
+"注意： **このファイルは後ほど再利用します。** "
+"ダウンロード先のサイトに負荷をかけすぎることのないよう、何度もダウンロードするのは避けてください。ダウンロードした zip "
+"ファイルはローカルのどこかに保管しておくことを推奨します。"
 
 #: ../../pages/docker.md:32
 msgid "Docker build"
