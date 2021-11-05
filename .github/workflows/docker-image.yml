@@ -22,5 +22,5 @@ jobs:
         uses: actions/checkout@v2
       - name: Build the Docker image
         run: |
-          wget https://unidic.ninjal.ac.jp/unidic_archive/cwj/2.1.2/unidic-mecab_kana-accent-2.1.2_src.zip
+          wget https://ccd.ninjal.ac.jp/unidic_archive/cwj/2.1.2/unidic-mecab_kana-accent-2.1.2_src.zip
           docker build -t tdmelodic:$(date +%s) . --no-cache

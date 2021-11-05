@@ -16,11 +16,11 @@ git clone --depth 1 https://github.com/PKSHATechnology-Research/tdmelodic
 
 ### Download the UniDic dictionary file
 
-Download the UniDic file from [NINJAL](https://unidic.ninjal.ac.jp/).
+Download the UniDic file from [NINJAL](https://ccd.ninjal.ac.jp/unidic/).
 Several versions have been published, but the version we need is `uniDic-mecab_kana-accent-2.1.2_src.zip`.
 
 ```sh
-wget https://unidic.ninjal.ac.jp/unidic_archive/cwj/2.1.2/unidic-mecab_kana-accent-2.1.2_src.zip
+wget https://ccd.ninjal.ac.jp/unidic_archive/cwj/2.1.2/unidic-mecab_kana-accent-2.1.2_src.zip
 cp unidic-mecab_kana-accent-2.1.2_src.zip ${WORKDIR}/tdmelodic
 ```
 
