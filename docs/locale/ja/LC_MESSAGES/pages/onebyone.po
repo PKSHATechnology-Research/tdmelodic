@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tdmelodic \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-08-24 16:00+0900\n"
+"POT-Creation-Date: 2022-06-20 16:12+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Hideyuki Tachibana <h_tachibana@pkshatech.com>\n"
 "Language-Team: \n"
@@ -17,83 +17,108 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.9.1\n"
 
-#: ../../pages/onebyone.md:1
+#: ../../pages/onebyone.rst:3
 msgid "One-by-one Manual Inference Mode"
 msgstr "一件ずつ推論するモード"
 
-#: ../../pages/onebyone.md:3
+#: ../../pages/onebyone.rst:5
 msgid ""
 "In some cases, you may want to estimate the accent for one word, rather "
 "than the entire dictionary at once. This page introduces the tools for "
 "this purpose."
-msgstr ""
-"辞書全体を一度に推論するのではなく、個々の単語について一つずつアクセント推定したいケースもあるでしょう。"
-"このページではそのためのツールを紹介します。"
+msgstr "辞書全体を一度に推論するのではなく、個々の単語について一つずつアクセント推定したいケースもあるでしょう。このページではそのためのツールを紹介します。"
 
-#: ../../pages/onebyone.md:7
+#: ../../pages/onebyone.rst:10
 msgid "s2ya: Surface -> Yomi & Accent"
 msgstr "s2ya: 表層形 → 読み＆アクセント"
 
-#: ../../pages/onebyone.md:9
+#: ../../pages/onebyone.rst:12
 msgid ""
-"`s2ya` estimates the reading (`yomi`) and accent of a word from its "
-"orthographic form (`surface`). For yomi, it uses the best estimates from "
-"MeCab and UniDic."
+"``s2ya`` estimates the reading (``yomi``) and accent of a word from its "
+"orthographic form (``surface``). For yomi, it uses the best estimates "
+"from MeCab and UniDic."
 msgstr ""
-"`s2ya` は、単語の標準的な表記法（表層形）から、その読みとアクセントを推定します。"
-"読みの推定には、MeCab と UniDic による最適解を利用します。"
+"``s2ya`` は、単語の標準的な表記法（表層形）から、その読みとアクセントを推定します。読みの推定には、MeCab と UniDic "
+"による最適解を利用します。"
 
-#: ../../pages/onebyone.md:12
+#: ../../pages/onebyone.rst:15
 msgid "Input: Orthographic (surface) form, such as kanji"
 msgstr "入力：漢字などによる、標準的な表記法（表層形）"
 
-#: ../../pages/onebyone.md:13
+#: ../../pages/onebyone.rst:16
 msgid "Output: Reading (yomi) and Accent"
 msgstr "出力：読みとアクセント"
 
-#: ../../pages/onebyone.md:18
+#: ../../pages/onebyone.rst:22
 msgid "Then you will have the following result."
 msgstr "すると以下のような結果が得られます。"
 
-#: ../../pages/onebyone.md:23
+#: ../../pages/onebyone.rst:28
 msgid "It is convenient to define an alias command as follows."
 msgstr "以下のようなエイリアスを利用すると便利です。"
 
-#: ../../pages/onebyone.md:27
+#: ../../pages/onebyone.rst:34
 msgid "Using this, try other examples."
 msgstr "このコマンドを使って、他の単語も試してみてください。"
 
-#: ../../pages/onebyone.md:45
+#: ../../pages/onebyone.rst:53
 msgid "It also predicts the accents of sentences."
 msgstr "同様にして、文のアクセントも推定できます。"
 
-#: ../../pages/onebyone.md:63
+#: ../../pages/onebyone.rst:73
+msgid ""
+"Although tdmelodic is formally capable of predicting sentence accents as "
+"described above, and a small amount of sentences are used in the training"
+" data, it has not been trained to perform this task. Therefore, this "
+"accent estimation should be considered only as a reference."
+msgstr ""
+"上で見たように、 tdmelodic は形式的には文のアクセント予測が可能であり、"
+"また学習データにも少量の文章データを使用しています。"
+"しかし、tdmelodic はもともと文のアクセント推定を主眼として設計・学習したものではありません。"
+"このため、この方法によって推定された文のアクセントはあくまで参考程度のものです。"
+
+#: ../../pages/onebyone.rst:79
+msgid ""
+"The yomi prediction of ``s2ya`` is based on the UniDic lexicon. This is "
+"because the docker image contains only the UniDic dictionary. If you "
+"prefer using other yomi prediction modules such as Neologd, please use "
+"the ``sy2a`` module below."
+msgstr ""
+"``s2ya`` の読み予測にはUniDic辞書を使用します。これは、docker イメージの中に入っている辞書が UniDic "
+"のみであるためです。もし Neologd など他の辞書を使用して読み推定をしたい場合は、次の ``sy2a`` をご利用ください。"
+
+#: ../../pages/onebyone.rst:86
 msgid "sy2a: Surface & Yomi -> Accent"
 msgstr "sy2a: 表層形＆読み → アクセント"
 
-#: ../../pages/onebyone.md:65
+#: ../../pages/onebyone.rst:88
 msgid ""
-"`sy2a` estimates the accent of a word from its orthographic form "
-"(`surface`) and the reading (`yomi`)."
-msgstr ""
-"`sy2a` は、単語の表層形と読みから、アクセントを推定するツールです。"
+"``sy2a`` estimates the accent of a word from its orthographic form "
+"(``surface``) and the reading (``yomi``)."
+msgstr "``sy2a`` は、単語の表層形と読みから、アクセントを推定するツールです。"
 
-#: ../../pages/onebyone.md:67
+#: ../../pages/onebyone.rst:90
 msgid "Input: Orthographic (surface) form, such as kanji, and reading (yomi)."
 msgstr "入力：表層形（漢字など）と読み"
 
-#: ../../pages/onebyone.md:68
+#: ../../pages/onebyone.rst:91
 msgid "Output: Accent"
 msgstr "出力：アクセント"
 
-#: ../../pages/onebyone.md:70
+#: ../../pages/onebyone.rst:93
 msgid "For example,"
 msgstr "例えば以下のように使用します。"
 
-#: ../../pages/onebyone.md:77
+#: ../../pages/onebyone.rst:101
 msgid "Try other examples."
 msgstr "他の例"
 
-#: ../../pages/onebyone.md:89
+#: ../../pages/onebyone.rst:114
 msgid "It can also predict the accents of sentences."
 msgstr "また、文のアクセントも同様に推定できます。"
+
+#: ../../pages/onebyone.rst:128
+msgid ""
+"If you want to predict the yomi of a given sentence using an advanced "
+"dictionary such as Neologd, the following command may be helpful."
+msgstr "Neologd などの先進的な辞書を使用して読み推定を行いたい場合は、一例として以下のようなコマンドで読みが推定できます。"
