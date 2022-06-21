@@ -5,14 +5,8 @@
 # from the environment for the first two.
 SPHINXOPTS    ?=
 #SPHINXBUILD   ?= sphinx-build
-SPHINXBUILD ?= $(if \
-		$(ifeq \
-			$(shell command python --version 2> /dev/null), \
-			3 \
-		), \
-		sphinx-build, \
-		python3 -msphinx \
-	)
+PYTHON_VERSION=$(shell python -c "import sys;v=str(sys.version_info[0]);sys.stdout.write(v)")
+SPHINXBUILD ?= $(if $(ifeq $(PYTHON_VERSION), 3),sphinx-build,python3 -msphinx)
 SOURCEDIR     = .
 BUILDDIR      = _build
 
@@ -26,6 +20,8 @@ help:
 # Catch-all target: route all unknown targets to Sphinx using the new
 # "make mode" option.  $(O) is meant as a shortcut for $(SPHINXOPTS).
 %: Makefile
+	@echo Python version is \"$(PYTHON_VERSION)\"
+	@echo Sphinx build command is \"$(SPHINXBUILD)\"
 	@$(SPHINXBUILD) -M $@ "$(SOURCEDIR)" "$(BUILDDIR)" $(SPHINXOPTS) $(O)
 
 jahtml:
