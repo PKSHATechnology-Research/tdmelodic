@@ -4,9 +4,18 @@
 # You can set these variables from the command line, and also
 # from the environment for the first two.
 SPHINXOPTS    ?=
-SPHINXBUILD   ?= sphinx-build
+#SPHINXBUILD   ?= sphinx-build
+SPHINXBUILD ?= $(if \
+		$(ifeq \
+			$(shell command python --version 2> /dev/null), \
+			3 \
+		), \
+		sphinx-build, \
+		python3 -msphinx \
+	)
 SOURCEDIR     = .
 BUILDDIR      = _build
+
 
 # Put it first so that "make" without argument is like "make help".
 help:

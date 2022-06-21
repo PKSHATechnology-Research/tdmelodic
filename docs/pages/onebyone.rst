@@ -12,9 +12,6 @@ s2ya: Surface -> Yomi & Accent
 ``s2ya`` estimates the reading (``yomi``) and accent of a word from its orthographic form (``surface``).
 For yomi, it uses the best estimates from MeCab and UniDic.
 
-.. note::
-    This is a note!
-
 - Input: Orthographic (surface) form, such as kanji
 - Output: Reading (yomi) and Accent
 
