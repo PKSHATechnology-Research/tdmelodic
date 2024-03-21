@@ -55,7 +55,7 @@ docker run --rm -v $(pwd):/root/workspace tdmelodic:latest \
     tdmelodic-convert \
     -m unidic \
     --input neologd_modified.csv \
-    --output ${WORKDIR}/tdmelodic_original.csv
+    --output tdmelodic_original.csv
 cp ${WORKDIR}/tdmelodic_original.csv ${WORKDIR}/tdmelodic.csv # backup
 ```
 
